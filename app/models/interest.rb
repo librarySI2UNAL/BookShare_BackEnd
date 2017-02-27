@@ -1,3 +1,3 @@
 class Interest < ApplicationRecord
-	attr_accessor :name, :iconName
+	attr_accessor :name, :icon_name
 end

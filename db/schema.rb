@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20170227161039) do
 
   create_table "interests", force: :cascade do |t|
     t.string   "name"
-    t.string   "iconName"
+    t.string   "icon_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20170227161039) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.string   "lastName"
+    t.string   "last_name"
     t.string   "email"
     t.string   "city"
     t.decimal  "qualification"
