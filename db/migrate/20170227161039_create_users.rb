@@ -4,9 +4,9 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :last_name
       t.string :email
-      t.string :city
       t.decimal :qualification
       t.belongs_to :photo, index: true
+      t.belongs_to :city, index: true
 
       t.timestamps
     end
