@@ -4,8 +4,7 @@ class CreateProducts < ActiveRecord::Migration[5.0]
       t.text :description
       t.boolean :special
       t.boolean :available
-      t.string :product_type
-      t.integer :product_id
+      t.references :product_item, polymorphic: true, index: true
       t.belongs_to :user, index: true
 
       t.timestamps

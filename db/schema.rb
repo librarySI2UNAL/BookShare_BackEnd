@@ -10,16 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170311032643) do
+ActiveRecord::Schema.define(version: 20170311034603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "books", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "cover"
+    t.string   "status"
+    t.string   "author"
+    t.string   "genre"
+    t.string   "editorial"
+    t.integer  "year_of_publication"
+    t.string   "code_type"
+    t.string   "code"
+    t.integer  "collection_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.index ["collection_id"], name: "index_books_on_collection_id", using: :btree
+  end
 
   create_table "cities", force: :cascade do |t|
     t.string   "placeId"
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "collections", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "genre"
+    t.string   "editorial"
+    t.integer  "year_of_publication"
+    t.string   "code_type"
+    t.string   "code"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "interests", force: :cascade do |t|
@@ -34,6 +63,19 @@ ActiveRecord::Schema.define(version: 20170311032643) do
     t.string   "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.text     "description"
+    t.boolean  "special"
+    t.boolean  "available"
+    t.string   "product_item_type"
+    t.integer  "product_item_id"
+    t.integer  "user_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["product_item_type", "product_item_id"], name: "index_products_on_product_item_type_and_product_item_id", using: :btree
+    t.index ["user_id"], name: "index_products_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

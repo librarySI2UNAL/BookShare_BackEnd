@@ -1,4 +1,4 @@
 class Product < ApplicationRecord
-	attr_accessor :description, :special, :available, :product_type, :product_id
-	belongs_to :user
+	attr_accessor :description, :special, :available
+	belongs_to :user, :product_item, polymorphic: true
 end
