@@ -7,5 +7,4 @@ class User < ApplicationRecord
 	validates :name, presence: true
 	validates :last_name, presence: true
 	validates :email, presence: true, uniqueness: true, format: Devise::email_regexp
-	validates :qualification
 end

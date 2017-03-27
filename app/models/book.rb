@@ -3,7 +3,6 @@ class Book < ApplicationRecord
 	has_many :products, as: :product_item
 
 	validates :name, presence: true
-	validates :description
 	validates :cover, presence: true
 	validates :status, presence: true
 	validates :author, presence: true
