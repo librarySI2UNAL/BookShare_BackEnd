@@ -7,7 +7,11 @@ class ProductsController < ApplicationController
 	def show
 		id = params[:id]
 		product = Product.find_by( id: id )
-		render json: { product: product }
+		if product == nil
+			render json: { error: "Product doesn't exist" }, status: 404
+		else
+			render json: { product: product }
+		end
 	end
 
 	def create
