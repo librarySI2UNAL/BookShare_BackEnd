@@ -3,7 +3,6 @@ class Collection < ApplicationRecord
 	has_many :products, as: :product_item, :books
 
 	validates :name, presence: true
-	validates :description
 	validates :genre, presence: true
 	validates :editorial, presence: true
 	validates :year_of_publication, presence: true
