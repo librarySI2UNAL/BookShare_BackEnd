@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170311034603) do
+ActiveRecord::Schema.define(version: 20170311043143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,10 +26,8 @@ ActiveRecord::Schema.define(version: 20170311034603) do
     t.integer  "year_of_publication"
     t.string   "code_type"
     t.string   "code"
-    t.integer  "collection_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
-    t.index ["collection_id"], name: "index_books_on_collection_id", using: :btree
   end
 
   create_table "cities", force: :cascade do |t|
@@ -42,6 +40,9 @@ ActiveRecord::Schema.define(version: 20170311034603) do
   create_table "collections", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
+    t.string   "cover"
+    t.string   "status"
+    t.string   "author"
     t.string   "genre"
     t.string   "editorial"
     t.integer  "year_of_publication"
@@ -76,6 +77,15 @@ ActiveRecord::Schema.define(version: 20170311034603) do
     t.datetime "updated_at",        null: false
     t.index ["product_item_type", "product_item_id"], name: "index_products_on_product_item_type_and_product_item_id", using: :btree
     t.index ["user_id"], name: "index_products_on_user_id", using: :btree
+  end
+
+  create_table "user_interests", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "interest_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["interest_id"], name: "index_user_interests_on_interest_id", using: :btree
+    t.index ["user_id"], name: "index_user_interests_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
