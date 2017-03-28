@@ -3,6 +3,9 @@ class CreateCollections < ActiveRecord::Migration[5.0]
     create_table :collections do |t|
       t.string :name
       t.text :description
+      t.string :cover
+      t.string :status
+      t.string :author
       t.string :genre
       t.string :editorial
       t.integer :year_of_publication

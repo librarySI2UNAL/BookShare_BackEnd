@@ -1,4 +1,6 @@
 class Book < ApplicationRecord
+	include ActiveModel::Serializers::JSON
+
 	attr_accessor :name, :description, :cover, :status, :author, :genre, :editorial, :year_of_publication, :code_type, :code
 	has_many :products, as: :product_item
 
