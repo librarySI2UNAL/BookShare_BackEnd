@@ -21,12 +21,14 @@ class ProductsController < ApplicationController
 		if !params.has_key?( :type )
 			render json: { error: "Bad request. The object type doesn't exist" }, status: 400
 		end
+=begin
 		user_id = params[:user_id]
 		user = User.find_by( id: user_id )
 		if user == nil
 			render json: { error: "User doesn't exist" }, status: 404
 			return
 		end
+=end
 		type = params[:type]
 		if type == 0 # Book
 			book = Book.new
@@ -45,10 +47,10 @@ class ProductsController < ApplicationController
 				product.special = params[:product][:special]
 				product.available = true
 				product.product_item = book
-				product.user = user
+				#product.user = user
 				if product.valid?
 					product.save
-					render json: { product: product }
+					render json: { product: product, book: book }
 					return
 				else
 					render json: { errors: product.errors.full_messages }, status: 400
@@ -75,10 +77,10 @@ class ProductsController < ApplicationController
 				product.special = params[:product][:special]
 				product.available = true
 				product.product_item = collection
-				product.user = user
+				#product.user = user
 				if product.valid?
 					product.save
-					render json: { product: product }
+					render json: { product: product, collection: collection }
 					return
 				else
 					render json: { errors: product.errors.full_messages }, status: 400
