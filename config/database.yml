@@ -1,10 +1,11 @@
 default: &default
   adapter: postgresql
-  encoding: SQL_ASCII
+  encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV['USERNAME'] %>
-  password: <%= ENV['PASSWORD'] %>
-  host:     <%= ENV['IP'] %>
+  username: bookshare
+  password: bookshare
+  host:     localhost
+  port: 5432
 
 development:
   <<: *default
