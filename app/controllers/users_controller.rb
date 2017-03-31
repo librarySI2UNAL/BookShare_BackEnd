@@ -1,4 +1,23 @@
 class UsersController < ApplicationController
+	def login
+		if !params.has_key?( :email )
+			render json: { error: "Bad request. The object email doesn't exist" }, status: 400
+			return
+		end
+		if !params.has_key?( :password )
+			render json: { error: "Bad request. The object password doesn't exist" }, status: 400
+			return
+		end
+		user = User.find_by( email: params[:email] )
+		if !user.authenticate( params[:password] )
+			render json: { error: "Error in authentication" }, status: 401
+			return
+		end
+
+		render json: { user: user }
+		return
+	end
+
 	def create
 		if !params.has_key?( :user )
 			render json: { error: "Bad request. The object user doesn't exist" }, status: 400
