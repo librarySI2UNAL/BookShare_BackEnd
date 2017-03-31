@@ -12,8 +12,18 @@ class ProductsController < ApplicationController
 			render json: { error: "Product doesn't exist" }, status: 404
 			return
 		else
-			render json: { product: product }
-			return
+			product_type = product[:product_item_type]
+			if product_type == "Book"
+				book_id = product[:product_item_id]
+				book = Book.find_by( id: book_id )
+				render json: { product: product, book: book }
+				return
+			elsif product_type == "Collection"
+				collection_id = product[:product_item_id]
+				collection = Collection.find_by( id: collection_id )
+				render json: { product: product, book: collection }
+				return
+			end
 		end
 	end
 
