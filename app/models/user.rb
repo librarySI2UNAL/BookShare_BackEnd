@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+	include ActiveModel::Serializers::JSON
+
 	attr_accessor :name, :last_name, :email, :qualification
 	belongs_to :photo
 	has_many :products
