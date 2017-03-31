@@ -62,8 +62,10 @@ ActiveRecord::Schema.define(version: 20170329232350) do
   create_table "photos", force: :cascade do |t|
     t.string   "name"
     t.string   "url"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_photos_on_user_id", using: :btree
   end
 
   create_table "products", force: :cascade do |t|
@@ -93,13 +95,11 @@ ActiveRecord::Schema.define(version: 20170329232350) do
     t.string   "last_name"
     t.string   "email"
     t.decimal  "qualification"
-    t.integer  "photo_id"
     t.integer  "city_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.string   "password"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "password_digest"
     t.index ["city_id"], name: "index_users_on_city_id", using: :btree
-    t.index ["photo_id"], name: "index_users_on_photo_id", using: :btree
   end
 
 end

@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 			user.save
 			render json: { user: user }
 			return
+		end
 		
 		render json: { errors: user.errors.full_messages }, status: 400
 	end
@@ -25,6 +26,7 @@ class UsersController < ApplicationController
 			user.save
 			render json: { user: user }
 			return
+		end
 		
 		render json: { errors: user.errors.full_messages }, status: 400
 	end
