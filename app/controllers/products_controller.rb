@@ -6,9 +6,18 @@ class ProductsController < ApplicationController
 	end
 
 	def show
-		product = Product.load_product( params[:id] )
-		render json: { product: product }
-		return
+		if !params.has_key?( :id )
+			render json: { error: "Bad request. The id parameter doesn't exist" }, status: 400
+			return
+		end
+		if params[:id].is_a? Integer
+			product = Product.load_product( params[:id] )
+			render json: { product: product }
+			return
+		else
+			render json: { error: "Bad request. The id parameter is not a Integer" }, status: 400
+			return
+		end
 	end
 
 	def create
