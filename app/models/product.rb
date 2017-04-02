@@ -29,11 +29,13 @@ class Product < ApplicationRecord
 		return product
 	end
 
-	def self.load_available_products( page = 1, per_page = 10 )
+	def self.load_available_products( page = 1, per_page = 10, genre = "All" )
 		products = []
 		self.where( available: true ).each do | product |
 			aux = self.load_specific_information( product.to_h )
-			products.push( aux )
+			if genre == "All" || aux.genre == genre
+				products.push( aux )
+			end
 		end
 
 		return products

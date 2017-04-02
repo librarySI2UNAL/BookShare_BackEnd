@@ -1,6 +1,10 @@
 class ProductsController < ApplicationController
 	def index
-		products = Product.load_available_products( params[:page] )
+		if params.has_key?( :genre )
+			products = Product.load_available_products( params[:page], params[:genre] )
+		else
+			products = Product.load_available_products( params[:page] )
+		end
 		render json: { products: products }
 		return
 	end
