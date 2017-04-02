@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 	def index
-		products = Product.where( available: true )
+		products = Product.load_available_products( params[:page] )
 		render json: { products: products }
 		return
 	end
