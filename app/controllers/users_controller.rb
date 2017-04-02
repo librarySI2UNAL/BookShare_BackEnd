@@ -9,6 +9,10 @@ class UsersController < ApplicationController
 			return
 		end
 		user = User.find_by( email: params[:email] )
+		if user == nil
+			render json: { error: "User doesn't exist" }, status: 404
+			return
+		end
 		if !user.authenticate( params[:password] )
 			render json: { error: "Error in authentication" }, status: 401
 			return

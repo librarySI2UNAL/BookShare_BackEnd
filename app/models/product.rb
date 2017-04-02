@@ -4,4 +4,8 @@ class Product < ApplicationRecord
 
 	validates :special, presence: true
 	validates :available, presence: true
+
+	def self.load_products( page = 1, per_page = 10 )
+		self.where( available: true )
+	end
 end
