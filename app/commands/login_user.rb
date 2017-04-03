@@ -1,4 +1,4 @@
-class AuthenticateUser
+class LoginUser
     prepend SimpleCommand
     
     #this is where parameters are taken when the command is called
@@ -20,7 +20,7 @@ class AuthenticateUser
        Users.find_by_email(email) 
        return user if user && user.authenticate(password)
        
-       errors.add :user_authentication, 'invalid username or password'
+       errors.add :user_login, 'invalid username or password'
        nil
     end
 end
