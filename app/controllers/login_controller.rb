@@ -3,7 +3,7 @@ class LoginController < ApplicationController
 	
 	def authenticate
 		#Take the JSON parameters for e-mail and password through the params hash and pass them to the AuthenticateUser command
-		command = AuthenticateUser.call(params[:email], params[:password])
+		command = LoginUser.call(params[:email], params[:password])
 		if command.success?
 			#If the command succeeds, it will send the JWT token back to the user.
 			render json: { auth_token: command.result }
