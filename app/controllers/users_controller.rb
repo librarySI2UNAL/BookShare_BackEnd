@@ -1,56 +1,22 @@
 class UsersController < ApplicationController
-	def login
-		if !params.has_key?( :email )
-			render json: { error: "Bad request. The object email doesn't exist" }, status: 400
-			return
-		end
-		if !params.has_key?( :password )
-			render json: { error: "Bad request. The object password doesn't exist" }, status: 400
-			return
-		end
-		user = User.find_by( email: params[:email] )
-		if user == nil
-			render json: { error: "User doesn't exist" }, status: 404
-			return
-		end
-		if !user.authenticate( params[:password] )
-			render json: { error: "Error in authentication" }, status: 401
-			return
-		end
-
-		render json: { user: user }
-		return
-	end
-
+	skip_before_action :authorize_request, only: :create
+	# POST /signup
+	# return authenticated token upon signup
 	def create
-		if !params.has_key?( :user )
-			render json: { error: "Bad request. The object user doesn't exist" }, status: 400
-			return
-		end
-		user = User.new
-		user.from_json( params[:user].to_json )
-		if user.valid?
-			user.save
-			render json: { user: user }
-			return
-		end
-		
-		render json: { errors: user.errors.full_messages }, status: 400
+    	user = User.create!(user_params)
+	    auth_token = AuthenticateUser.new(user.email, user.password).call
+	    response = { message: Message.account_created, auth_token: auth_token }
+	    json_response(response, :created)
 	end
 
-	def update
-		if !params.has_key?( :user )
-			render json: { error: "Bad request. The object user doesn't exist" }, status: 400
-			return
-		end
-		user = User.find_by( id: params[:user][:id] )
-		user.from_json( params[:user].to_json )
-		if user.valid?
-			user.save
-			render json: { user: user }
-			return
-		end
-		
-		render json: { errors: user.errors.full_messages }, status: 400
+	private
+
+	def user_params
+		params.permit(
+			:name,
+			:email,
+			:password,
+			:password_confirmation
+		)
 	end
 end

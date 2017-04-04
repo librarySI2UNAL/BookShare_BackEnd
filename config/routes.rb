@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 	scope "/api/v1" do
-		#post "login", to: "login#authenticate"
+		post 'auth/login', to: 'authentication#authenticate'
+		post 'signup', to: 'users#create'
 		resources :users, only: [:create, :update] do
 			resources :products, only: [:index, :create, :update]
 		end
