@@ -1,6 +1,6 @@
 default: &default
   adapter: postgresql
-  encoding: unicode
+  encoding: SQL_ASCII
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: bookshare
   password: bookshare
