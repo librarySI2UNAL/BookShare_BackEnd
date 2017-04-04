@@ -1,9 +1,11 @@
 class ProductsController < ApplicationController
 	def index
 		if params.has_key?( :genre )
-			products = Product.load_available_products( params[:page], params[:genre] )
+			products = Product.load_available_products_by_genre( params[:page], params[:per_page], params[:genre].to_i )
+		elsif params.has_key?( :author )
+			products = Product.load_available_products_by_author( params[:page], params[:per_page], params[:author] )
 		else
-			products = Product.load_available_products( params[:page] )
+			products = Product.load_available_products( params[:page], params[:per_page] )
 		end
 		render json: { products: products }
 		return
@@ -15,11 +17,17 @@ class ProductsController < ApplicationController
 			return
 		end
 		if params[:id].to_i > 0
-			product = Product.load_product( params[:id] )
-			render json: { product: product }
+			result = Product.load_product( params[:id] )
+			if result[:success]
+				render json: { product: result[:product] }
+			elsif result.has_key?( :error )
+				render json: { error: result[:error] }, status: 404
+			elsif result.has_key?( :errors )
+				render json: { errors: result[:errors] }, status: 404
+			end
 			return
 		else
-			render json: { error: "Bad request. The id parameter is not a Integer" }, status: 400
+			render json: { error: "Bad request. The id parameter is invalid" }, status: 400
 			return
 		end
 	end

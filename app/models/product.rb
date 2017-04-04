@@ -29,11 +29,22 @@ class Product < ApplicationRecord
 		return product
 	end
 
-	def self.load_available_products( page = 1, per_page = 10, genre = -1 )
+	def self.load_available_products( page = 1, per_page = 10 )
+		products = []
+		self.where( available: true ).paginate( page: page, per_page: per_page ).each do | product |
+			aux = self.load_specific_information( product.to_h )
+			products.push( aux )
+		end
+
+		return products
+	end
+
+	def self.load_available_products_by_genre( page = 1, per_page = 10, genre = -1 )
 		products = []
 		self.where( available: true ).each do | product |
 			aux = self.load_specific_information( product.to_h )
-			if genre == -1 || aux.genre == genre
+			if genre == -1 || ( aux.has_key?( :book ) && aux[:book][:genre] == genre ) || 
+				( aux.has_key?( :collection ) && aux[:collection][:genre] == genre )
 				products.push( aux )
 			end
 		end
@@ -42,8 +53,13 @@ class Product < ApplicationRecord
 	end
 
 	def self.load_product( id )
-		product = self.find_by_id( id ).to_h
+		product = self.find_by_id( id )
+		if product == nil
+			return { success: false, error: "The product was not found" }
+		end
 
-		return self.load_specific_information( product )
+		product_h = product.to_h
+
+		return { success: true, product: self.load_specific_information( product_h ) }
 	end
 end
