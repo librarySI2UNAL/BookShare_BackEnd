@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
 			render json: { error: "Bad request. The id parameter doesn't exist" }, status: 400
 			return
 		end
-		if params[:id].is_a? Integer
+		if params[:id].to_i > 0
 			product = Product.load_product( params[:id] )
 			render json: { product: product }
 			return
