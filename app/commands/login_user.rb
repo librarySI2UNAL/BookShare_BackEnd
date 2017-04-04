@@ -14,13 +14,12 @@ class LoginUser
     
     private
     
-    attr_acessor :email, :password
+    attr_accessor :email, :password
     
     def user
-       Users.find_by_email(email) 
-       return user if user && user.authenticate(password)
-       
-       errors.add :user_login, 'invalid username or password'
-       nil
+        User.find_by_email(email)
+        return user if user && user.authenticate(password)
+        errors.add :user_login, 'invalid username or password'
+        nil
     end
 end
