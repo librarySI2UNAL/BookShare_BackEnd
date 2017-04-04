@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
 	has_secure_password
 
-	attr_accessor :name, :last_name, :email, :qualification
+	# attr_accessor :name, :last_name, :email, :qualification
 	has_one :photo
 	has_many :products
 	has_many :interests, through: :user_interest
@@ -11,4 +11,10 @@ class User < ApplicationRecord
 	validates :name, presence: true
 	validates :last_name, presence: true
 	validates :email, presence: true, uniqueness: true, format: Devise::email_regexp
+
+	def self.load_user( email )
+		user = self.find_by_email( email )
+
+		return user
+	end
 end

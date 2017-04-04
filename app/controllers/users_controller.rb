@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	def login
-		if !params.has_key?( :email )
+=begin		if !params.has_key?( :email )
 			render json: { error: "Bad request. The object email doesn't exist" }, status: 400
 			return
 		end
@@ -20,10 +20,10 @@ class UsersController < ApplicationController
 
 		render json: { user: user }
 		return
-	end
+=end	end
 
 	def create
-		if !params.has_key?( :user )
+=begin		if !params.has_key?( :user )
 			render json: { error: "Bad request. The object user doesn't exist" }, status: 400
 			return
 		end
@@ -36,10 +36,10 @@ class UsersController < ApplicationController
 		end
 		
 		render json: { errors: user.errors.full_messages }, status: 400
-	end
+=end	end
 
 	def update
-		if !params.has_key?( :user )
+=begin		if !params.has_key?( :user )
 			render json: { error: "Bad request. The object user doesn't exist" }, status: 400
 			return
 		end
@@ -52,5 +52,5 @@ class UsersController < ApplicationController
 		end
 		
 		render json: { errors: user.errors.full_messages }, status: 400
-	end
+=end	end
 end
