@@ -43,8 +43,21 @@ class Product < ApplicationRecord
 		products = []
 		self.where( available: true ).each do | product |
 			aux = self.load_specific_information( product.to_h )
-			if genre == -1 || ( aux.has_key?( :book ) && aux[:book][:genre] == genre ) || 
+			if ( aux.has_key?( :book ) && aux[:book][:genre] == genre ) || 
 				( aux.has_key?( :collection ) && aux[:collection][:genre] == genre )
+				products.push( aux )
+			end
+		end
+
+		return products
+	end
+
+	def self.load_available_products_by_author( page = 1, per_page = 10, author = "" )
+		products = []
+		self.where( available: true ).each do | product |
+			aux = self.load_specific_information( product.to_h )
+			if ( aux.has_key?( :book ) && aux[:book][:author] == author ) || 
+				( aux.has_key?( :collection ) && aux[:collection][:author] == author )
 				products.push( aux )
 			end
 		end
