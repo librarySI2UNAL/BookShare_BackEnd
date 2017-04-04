@@ -1,5 +1,5 @@
 class LoginController < ApplicationController
-	skip_before_action :authenticate_request
+	skip_before_action :login_request
 	
 	def authenticate
 		#Take the JSON parameters for e-mail and password through the params hash and pass them to the AuthenticateUser command
