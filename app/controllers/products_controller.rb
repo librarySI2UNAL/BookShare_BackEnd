@@ -1,7 +1,10 @@
 class ProductsController < ApplicationController
 	def index
+		products = []
 		if params.has_key?( :genre )
 			products = Product.load_available_products_by_genre( params[:page], params[:per_page], params[:genre].to_i )
+		elsif params.has_key?( :name )
+			products = Product.load_available_products_by_name( params[:page], params[:per_page], params[:name] )
 		elsif params.has_key?( :author )
 			products = Product.load_available_products_by_author( params[:page], params[:per_page], params[:author] )
 		else

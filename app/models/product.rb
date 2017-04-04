@@ -52,6 +52,19 @@ class Product < ApplicationRecord
 		return products
 	end
 
+	def self.load_available_products_by_name( page = 1, per_page = 10, name = "" )
+		products = []
+		self.where( available: true ).each do | product |
+			aux = self.load_specific_information( product.to_h )
+			if ( aux.has_key?( :book ) && aux[:book][:name] == name ) || 
+				( aux.has_key?( :collection ) && aux[:collection][:name] == name )
+				products.push( aux )
+			end
+		end
+
+		return products
+	end
+
 	def self.load_available_products_by_author( page = 1, per_page = 10, author = "" )
 		products = []
 		self.where( available: true ).each do | product |
