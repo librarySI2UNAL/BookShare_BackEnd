@@ -61,21 +61,38 @@ book = Book.create( name: "It: A Novel", description: nil, cover: 1, status: 5,
 	author: "Stephen King", genre: 3, editorial: "Scribner", year_of_publication: 2016,
 	code_type: "ISBN", code: "978-1501142970" )
 Product.create( description: nil, special: true, available: true, product_item: book )
-book = Book.create( name: "The Shining", description: nil, cover: 1, status: 2012,
+book = Book.create( name: "The Shining", description: nil, cover: 1, status: 5,
 	author: "Stephen King", genre: 3, editorial: "Anchor", year_of_publication: 2016,
 	code_type: "ISBN", code: "978-0307743657" )
 Product.create( description: nil, special: true, available: true, product_item: book )
-book = Book.create( name: "Carrie", description: nil, cover: 1, status: 2012,
+book = Book.create( name: "Carrie", description: nil, cover: 1, status: 5,
 	author: "Stephen King", genre: 3, editorial: "Doubleday", year_of_publication: 2007,
 	code_type: "ISBN", code: "978-0385086950" )
 Product.create( description: nil, special: true, available: true, product_item: book )
+book = Book.create( name: "Thrawn (Star Wars)", description: nil, cover: 1, status: 5,
+	author: "Timithy Zahn", genre: 4, editorial: "Del Rey", year_of_publication: 2017,
+	code_type: "ISBN", code: "978-0345511270" )
+Product.create( description: nil, special: true, available: true, product_item: book )
+book = Book.create( name: "Bloodline (Star Wars)", description: nil, cover: 1, status: 5,
+	author: "Claudia Gray", genre: 4, editorial: "Del Rey", year_of_publication: 2017,
+	code_type: "ISBN", code: "978-1101885260" )
+Product.create( description: nil, special: true, available: true, product_item: book )
+book = Book.create( name: "Heir to the Jedi: Star Wars", description: nil, cover: 1, status: 5,
+	author: "Kevin Hearne", genre: 4, editorial: "Del Rey", year_of_publication: 2015,
+	code_type: "ISBN", code: "978-0345544865" )
+Product.create( description: nil, special: true, available: true, product_item: book )
+
 collection = Collection.create( name: "Saga de Harry Potter", description: nil, cover: 1, status: 5,
-	author: "J. K. Rowling", genre: 1, editorial: "Bloomsbury Publishing", year_of_publication: 1997,
+	author: "J.K. Rowling", genre: 1, editorial: "Bloomsbury Publishing", year_of_publication: 1997,
 	code_type: "ISBN", code: "978-0545162074" )
 Product.create( description: nil, special: true, available: true, product_item: collection )
 collection = Collection.create( name: "The Maze Runner Series", description: nil, cover: 1, status: 5,
-	author: "J. K. Rowling", genre: 3, editorial: "Delacorte Press", year_of_publication: 2014,
+	author: "James Dashner", genre: 3, editorial: "Delacorte Press", year_of_publication: 2014,
 	code_type: "ISBN", code: "978-0385388894" )
+Product.create( description: nil, special: true, available: true, product_item: collection )
+collection = Collection.create( name: "The Hobbit and the Lord of the Rings", description: nil, cover: 1, status: 5,
+	author: "J.R.R. Tolkien", genre: 3, editorial: "Delacorte Press", year_of_publication: 2012,
+	code_type: "ISBN", code: "978-0345538376" )
 Product.create( description: nil, special: true, available: true, product_item: collection )
 
 User.create( name: "Iván", last_name: "Rojas", email: "ivan@email.com", password: "ivan123" )
