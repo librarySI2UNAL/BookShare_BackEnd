@@ -4,8 +4,8 @@ class User < ApplicationRecord
 	# encrypt password
 	has_secure_password
 
-	attr_accessor :name, :last_name, :email, :qualification
-	has_one :photo
+	#attr_accessor :name, :last_name, :email, :qualification
+	#has_one :photo
 	has_many :products
 	has_many :interests, through: :user_interest
 	

@@ -4,7 +4,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   # Association test
   ##Put validation test here
-  it { should have_one(:photo) }
+  #it { should have_one(:photo) }
   it { should have_many(:products) }
   #it { should have_many(:interests) }
   # Validation tests
