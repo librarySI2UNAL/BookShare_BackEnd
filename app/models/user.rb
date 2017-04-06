@@ -1,9 +1,6 @@
 class User < ApplicationRecord
-	include ActiveModel::Serializers::JSON
-
 	has_secure_password
 
-	# attr_accessor :name, :last_name, :email, :qualification
 	has_one :photo
 	has_many :products
 	has_many :interests, through: :user_interest

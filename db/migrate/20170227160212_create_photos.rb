@@ -4,6 +4,7 @@ class CreatePhotos < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :url
       t.belongs_to :user, index: true
+      t.belongs_to :product, index: true
 
       t.timestamps
     end

@@ -1,8 +1,6 @@
 class Product < ApplicationRecord
-	include ActiveModel::Serializers::JSON
-
-	# attr_accessor :description, :special, :available
 	belongs_to :product_item, polymorphic: true
+	has_many :photos
 
 	validates :special, presence: true
 	validates :available, presence: true
