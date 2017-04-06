@@ -26,8 +26,10 @@ ActiveRecord::Schema.define(version: 20170406010142) do
     t.integer  "year_of_publication"
     t.string   "code_type"
     t.string   "code"
+    t.integer  "collection_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.index ["collection_id"], name: "index_books_on_collection_id", using: :btree
   end
 
   create_table "cities", force: :cascade do |t|
@@ -107,11 +109,13 @@ ActiveRecord::Schema.define(version: 20170406010142) do
     t.string   "last_name"
     t.string   "email"
     t.decimal  "qualification"
+    t.integer  "photo_id"
     t.integer  "city_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
     t.index ["city_id"], name: "index_users_on_city_id", using: :btree
+    t.index ["photo_id"], name: "index_users_on_photo_id", using: :btree
   end
 
 end
