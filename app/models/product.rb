@@ -4,6 +4,7 @@ class Product < ApplicationRecord
 
 	validates :special, presence: true
 	validates :available, presence: true
+	validates :value, presence: true
 
 	def to_h
 		{
