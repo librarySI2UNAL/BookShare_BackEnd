@@ -9,14 +9,10 @@ class User < ApplicationRecord
 	validates :email, presence: true, uniqueness: true, format: Devise::email_regexp
 
 	def self.load_user_by_email( email )
-		user = self.find_by_email( email )
-
-		return user
+		self.find_by_email( email )
 	end
 
 	def self.load_user_by_id( id )
-		user = self.find_by_id( id )
-
-		return user
+		self.find_by_id( id )
 	end
 end

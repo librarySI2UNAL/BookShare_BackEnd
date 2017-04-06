@@ -1,15 +1,20 @@
 class AuthenticationController < ApplicationController
-    skip_before_action :authorize_request, only: :authenticate
-    # return auth token once user is authenticated
-    def authenticate
-        auth_token =
-        AuthenticateUser.new(auth_params[:email], auth_params[:password]).call
-        json_response(auth_token: auth_token)
-    end
+	skip_before_action :authorize_request, only: :authenticate
 
-    private
+	def authenticate
+		if !params.has_key?( :email )
+			message = Message.invalid_request( "email" )
+			render json: { error: message }, status: 400
+			return
+		end
+		if !params.has_key?( :password )
+			message = Message.invalid_request( "password" )
+			render json: { error: message }, status: 400
+			return
+		end
 
-    def auth_params
-        params.permit(:email, :password)
-    end
+		auth_token = AuthenticateUser.new( params[:email], params[:password] ).call
+
+		render json: { auth_token: auth_token }
+	end
 end
