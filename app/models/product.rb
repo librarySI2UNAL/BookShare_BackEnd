@@ -31,10 +31,18 @@ class Product < ApplicationRecord
 
 	def self.load_available_products( page = 1, per_page = 10 )
 		products = []
-		self.where( available: true ).paginate( page: page, per_page: per_page ).each do | product |
-			aux = self.load_specific_information( product.to_h )
-			products.push( aux )
-		end
+		self.where( available: true )
+			.includes( :product_item )
+			.paginate( page: page, per_page: per_page )
+			.each do | product |
+				product_h = product.to_h
+				if product_h[:product_item_type] == "Book"
+					product_h[:book] = product.product_item
+				else
+					product_h[:collection] = product.product_item
+				end
+				products.push( product_h )
+			end
 
 		return products
 	end

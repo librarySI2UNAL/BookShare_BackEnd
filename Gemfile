@@ -44,3 +44,5 @@ gem 'devise'
 
 ## Gemfile for Rails 3+, Sinatra, and Merb
 gem 'will_paginate', '~> 3.1.0'
+
+gem 'active_model_serializers', '~> 0.10.0'
