@@ -23,12 +23,12 @@ class Message
 		"Unauthorized request"
 	end
 
-	def self.account_created
-		"Account created successfully"
+	def self.object_created( record = "Record" )
+		"#{record} created successfully"
 	end
 
-	def self.account_updated
-		"Account updated successfully"
+	def self.object_updated( record = "Record" )
+		"#{record} updated successfully"
 	end
 
 	def self.account_not_created
@@ -36,6 +36,6 @@ class Message
 	end
 
 	def self.expired_token
-		"Sorry, your token has expired. Please login to continue"
+		"Your token has expired"
 	end
 end

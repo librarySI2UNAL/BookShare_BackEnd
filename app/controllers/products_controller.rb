@@ -24,10 +24,22 @@ class ProductsController < ApplicationController
 	end
 
 	def create
-		render json: {}
+		product = ProductsDAO.create_product( product_params )
+
+		message = Message.object_created( "Product" )
+		render json: { message: message, data: product }
 	end
 
 	def update
-		render json: {}
+		product = ProductsDAO.update_product( params[:id].to_i, product_params )
+
+		message = Message.object_updated( "Product" )
+		render json: { message: message, data: product }
+	end
+
+	private
+
+	def product_params
+		params.require( :data ).permit( :special, :available, book: [:name, :description, :cover, :status, :author, :genre, :editorial, :year_of_publication, :code, :code_type], collection: [:name, :description, :cover, :status, :author, :genre, :editorial, :year_of_publication, :code, :code_type] )
 	end
 end

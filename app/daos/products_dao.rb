@@ -15,8 +15,8 @@ class ProductsDAO
 		return { success: true, product: aux }
 	end
 
-	def self.create_product( type, product_h )
-		if type == "Book"
+	def self.create_product( product_h )
+=begin		if product_h.has_key( :book )
 			result = BooksDAO.create_book( product_h[:book] )
 			if !result[:success]
 				return result
@@ -35,10 +35,10 @@ class ProductsDAO
 		product = Product.new
 		
 		return self.assign_product( type, product, product_h, result )
-	end
+=end	end
 
 	def self.update_product( type, product_h )
-		if type == "Book"
+=begin		if type == "Book"
 			result = BooksDAO.update_book( product_h[:id], product_h[:book] )
 			if !result[:success]
 				return result
@@ -60,5 +60,5 @@ class ProductsDAO
 		end
 		
 		return self.assign_product( type, product, product_h, result )
-	end
+=end	end
 end
