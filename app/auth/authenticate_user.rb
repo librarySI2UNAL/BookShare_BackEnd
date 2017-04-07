@@ -13,7 +13,7 @@ class AuthenticateUser
 	attr_reader :email, :password
 
 	def user
-		user = UsersDAO.load_user_by_email( email )
+		user = User.load_user_by_email( email )
 		return user if user && user.authenticate( password )
 
 		raise( ExceptionHandler::AuthenticationError, Message.invalid_credentials )

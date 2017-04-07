@@ -5,7 +5,9 @@ class User < ApplicationRecord
 	has_many :products
 	has_many :interests, through: :user_interest
 	
-	validates_presence_of :name, :last_name, :password_digest
+	validates :name, presence: true
+	validates :last_name, presence: true
+	validates :password_digest, presence: true
 	validates :email, presence: true, uniqueness: true, format: Devise::email_regexp
 
 	def self.load_user_by_email( email )

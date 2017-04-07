@@ -27,6 +27,10 @@ class Message
 		"Account created successfully"
 	end
 
+	def self.account_updated
+		"Account updated successfully"
+	end
+
 	def self.account_not_created
 		"Account could not be created"
 	end

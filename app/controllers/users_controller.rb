@@ -2,30 +2,23 @@ class UsersController < ApplicationController
 	skip_before_action :authorize_request, only: :create
 
 	def create
-		if !params.has_key?( :user )
-			message = Message.invalid_request( "user" )
-			render json: { error: message }, status: 400
-			return
-		end
-
-		user = UsersDAO.create_user( params[:user] )
+		user = UsersDAO.create_user( user_params )
 		auth_token = AuthenticateUser.new( user.email, user.password ).call
 
 		message = Message.account_created
-		render json: { message: message, token: auth_token }
+		render json: { message: message, token: auth_token, data: user }
 	end
 
 	def update
-		if !params.has_key?( :user )
-			message = Message.invalid_request( "user" )
-			render json: { error: message }, status: 400
-			return
-		end
+		user = UsersDAO.update_user( params[:id].to_i, user_params )
 
-		user = AuthorizeApiRequest.new( user.email, user.password ).call
-		user = UsersDAO.create_user( params[:user] )
+		message = Message.account_updated
+		render json: { message: message, data: user }
+	end
 
-		message = Message.account_created
-		render json: { message: message, token: auth_token }
+	private
+
+  	def user_params
+		params.require( :user ).permit( :name, :last_name, :email, :password )
 	end
 end
