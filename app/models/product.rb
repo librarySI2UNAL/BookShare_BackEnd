@@ -18,19 +18,22 @@ class Product < ApplicationRecord
 
 	def self.load_available_products_by_genre( page = 1, per_page = 10, genre = -1 )
 		self.includes( :product_item )
-			.where( available: true, product_item: { genre: genre } )
+			.where( available: true )
 			.paginate( page: page, per_page: per_page )
+			#.where( available: true, product_item: { genre: genre } )
 	end
 
 	def self.load_available_products_by_name( page = 1, per_page = 10, name = "" )
 		self.includes( :product_item )
-			.where( available: true, product_item: { name: name } )
+			.where( available: true )
 			.paginate( page: page, per_page: per_page )
+			#.where( available: true, product_item: { name: name } )
 	end
 
 	def self.load_available_products_by_author( page = 1, per_page = 10, author = "" )
 		self.includes( :product_item )
-			.where( available: true, product_item: { author: author } )
+			.where( available: true )
 			.paginate( page: page, per_page: per_page )
+			#.where( available: true, product_item: { author: author } )
 	end
 end
