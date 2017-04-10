@@ -1,6 +1,7 @@
 class User < ApplicationRecord
 	has_secure_password
 
+	belongs_to :city
 	has_one :photo
 	has_many :products
 	has_many :interests, through: :user_interest
