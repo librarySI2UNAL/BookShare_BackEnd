@@ -1,5 +1,5 @@
 class Genre < ApplicationRecord
-	has_many :interests, through: :interest_genre
+	has_and_belongs_to_many :interests
 
 	validates :name, presence: true
 end

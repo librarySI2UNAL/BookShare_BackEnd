@@ -4,7 +4,7 @@ class User < ApplicationRecord
 	belongs_to :city
 	has_one :photo
 	has_many :products
-	has_many :interests, through: :user_interest
+	has_and_belongs_to_many :interests
 
 	validates :name, presence: true
 	validates :last_name, presence: true

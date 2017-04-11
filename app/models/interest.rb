@@ -1,6 +1,6 @@
 class Interest < ApplicationRecord
-	has_many :users, through: :user_interest
-	has_many :genres, through: :interest_genre
+	has_and_belongs_to_many :users
+	has_and_belongs_to_many :genres
 
 	validates :name, presence: true
 

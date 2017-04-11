@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170411171740) do
+ActiveRecord::Schema.define(version: 20170411193553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,11 +68,29 @@ ActiveRecord::Schema.define(version: 20170411171740) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "interest_genres", force: :cascade do |t|
+    t.integer  "interest_id"
+    t.integer  "genre_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["genre_id"], name: "index_interest_genres_on_genre_id", using: :btree
+    t.index ["interest_id"], name: "index_interest_genres_on_interest_id", using: :btree
+  end
+
   create_table "interests", force: :cascade do |t|
     t.string   "name"
     t.string   "icon_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "interests_users", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "interest_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["interest_id"], name: "index_interests_users_on_interest_id", using: :btree
+    t.index ["user_id"], name: "index_interests_users_on_user_id", using: :btree
   end
 
   create_table "photos", force: :cascade do |t|
@@ -99,15 +117,6 @@ ActiveRecord::Schema.define(version: 20170411171740) do
     t.datetime "updated_at",        null: false
     t.index ["product_item_type", "product_item_id"], name: "index_products_on_product_item_type_and_product_item_id", using: :btree
     t.index ["user_id"], name: "index_products_on_user_id", using: :btree
-  end
-
-  create_table "user_interests", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "interest_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["interest_id"], name: "index_user_interests_on_interest_id", using: :btree
-    t.index ["user_id"], name: "index_user_interests_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
