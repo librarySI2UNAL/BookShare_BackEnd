@@ -158,3 +158,137 @@ interest = Interest.create(name: 'Biographies')
 
 	genre = Genre.create(name: 'True crime')
 	interest.genres  << genre
+
+	interest = Interest.create(name: 'Childrens Book')
+
+			genre = Genre.create(name: 'Baby to 2')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Ages 3 to 5')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Ages 6 to 8')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Ages 9 to 12')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Award winners')
+			interest.genres << genre
+
+			genre = Genre.create(name: "Children's books to read in lifetime")
+			interest.genres  << genre
+
+			genre = Genre.create(name: 'Education and reference')
+			interest.genres  << genre
+
+			genre = Genre.create(name: 'Best Books')
+			interest.genres  << genre
+
+	interest = Interest.create(name: 'Others')
+
+		genre = Genre.create(name: 'Cookbooks, food & wine')
+		interest.genres << genre
+		genre = Genre.create(name: 'Romance')
+		interest.genres << genre
+
+
+
+	interest = Interest.create(name: 'History')
+
+				genre = Genre.create(name: 'Africa')
+				interest.genres << genre
+
+				genre = Genre.create(name: 'Americas')
+				interest.genres << genre
+
+				genre = Genre.create(name: 'Ancient Civilizations')
+				interest.genres << genre
+
+				genre = Genre.create(name: 'Europe')
+				interest.genres << genre
+
+				genre = Genre.create(name: 'Middle East')
+				interest.genres << genre
+
+				genre = Genre.create(name: 'Military')
+				interest.genres  << genre
+
+				genre = Genre.create(name: 'Russia')
+				interest.genres  << genre
+
+	interest = Interest.create(name: 'Literature & Fiction')
+
+		genre = Genre.create(name: 'Classics')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Contemporary')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Essays')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Genre Fiction')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Historical Fiction')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Humor and satire')
+		interest.genres  << genre
+
+		genre = Genre.create(name: 'Literary')
+		interest.genres  << genre
+
+
+interest = Interest.create(name: 'Science Fiction and Fantasy')
+
+			genre = Genre.create(name: 'Alternate History')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Epic')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Historical')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Military')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Myths and legends')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Paranormal')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Sword and sorcery')
+			interest.genres << genre
+
+interest = Interest.create(name: 'Teen and Young Adult Books')
+
+		genre = Genre.create(name: 'Teen & Young Adult Romance')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Teen & Young Adult Literature & Fiction')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Teen & Young Adult Science Fiction & Fantasy')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Teen & Young Adult Mysteries & Thrillers')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Teen & Young Adult Personal Health')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Teen & Young Adult Adult Social Issues')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Teen & Young Adult Education & Reference')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Teen & Young Adult Biographies')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Teen & Young Adult Religion & Spirituality')
+		interest.genres << genre
