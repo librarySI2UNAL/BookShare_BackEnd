@@ -17,18 +17,32 @@ class UsersController < ApplicationController
 
 	def update
 		user = UsersDAO.update_user( params[:id].to_i, user_params )
+		if !user.valid?
+			render json: { errors: user.errors.full_messages }, status: 400
+			return
+		end
 
 		message = Message.object_updated( "User" )
-		render json: { message: message, data: user }
+		response = { message: message }
+		response[:data] = ActiveModelSerializers::SerializableResource.new( user ).as_json[:user]
+		render json: response
 	end
 
 	def destroy
+		deleted = UsersDAO.delete_user( params[:id].to_i )
+		if !deleted
+			message = Message.not_found( "User" )
+			render json: { error: message }, status: 404
+			return
+		end
 
+		message = Message.object_deleted( "User" )
+		render json: { message: message }
 	end
 
 	private
 
 	def user_params
-		params.require( :data ).permit( :name, :last_name, :email, :password )
+		params.require( :data ).permit( :name, :last_name, :email, :password, :qualification, :latitude, :longitude )
 	end
 end

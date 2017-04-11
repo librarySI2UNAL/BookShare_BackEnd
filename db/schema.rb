@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20170406010142) do
     t.boolean  "special"
     t.boolean  "available"
     t.integer  "value"
+    t.decimal  "qualification"
     t.string   "product_item_type"
     t.integer  "product_item_id"
     t.integer  "user_id"
