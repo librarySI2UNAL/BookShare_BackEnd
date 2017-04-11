@@ -10,6 +10,7 @@ class User < ApplicationRecord
 	validates :last_name, presence: true
 	validates :password_digest, presence: true
 	validates :email, presence: true, uniqueness: true, format: Devise::email_regexp
+	validates :qualification, presence: true
 
 	def self.load_user_by_email( email )
 		self.find_by_email( email )
