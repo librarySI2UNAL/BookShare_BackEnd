@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 20170406010142) do
     t.string   "name"
     t.string   "last_name"
     t.string   "email"
-    t.decimal  "qualification"
+    t.float    "qualification"
     t.integer  "city_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false

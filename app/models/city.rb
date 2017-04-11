@@ -20,7 +20,7 @@ class City < ApplicationRecord
 		city_h = {}
 		city_h[:name] = aux["address_components"][0]["long_name"]
 		city_h[:place_id] = aux["place_id"]
-		
+
 		city = self.find_by_place_id( city_h[:place_id] )
 		if city == nil
 			city = CitiesDAO.create_city( city_h )
