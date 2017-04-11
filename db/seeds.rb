@@ -25,6 +25,7 @@ Genre
 4 - Sci-Fi
 =end
 
+=begin
 book = Book.create( name: "Cien años de soledad", description: nil, cover: 1, status: 5,
 	author: "Gabriel García Márquez", genre: 1, editorial: "Vintage", year_of_publication: 2009,
 	code_type: "ISBN", code: "978-0307474728" )
@@ -101,3 +102,59 @@ User.create( name: "Miguel", last_name: "Cuesta", email: "miguel.cuesta@email.co
 User.create( name: "Miguel", last_name: "Ballén", email: "miguel@email.com", password: "miguel123" )
 User.create( name: "David", last_name: "Beltrán", email: "david@email.com", password: "david123" )
 User.create( name: "Jorge", last_name: "Solano", email: "jorge@email.com", password: "jorge123" )
+=end
+
+
+interest = Interest.create(name: 'Arts & Photography')
+
+	genre = Genre.create(name: 'Photography')
+	interest.genres << genre
+
+	genre = Genre.create(name: 'Video')
+	interest.genres << genre
+
+	genre = Genre.create(name: 'Graphic Design')
+	interest.genres << genre
+
+	genre = Genre.create(name: 'Music')
+	interest.genres << genre
+
+	genre = Genre.create(name: 'Art History')
+	interest.genres << genre
+
+	genre = Genre.create(name: 'Fashion')
+	interest.genres  << genre
+
+	genre = Genre.create(name: 'Performing Arts')
+	interest.genres  << genre
+
+	genre = Genre.create(name: 'Decorative Arts')
+	interest.genres  << genre
+
+	genre = Genre.create(name: 'Religious Arts')
+	interest.genres  << genre
+
+
+
+interest = Interest.create(name: 'Biographies')
+
+	genre = Genre.create(name: 'Historical')
+	interest.genres  << genre
+
+	genre = Genre.create(name: 'Leaders and notable people')
+	interest.genres  << genre
+
+	genre = Genre.create(name: 'Memoirs')
+	interest.genres  << genre
+
+	genre = Genre.create(name: 'Professionals and academics')
+	interest.genres  << genre
+
+	genre = Genre.create(name: 'Sports and outdoors')
+	interest.genres  << genre
+
+	genre = Genre.create(name: 'Travelers and explorers')
+	interest.genres  << genre
+
+	genre = Genre.create(name: 'True crime')
+	interest.genres  << genre
