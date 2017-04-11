@@ -2,14 +2,14 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: soscnrndfaecqe
-  password: 512138eeacbcc32ec61746880d61e2a1802916dd207a43bff6f0043514228051
-  host:     ec2-174-129-224-33.compute-1.amazonaws.com
+  username: bookshare
+  password: bookshare
+  host:     localhost
   port: 5432
 
 development:
   <<: *default
-  database: ddhdguueg95s91
+  database: bookshare
 
 #test:
 #  <<: *default
