@@ -1,5 +1,5 @@
 class AuthenticationController < ApplicationController
-	skip_before_action :authorize_request, only: :authenticate
+	#skip_before_action :authorize_request, only: :authenticate
 
 	def authenticate
 		if !params.has_key?( :email )
