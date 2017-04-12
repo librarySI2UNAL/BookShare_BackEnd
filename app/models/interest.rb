@@ -7,4 +7,8 @@ class Interest < ApplicationRecord
 	def self.load_interest_by_id( id )
 		self.find_by_id( id )
 	end
+
+	def self.load_interests_by_ids( ids )
+		self.where( id: ids )
+	end
 end
