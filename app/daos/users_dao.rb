@@ -5,9 +5,7 @@ class UsersDAO
 		user_h[:city] = City.load_city_by_position( latitude, longitude )
 
 		user_h[:interests] = Interest.load_interests_by_ids( user_h[:interests] )
-		user = User.create( user_h )
-
-		return user
+		User.create( user_h )
 	end
 
 	def self.update_user( id, user_h )
