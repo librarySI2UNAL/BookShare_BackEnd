@@ -7,10 +7,10 @@ class UsersDAO
 
 		user = User.create( user_h )
 		puts interests
-		#user_h[:interests].each do |interest_id|
-		#	interest = Interest.load_interest_by_id( interest_id )
-		#	user.interests << interest
-		#end
+		user_h[:interests].each do |interest_id|
+			interest = Interest.load_interest_by_id( interest_id )
+			user.interests << interest
+		end
 
 		return user
 	end
