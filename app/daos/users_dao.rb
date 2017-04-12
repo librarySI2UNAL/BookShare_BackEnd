@@ -2,10 +2,17 @@ class UsersDAO
 	def self.create_user( user_h )
 		latitude = user_h.delete( :latitude )
 		longitude = user_h.delete( :longitude )
-		city = City.load_city_by_position( latitude, longitude )
-		user_h[:city_id] = city.id
+		interests = user_h.delete( :interests )
+		user_h[:city] = City.load_city_by_position( latitude, longitude )
 
-		User.create( user_h )
+		user = User.create( user_h )
+		interests.each do |interest_id|
+			interest = Interest.load_interest_by_id( interest_id )
+			user.interests << interest
+		end
+		user.save
+
+		return user
 	end
 
 	def self.update_user( id, user_h )

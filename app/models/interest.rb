@@ -1,6 +1,10 @@
 class Interest < ApplicationRecord
-	has_many :users, through: :user_interest
+	has_and_belongs_to_many :users
+	has_and_belongs_to_many :genres
 
 	validates :name, presence: true
-	validates :icon_name, presence: true
+
+	def self.load_interest_by_id( id )
+		self.find_by_id( id )
+	end
 end
