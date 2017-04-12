@@ -11,6 +11,8 @@ class CreateBooks < ActiveRecord::Migration[5.0]
       t.integer :year_of_publication
       t.string :code_type
       t.string :code
+      t.float :qualification
+      t.belongs_to :genre, index: true
 
       t.timestamps
     end
