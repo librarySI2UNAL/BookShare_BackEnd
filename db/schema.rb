@@ -68,13 +68,13 @@ ActiveRecord::Schema.define(version: 20170411193553) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "interest_genres", force: :cascade do |t|
+  create_table "genres_interests", force: :cascade do |t|
     t.integer  "interest_id"
     t.integer  "genre_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["genre_id"], name: "index_interest_genres_on_genre_id", using: :btree
-    t.index ["interest_id"], name: "index_interest_genres_on_interest_id", using: :btree
+    t.index ["genre_id"], name: "index_genres_interests_on_genre_id", using: :btree
+    t.index ["interest_id"], name: "index_genres_interests_on_interest_id", using: :btree
   end
 
   create_table "interests", force: :cascade do |t|

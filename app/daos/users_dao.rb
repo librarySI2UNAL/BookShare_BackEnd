@@ -6,11 +6,11 @@ class UsersDAO
 		user_h[:city] = City.load_city_by_position( latitude, longitude )
 
 		user = User.create( user_h )
-		puts interests
-		user_h[:interests].each do |interest_id|
+		interests.each do |interest_id|
 			interest = Interest.load_interest_by_id( interest_id )
 			user.interests << interest
 		end
+		user.save
 
 		return user
 	end
