@@ -1,6 +1,23 @@
 class UsersController < ApplicationController
 	#skip_before_action :authorize_request, only: :create
 
+	def show
+		if !params.has_key?( :id )
+			message = Message.invalid_request( "id" )
+			render json: { error: message }, status: 400
+			return
+		end
+
+		user = User.load_user_by_id( params[:id].to_i )
+		if user == nil
+			message = Message.not_found( "User" )
+			render json: { error: message }, status: 404
+			return
+		end
+
+		render json: user, root: "data"
+	end
+
 	def create
 		user = UsersDAO.create_user( user_params )
 		if !user.valid?
