@@ -16,6 +16,8 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# ActiveSupport.encode_big_decimal_as_string = false
+
 module BookShareBackend
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -27,8 +29,6 @@ module BookShareBackend
     config.api_only = true
     # Added to make sure that code within lib folder will be included when application loads
     config.autoload_paths << Rails.root.join('lib')
-
-    ActiveSupport.encode_big_decimal_as_string = true
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do

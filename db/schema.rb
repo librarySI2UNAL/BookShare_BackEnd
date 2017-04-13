@@ -128,7 +128,9 @@ ActiveRecord::Schema.define(version: 20170411193553) do
     t.string   "name"
     t.string   "last_name"
     t.string   "email"
-    t.float    "qualification"
+    t.decimal  "qualification"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
     t.integer  "city_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false

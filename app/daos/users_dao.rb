@@ -1,7 +1,7 @@
 class UsersDAO
 	def self.create_user( user_h )
-		latitude = user_h.delete( :latitude )
-		longitude = user_h.delete( :longitude )
+		latitude = user_h[:latitude]
+		longitude = user_h[:longitude]
 		user_h[:city] = City.load_city_by_position( latitude, longitude )
 
 		user_h[:interests] = Interest.load_interests_by_ids( user_h[:interests] )
