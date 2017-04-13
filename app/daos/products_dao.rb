@@ -33,4 +33,15 @@ class ProductsDAO
 
 		return product
 	end
+
+	def self.delete_product( product_h )
+		user = User.load_user_by_id( product_h.delete( :user_id ).to_i )
+		product = Product.load_product_by_id_by_user( product_h.delete( :id ), user )
+		if product == nil
+			return false
+		end
+		product.destroy
+
+		return true
+	end
 end

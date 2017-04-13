@@ -2,6 +2,7 @@ class Product < ApplicationRecord
 	belongs_to :product_item, polymorphic: true
 	belongs_to :user
 	has_many :photos
+	has_many :comments
 
 	validates :special, presence: true
 	validates :available, presence: true
