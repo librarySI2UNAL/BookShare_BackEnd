@@ -1,64 +1,36 @@
 class ProductsDAO
-	def self.assign_product( type, product, product_h, result )
-		product.from_json( product_h.to_json )
-		if type == "Book"
-			product.product_item = result[:book]
-		elsif type == "Collection"
-			product.product_item = result[:collection]
-		end
-		if !product.valid?
-			return { success: false, errors: product.errors.full_messages }
+	def self.create_product( product_h )
+		product_h[:user] = User.load_user_by_id( product_h.delete( :user_id ).to_i )
+
+		if product_h.has_key?( :book )
+			book_h = product_h.delete( :book )
+			if book_h.has_key?( :id )
+				product_h[:product_item] = Book.load_book_by_id( book_h[:id] )
+			else
+				book_h[:genre] = Genre.load_genre_by_id( book_h[:genre].to_i )
+				product_h[:product_item] = Book.create( book_h )
+			end
+		elsif product_h.has_key?( :collection )
+			collection_h = product_h.delete( :collection )
+			if collection_h.has_key?( :id )
+				product_h[:product_item] = Collection.load_collection_by_id( collection_h[:id] )
+			else
+				collection_h[:genre] = Genre.load_genre_by_id( collection_h[:genre].to_i )
+				product_h[:product_item] = Collection.create( collection_h )
+			end
 		end
 
-		product.save
-		aux = Product.load_product( product[:id] )
-		return { success: true, product: aux }
+		Product.create( product_h )
 	end
 
-	def self.create_product( product_h )
-=begin		if product_h.has_key( :book )
-			result = BooksDAO.create_book( product_h[:book] )
-			if !result[:success]
-				return result
-			end
-
-			product_h.delete( :book )
-		elsif type == "Collection"
-			result = CollectionsDAO.create_collection( product_h[:collection] )
-			if !result[:success]
-				return result
-			end
-
-			product_h.delete( :collection )
-		end
-
-		product = Product.new
-		
-		return self.assign_product( type, product, product_h, result )
-=end	end
-
-	def self.update_product( type, product_h )
-=begin		if type == "Book"
-			result = BooksDAO.update_book( product_h[:id], product_h[:book] )
-			if !result[:success]
-				return result
-			end
-
-			product_h.delete( :book )
-		elsif type == "Collection"
-			result = CollectionsDAO.update_collection( product_h[:id], product_h[:collection] )
-			if !result[:success]
-				return result
-			end
-
-			product_h.delete( :collection )
-		end
-
-		product = Product.find_by_id( product_h[:id] )
+	def self.update_product( product_h )
+		user = User.load_user_by_id( product_h.delete( :user_id ).to_i )
+		product = Product.load_product_by_id_by_user( product_h.delete( :id ), user )
 		if product == nil
-			return { success: false, error: "The product was not found" }
+			return nil
 		end
-		
-		return self.assign_product( type, product, product_h, result )
-=end	end
+		product.update( product_h )
+
+		return product
+	end
 end

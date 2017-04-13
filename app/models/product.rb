@@ -1,10 +1,15 @@
 class Product < ApplicationRecord
 	belongs_to :product_item, polymorphic: true
+	belongs_to :user
 	has_many :photos
 
 	validates :special, presence: true
 	validates :available, presence: true
 	validates :value, presence: true
+
+	def self.load_product_by_id_by_user( id, user )
+		self.where( id: id, user: user ).take
+	end
 
 	def self.load_product_by_id( id )
 		self.find_by_id( id )

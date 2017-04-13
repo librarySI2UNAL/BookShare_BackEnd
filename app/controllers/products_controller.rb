@@ -25,21 +25,33 @@ class ProductsController < ApplicationController
 			return
 		end
 
-		render json: { product: product }
+		render json: product, root: "data"
 	end
 
 	def create
 		product = ProductsDAO.create_product( product_params )
 
 		message = Message.object_created( "Product" )
-		render json: { message: message, data: product }
+		response = { message: message }
+		response[:data] = ActiveModelSerializers::SerializableResource.new( product ).as_json[:product]
+		render json: response
 	end
 
 	def update
-		product = ProductsDAO.update_product( params[:id].to_i, product_params )
+		product = ProductsDAO.update_product( product_params )
+		if product == nil
+			message = Message.not_found( "Product" )
+			render json: { error: message }
+			return
+		elsif !product.valid?
+			render json: { error: product.errors.full_messages }
+			return
+		end
 
 		message = Message.object_updated( "Product" )
-		render json: { message: message, data: product }
+		response = { message: message }
+		response[:data] = ActiveModelSerializers::SerializableResource.new( product ).as_json[:product]
+		render json: response
 	end
 
 	def destroy
@@ -49,6 +61,6 @@ class ProductsController < ApplicationController
 	private
 
 	def product_params
-		params.require( :data ).permit( :special, :available, book: [:name, :description, :cover, :status, :author, :genre, :editorial, :year_of_publication, :code, :code_type], collection: [:name, :description, :cover, :status, :author, :genre, :editorial, :year_of_publication, :code, :code_type] )
+		params.require( :data ).permit( :user_id, :id, :special, :available, :value, book: [:id, :name, :description, :cover, :status, :author, :genre, :editorial, :year_of_publication, :code, :code_type], collection: [:id, :name, :description, :cover, :status, :author, :genre, :editorial, :year_of_publication, :code, :code_type] )
 	end
 end
