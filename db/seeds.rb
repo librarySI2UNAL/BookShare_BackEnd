@@ -799,7 +799,7 @@ interest = Interest.create(name: 'Self-Help')
 			genre = Genre.create(name: 'Anxieties & Fobias')
 			interest.genres << genre
 
-interest = Interest.create(name: 'Self-Help')
+interest = Interest.create(name: 'Travel')
 
 			genre = Genre.create(name: 'US Travel Guides')
 			interest.genres << genre
