@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 	def collection
-		#products = Product.load_available_products( params[:page], params[:per_page] )
-		render json: {}
+		products = Product.load_available_products_by_user_id( params[:page], params[:per_page], params[:user_id].to_i )
+		render json: products, root: "data"
 	end
 
 	def index
