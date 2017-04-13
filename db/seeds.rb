@@ -735,6 +735,101 @@ interest = Interest.create(name: 'Reference')
 			genre = Genre.create(name: 'Consumer Guides')
 			interest.genres << genre
 
+interest = Interest.create(name: 'Religion & Spirituality')
+
+			genre = Genre.create(name: 'Christian Books & Bibles')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'New Age & Spirituality')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Occult & Paranormal')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Buddhism')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Islam')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Hinduism')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Judaism')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Other Religions, Pratices & sacred Texts')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Religious Arts & Photography')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Religious Literature & Fiction')
+			interest.genres << genre
+
+interest = Interest.create(name: 'Self-Help')
+
+			genre = Genre.create(name: 'Personal Transformation')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Healthy Relationships')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Motivational Self-Help')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Human Sexuality')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Happiness Self-Help')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Communication & Social Skills')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Stress Management Self-Help')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Emotional Self-Help')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Dreams')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Anxieties & Fobias')
+			interest.genres << genre
+
+interest = Interest.create(name: 'Self-Help')
+
+			genre = Genre.create(name: 'US Travel Guides')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'SouthAmerican Travel Guides')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'European Travel Guides')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Middle East Travel Guides')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'African Travel Guides')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Caribbean Travel Guides')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Travel Pictorial Reference')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Speciality Travel')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Travel  Reference & Tips')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Mexico Travel Guides')
+			interest.genres << genre
 
 
 
