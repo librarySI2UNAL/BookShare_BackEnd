@@ -185,7 +185,7 @@ interest = Interest.create(name: 'Biographies')
 			genre = Genre.create(name: 'Best Books')
 			interest.genres  << genre
 
-	interest = Interest.create(name: 'History')
+interest = Interest.create(name: 'History')
 
 				genre = Genre.create(name: 'Africa')
 				interest.genres << genre
@@ -427,6 +427,316 @@ interest = Interest.create(name: 'Cookbooks Food & Wine')
 
 		genre = Genre.create(name: 'Baking')
 		interest.genres << genre
+
+		genre = Genre.create(name: '100 Books For Foodies')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Desserts')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Italian Cooking')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Special Diet')
+		interest.genres << genre
+
+interest = Interest.create(name: 'Cookbooks Food & Wine')
+
+			genre = Genre.create(name: 'Crafts & Hobbies')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Home Improvement & Design Books')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Coloring Books for Grown Ups')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Coloring Books for Grown Ups')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Gardering & Landscape Design')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Needlecrafts & Textile Crafts')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Antiques & Collectibles')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Animal & Pet Care')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Sustainable Living')
+			interest.genres << genre
+
+interest = Interest.create(name: 'Education & Teaching')
+
+			genre = Genre.create(name: 'Schools & Teaching')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Test Preparation')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Study Guides & Workbooks')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Higher & Continuing Education')
+			interest.genres << genre
+
+interest = Interest.create(name: 'Engineering & Transportation')
+
+			genre = Genre.create(name: 'Engineering')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Automotive')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Transportation')
+			interest.genres << genre
+
+interest = Interest.create(name: 'Gay & Lesbian')
+
+		genre = Genre.create(name: 'Gay & Lesbian Literature')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Gay & Lesbian Biographies')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Gay & Lesbian History')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Gay & Lesbian Mystery')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Gay & Lesbian Parenting')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Gay & Lesbian Travel')
+		interest.genres << genre
+
+interest = Interest.create(name: 'Health, Fitness & Dieting')
+
+			genre = Genre.create(name: 'Diets & weight Loss')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Exercise & Fitness')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Alternative Medicine')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Nutrition')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Psychology & Counseling')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Sexual Health')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Grooming & Style')
+			interest.genres << genre
+
+			genre = Genre.create(name: "Women's Health")
+			interest.genres << genre
+
+			genre = Genre.create(name: "Men's Health")
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Health, Mind & Body Reference')
+			interest.genres << genre
+
+interest = Interest.create(name: 'Humor & Entertainment')
+
+			genre = Genre.create(name: 'Humor')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Sheet Music & Scores')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Coloring Books For Growing-Ups')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Puzzles & Games')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Performing Arts')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Movies')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Trivia & Fun Facts')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Pop Culture')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Television')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Radio')
+			interest.genres << genre
+
+interest = Interest.create(name: 'Law')
+
+			genre = Genre.create(name: 'Criminal Law')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Constitutional Law')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Legal Rules & Procedures')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Lawyer & Judge Biographies')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Legal Education')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Foreign and International Love')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Legal History')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Tax Law')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Media & The Law')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Intelectual Property Law')
+			interest.genres << genre
+
+
+interest = Interest.create(name: 'Medical Books & Textbooks')
+
+			genre = Genre.create(name: 'Medicine')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Nursing')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Medicine')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Pharmacology')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Veterinary Medicine')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Medical Psychology')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Basical Medic Sciences')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Medical Informatics')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'History Of Medicine')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Allied Health Professions')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Medical Administration')
+			interest.genres << genre
+
+interest = Interest.create(name: 'Parenting & Relationships')
+
+			genre = Genre.create(name: 'Marriage')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Parenting')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Pregnancy & Childbirth')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Family Relationship')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Parenting & Families Humor')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Parenting & Family Reference')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Special Needs Parenting')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Family Health')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Family Activity')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Aging Parents')
+			interest.genres << genre
+
+
+
+interest = Interest.create(name: 'Politics & Social Sciences')
+
+			genre = Genre.create(name: 'Politics & Government')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Social Sciences')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Philosophy')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Sociology')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Politics & Government')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Anthropology')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Women Studies')
+			interest.genres << genre
+
+interest = Interest.create(name: 'Reference')
+
+			genre = Genre.create(name: 'Test Preparation')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Atlases & Maps')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'English As A Second Language')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Writing, Research & Publishing')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Job Hunting And Careers')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Survival & Emergency Preparedness')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Enciclopedias & Subject Guides')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Catalogs & Directories')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Genealogy')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Consumer Guides')
+			interest.genres << genre
+
+
+
 
 
 #Agregar daos y controladores de los comentarios
