@@ -185,15 +185,6 @@ interest = Interest.create(name: 'Biographies')
 			genre = Genre.create(name: 'Best Books')
 			interest.genres  << genre
 
-	interest = Interest.create(name: 'Others')
-
-		genre = Genre.create(name: 'Cookbooks, food & wine')
-		interest.genres << genre
-		genre = Genre.create(name: 'Romance')
-		interest.genres << genre
-
-
-
 	interest = Interest.create(name: 'History')
 
 				genre = Genre.create(name: 'Africa')
@@ -292,3 +283,150 @@ interest = Interest.create(name: 'Teen and Young Adult Books')
 
 		genre = Genre.create(name: 'Teen & Young Adult Religion & Spirituality')
 		interest.genres << genre
+
+
+interest = Interest.create(name: 'Bussiness & Money')
+
+				genre = Genre.create(name: 'Bussiness Management')
+				interest.genres << genre
+
+				genre = Genre.create(name: 'Investing')
+				interest.genres << genre
+
+				genre = Genre.create(name: 'Marketing & Sales')
+				interest.genres << genre
+
+				genre = Genre.create(name: 'Personal Finance')
+				interest.genres << genre
+
+				genre = Genre.create(name: 'Bussiness Culture')
+				interest.genres << genre
+
+				genre = Genre.create(name: 'Accounting')
+				interest.genres << genre
+
+				genre = Genre.create(name: 'Real Estate')
+				interest.genres << genre
+
+				genre = Genre.create(name: 'Biography & History')
+				interest.genres << genre
+
+				genre = Genre.create(name: 'Industries')
+				interest.genres << genre
+
+				genre = Genre.create(name: 'Bussiness Processes')
+				interest.genres << genre
+
+
+interest = Interest.create(name: 'Christian Books & Bibles')
+
+			genre = Genre.create(name: 'Christian Bibles')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Christian Livings')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Bible Covers')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Christian Bible Study')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Christian Romance')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Catholicism')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Children & Teens Christian')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Christian Church & Bible')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Christian Ministry & Church')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Christian Evangelism')
+			interest.genres << genre
+
+interest = Interest.create(name: 'Comics & Graphic Novels')
+
+		genre = Genre.create(name: 'Manga Comics & Graphic Novels')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Graphic Novels')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Superhero Comics & Graphic Novels')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Comic Books')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Romance Manga')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Comic & Graphic Novel')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Fantasy Graphic Novels')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Comic Strips')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Comic & Grapic Novels')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'How To Create Comics & Manga')
+		interest.genres << genre
+
+interest = Interest.create(name: 'Computers & Technology')
+
+			genre = Genre.create(name: 'Computer Programming')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Web Development & Design')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Programming Languages')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Network & Cloud Computing')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Computer Science')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Databases & Big Data')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Computer Hardware & DIY')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Computer Security & Encryption')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Internet & Social Media')
+			interest.genres << genre
+
+			genre = Genre.create(name: 'Computer Software')
+			interest.genres << genre
+
+interest = Interest.create(name: 'Cookbooks Food & Wine')
+
+		genre = Genre.create(name: 'Asian cooking')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Baking')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Beverages & Wine')
+		interest.genres << genre
+
+		genre = Genre.create(name: 'Baking')
+		interest.genres << genre
+
+
+#Agregar daos y controladores de los comentarios
