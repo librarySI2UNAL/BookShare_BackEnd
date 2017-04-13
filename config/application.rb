@@ -28,6 +28,8 @@ module BookShareBackend
     # Added to make sure that code within lib folder will be included when application loads
     config.autoload_paths << Rails.root.join('lib')
 
+    ActiveSupport.encode_big_decimal_as_string = true
+
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
