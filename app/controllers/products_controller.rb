@@ -1,4 +1,9 @@
 class ProductsController < ApplicationController
+	def collection
+		#products = Product.load_available_products( params[:page], params[:per_page] )
+		render json: {}
+	end
+
 	def index
 		if params.has_key?( :genre )
 			products = Product.load_available_products_by_genre( params[:page], params[:per_page], params[:genre].to_i )
@@ -9,7 +14,7 @@ class ProductsController < ApplicationController
 		else
 			products = Product.load_available_products( params[:page], params[:per_page] )
 		end
-		render json: { products: products }
+		render json: products, root: "data"
 	end
 
 	def show
@@ -35,6 +40,10 @@ class ProductsController < ApplicationController
 
 		message = Message.object_updated( "Product" )
 		render json: { message: message, data: product }
+	end
+
+	def destroy
+
 	end
 
 	private
