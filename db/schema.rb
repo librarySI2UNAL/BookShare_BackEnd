@@ -26,8 +26,11 @@ ActiveRecord::Schema.define(version: 20170411193553) do
     t.integer  "year_of_publication"
     t.string   "code_type"
     t.string   "code"
+    t.float    "qualification"
+    t.integer  "genre_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.index ["genre_id"], name: "index_books_on_genre_id", using: :btree
   end
 
   create_table "cities", force: :cascade do |t|
@@ -48,8 +51,11 @@ ActiveRecord::Schema.define(version: 20170411193553) do
     t.integer  "year_of_publication"
     t.string   "code_type"
     t.string   "code"
+    t.float    "qualification"
+    t.integer  "genre_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.index ["genre_id"], name: "index_collections_on_genre_id", using: :btree
   end
 
   create_table "comments", force: :cascade do |t|
@@ -109,7 +115,6 @@ ActiveRecord::Schema.define(version: 20170411193553) do
     t.boolean  "special"
     t.boolean  "available"
     t.integer  "value"
-    t.decimal  "qualification"
     t.string   "product_item_type"
     t.integer  "product_item_id"
     t.integer  "user_id"
@@ -123,7 +128,9 @@ ActiveRecord::Schema.define(version: 20170411193553) do
     t.string   "name"
     t.string   "last_name"
     t.string   "email"
-    t.float    "qualification"
+    t.decimal  "qualification"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
     t.integer  "city_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
