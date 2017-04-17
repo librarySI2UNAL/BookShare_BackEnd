@@ -751,5 +751,39 @@ interest = Interest.create(name: 'Travel')
 			interest.genres << genre
 
 genre = Genre.find_by_id( 38 )
-book = Book.create( name: "Cien años de soledad", author: "Gabriel García Márquez", genre: genre, editorial: "Editorial", year_of_publication: 1967 )
-Product.create( special: true, available: true, cover: 1, status: 5, value: 100000, code: "ISBN", code_type: "12342322323", product_item: book )
+
+book = Book.create( name: "Anna Karenina", author: "Leo Tolstoy", genre: genre, editorial: "Editorial", year_of_publication: 1947 )
+Product.create( special: true, available: true, cover: 1, status: 5, value: 80000, code: "ISBN", code_type: "12344562323", product_item: book )
+
+book = Book.create( name: "La guerra y la paz", author: "Leon Tolstoy", genre: genre, editorial: "Editorial", year_of_publication: 1927 )
+Product.create( special: true, available: true, cover: 2, status: 4, value: 55000, code: "ISBN", code_type: "12346767323", product_item: book )
+
+book = Book.create( name: "Las Aventuras de Huckleberry Finn", author: "Mark Twain", genre: genre, editorial: "Editorial", year_of_publication: 1947 )
+Product.create( special: false, available: true, cover: 1, status: 4, value: 60000, code: "ISBN", code_type: "12342345523", product_item: book )
+
+book = Book.create( name: "Hamlet", author: "William Shakespeare", genre: genre, editorial: "Editorial", year_of_publication: 1947 )
+Product.create( special: true, available: true, cover: 1, status: 5, value: 80000, code: "ISBN", code_type: "12343542323", product_item: book )
+
+book = Book.create( name: "En busca del tiempo perdido", author: "Marcel Proust", genre: genre, editorial: "Editorial", year_of_publication: 1987 )
+Product.create( special: true, available: true, cover: 2, status: 3, value: 50000, code: "ISBN", code_type: "12344562323", product_item: book )
+
+book = Book.create( name: "La Biblia", author: "Varios", genre: genre, editorial: "Editorial", year_of_publication:1500 )
+Product.create( special: false, available: true, cover: 1, status: 5, value: 30000, code: "ISBN", code_type: "1236542323", product_item: book )
+
+book = Book.create( name: "Don Quijote de la Mancha", author: "Miguel de Cervantes", genre: genre, editorial: "Editorial", year_of_publication: 1649 )
+Product.create( special: true, available: true, cover: 1, status: 4, value: 75000, code: "ISBN", code_type: "12342322456", product_item: book )
+
+book = Book.create( name: "El Señor de los Anillos", author: "J.R.R Tolkien", genre: genre, editorial: "Editorial", year_of_publication: 1925 )
+Product.create( special: true, available: true, cover: 2, status: 5, value: 150000, code: "ISBN", code_type: "133342322323", product_item: book )
+
+book = Book.create( name: "El Principito", author: "Antoine de Saint Exupery", genre: genre, editorial: "Editorial", year_of_publication: 1899 )
+Product.create( special: false, available: true, cover: 1, status: 4, value: 45000, code: "ISBN", code_type: "12344562323", product_item: book )
+
+book = Book.create( name: "1984", author: "George Orwell", genre: genre, editorial: "Editorial", year_of_publication: 1984 )
+Product.create( special: true, available: true, cover: 2, status: 4, value: 75000, code: "ISBN", code_type: "12342234323", product_item: book )
+
+book = Book.create( name: "Crimen y Castigo", author: "Fiodor Dostoievski", genre: genre, editorial: "Editorial", year_of_publication: 1975 )
+Product.create( special: true, available: true, cover: 1, status: 3, value: 45000, code: "ISBN", code_type: "12342656523", product_item: book )
+
+book = Book.create( name: "La Divina Comedia", author: "Dante Alighieri", genre: genre, editorial: "Editorial", year_of_publication: 1845 )
+Product.create( special: true, available: true, cover: 1, status: 3, value: 75000, code: "ISBN", code_type: "12377652323", product_item: book )

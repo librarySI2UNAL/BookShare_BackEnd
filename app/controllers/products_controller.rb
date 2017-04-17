@@ -69,6 +69,6 @@ class ProductsController < ApplicationController
 	private
 
 	def product_params
-		params.require( :data ).permit( :user_id, :id, :special, :available, :value, book: [:id, :name, :description, :cover, :status, :author, :genre, :editorial, :year_of_publication, :code, :code_type], collection: [:id, :name, :description, :cover, :status, :author, :genre, :editorial, :year_of_publication, :code, :code_type] )
+		params.require( :data ).permit( :user_id, :id, :special, :available, :description, :cover, :status, :value, :code, :code_type, product_item: [:type, :id, :name, :author, :genre, :editorial, :year_of_publication] )
 	end
 end
