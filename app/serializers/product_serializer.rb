@@ -1,5 +1,5 @@
 class ProductSerializer < ActiveModel::Serializer
-	attributes :id, :special, :available, :value
+	attributes :id, :special, :available, :cover, :status, :value, :code, :code_type
 
 	belongs_to :product_item, polymorphic: true
 	has_many :photos, serializer: PhotoSerializer

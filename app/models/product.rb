@@ -6,7 +6,11 @@ class Product < ApplicationRecord
 
 	validates :special, presence: true
 	validates :available, presence: true
+	validates :cover, presence: true
+	validates :status, presence: true
 	validates :value, presence: true
+	validates :code, presence: true
+	validates :code_type, presence: true
 
 	def self.load_product_by_id_by_user( id, user )
 		self.where( id: id, user: user ).take
@@ -29,9 +33,9 @@ class Product < ApplicationRecord
 
 	def self.load_available_products_by_genre( page = 1, per_page = 10, genre = "" )
 		products = []
-		self.includes( :product_item, :genre )
+		self.includes( :product_item )
 			.where( available: true ).each do |product|
-				if product.genre.name.downcase.include?( genre.downcase )
+				if product.product_item.genre.name.downcase.include?( genre.downcase )
 					products.push( product )
 				end
 			end
