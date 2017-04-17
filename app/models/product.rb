@@ -10,7 +10,7 @@ class Product < ApplicationRecord
 	validates :status, presence: true
 	validates :value, presence: true
 	validates :code, presence: true
-	validates :codeType, presence: true
+	validates :code_type, presence: true
 
 	def self.load_product_by_id_by_user( id, user )
 		self.where( id: id, user: user ).take
