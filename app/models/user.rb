@@ -2,7 +2,7 @@ class User < ApplicationRecord
 	has_secure_password
 
 	belongs_to :city
-	belongs_to :photo
+	belongs_to :photo, optional: true
 	has_and_belongs_to_many :interests
 
 	validates :name, presence: true
