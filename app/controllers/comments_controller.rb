@@ -18,11 +18,11 @@ class CommentsController < ApplicationController
 	def update
 		comment = CommentsDAO.update_comment(params[:id].to_i, comment_params)
 		if comment == nil
-			message = Message.not_found("User or comment")
+			message = Message.not_found("Comment")
 			render json: {error: message}, status: 400
 			return
 		end
-		message = Message.object_created( "Comment" )
+		message = Message.object_updated( "Comment" )
 		response = { message: message}
 		response[:data] = ActiveModelSerializers::SerializableResource.new( comment ).as_json[:comment]
 		render json: response
@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
 	def destroy
 		deleted = CommentsDAO.delete_comment( params[:id].to_i )
 		if !deleted
-			message = Message.not_found( "Comment id" )
+			message = Message.not_found( "Comment" )
 			render json: { error: message }, status: 404
 			return
 		end
