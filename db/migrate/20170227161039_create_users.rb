@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.decimal :latitude
       t.decimal :longitude
       t.belongs_to :city, index: true
+      t.belongs_to :photo, index: true
 
       t.timestamps
     end

@@ -1,6 +1,6 @@
 class Book < ApplicationRecord
 	has_many :products, as: :product_item
-	has_one :genre
+	belongs_to :genre
 
 	validates :name, presence: true
 	validates :author, presence: true

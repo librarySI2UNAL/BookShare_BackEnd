@@ -17,15 +17,9 @@ ActiveRecord::Schema.define(version: 20170411193553) do
 
   create_table "books", force: :cascade do |t|
     t.string   "name"
-    t.text     "description"
-    t.integer  "cover"
-    t.integer  "status"
     t.string   "author"
-    t.integer  "genre"
     t.string   "editorial"
     t.integer  "year_of_publication"
-    t.string   "code_type"
-    t.string   "code"
     t.float    "qualification"
     t.integer  "genre_id"
     t.datetime "created_at",          null: false
@@ -42,15 +36,9 @@ ActiveRecord::Schema.define(version: 20170411193553) do
 
   create_table "collections", force: :cascade do |t|
     t.string   "name"
-    t.text     "description"
-    t.integer  "cover"
-    t.integer  "status"
     t.string   "author"
-    t.integer  "genre"
     t.string   "editorial"
     t.integer  "year_of_publication"
-    t.string   "code_type"
-    t.string   "code"
     t.float    "qualification"
     t.integer  "genre_id"
     t.datetime "created_at",          null: false
@@ -102,19 +90,21 @@ ActiveRecord::Schema.define(version: 20170411193553) do
   create_table "photos", force: :cascade do |t|
     t.string   "name"
     t.string   "url"
-    t.integer  "user_id"
     t.integer  "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_photos_on_product_id", using: :btree
-    t.index ["user_id"], name: "index_photos_on_user_id", using: :btree
   end
 
   create_table "products", force: :cascade do |t|
     t.text     "description"
     t.boolean  "special"
     t.boolean  "available"
+    t.integer  "cover"
+    t.integer  "status"
     t.integer  "value"
+    t.string   "code_type"
+    t.string   "code"
     t.string   "product_item_type"
     t.integer  "product_item_id"
     t.integer  "user_id"
@@ -132,10 +122,12 @@ ActiveRecord::Schema.define(version: 20170411193553) do
     t.decimal  "latitude"
     t.decimal  "longitude"
     t.integer  "city_id"
+    t.integer  "photo_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
     t.index ["city_id"], name: "index_users_on_city_id", using: :btree
+    t.index ["photo_id"], name: "index_users_on_photo_id", using: :btree
   end
 
 end

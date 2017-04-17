@@ -151,7 +151,6 @@ interest = Interest.create(name: 'History')
 		genre = Genre.create(name: 'Literary')
 		interest.genres  << genre
 
-
 interest = Interest.create(name: 'Science Fiction and Fantasy')
 
 			genre = Genre.create(name: 'Alternate History')
