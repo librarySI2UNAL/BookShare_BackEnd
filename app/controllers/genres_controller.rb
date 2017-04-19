@@ -3,4 +3,4 @@ class GenresController < ApplicationController
 		genres = Genre.load_genres()
 		render json: genres
 	end
- end
+end
