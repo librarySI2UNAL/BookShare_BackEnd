@@ -12,6 +12,10 @@ class Product < ApplicationRecord
 	validates :code, presence: true
 	validates :code_type, presence: true
 
+	def self.load_total_products()
+		self.count
+	end
+
 	def self.load_product_by_id_by_user( id, user )
 		self.where( id: id, user: user ).take
 	end

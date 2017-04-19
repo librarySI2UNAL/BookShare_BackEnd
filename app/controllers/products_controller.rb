@@ -14,7 +14,10 @@ class ProductsController < ApplicationController
 		else
 			products = Product.load_available_products( params[:page], params[:per_page] )
 		end
-		render json: products, root: "data"
+
+		response = { length: Product.load_total_products() }
+		response[:data] = ActiveModelSerializers::SerializableResource.new( products ).as_json[:products]
+		render json: response
 	end
 
 	def show
