@@ -11,4 +11,8 @@ class Interest < ApplicationRecord
 	def self.load_interests_by_ids( ids )
 		self.where( id: ids )
 	end
+
+	def self.load_interests()
+		self.all
+	end
 end
