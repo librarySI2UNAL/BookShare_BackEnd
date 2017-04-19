@@ -30,14 +30,14 @@ class Product < ApplicationRecord
 	end
 
 	def self.load_available_products( page = 1, per_page = 10 )
-		self.includes( :product_item )
+		self.includes( :product_item, :photos, :comments )
 			.where( available: true )
 			.paginate( page: page, per_page: per_page )
 	end
 
 	def self.load_available_products_by_genre( page = 1, per_page = 10, genre = "" )
 		products = []
-		self.includes( :product_item )
+		self.includes( :product_item, :photos, :comments )
 			.where( available: true ).each do |product|
 				if product.product_item.genre.name.downcase.include?( genre.downcase )
 					products.push( product )
@@ -49,7 +49,7 @@ class Product < ApplicationRecord
 
 	def self.load_available_products_by_name( page = 1, per_page = 10, name = "" )
 		products = []
-		self.includes( :product_item )
+		self.includes( :product_item, :photos, :comments )
 			.where( available: true ).each do |product|
 				if product.product_item.name.downcase.include?( name.downcase )
 					products.push( product )
@@ -61,7 +61,7 @@ class Product < ApplicationRecord
 
 	def self.load_available_products_by_author( page = 1, per_page = 10, author = "" )
 		products = []
-		self.includes( :product_item )
+		self.includes( :product_item, :photos, :comments )
 			.where( available: true ).each do |product|
 				if product.product_item.author.downcase.include?( author.downcase )
 					products.push( product )

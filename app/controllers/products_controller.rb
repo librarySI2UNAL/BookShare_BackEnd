@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
 			products = Product.load_available_products( params[:page], params[:per_page] )
 		end
 
-		response = { length: Product.load_total_products() }
+		response = { count: Product.load_total_products() }
 		response[:data] = ActiveModelSerializers::SerializableResource.new( products ).as_json[:products]
 		render json: response
 	end

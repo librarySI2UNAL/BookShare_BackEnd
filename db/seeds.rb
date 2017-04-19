@@ -752,7 +752,7 @@ interest = Interest.create(name: 'Travel')
 
 
 genre = Genre.find_by_id( 38 )
-user = user.find_by_id( 1 )
+user = User.find_by_id( 1 )
 
 book = Book.create( name: "Anna Karenina", author: "Leo Tolstoy", genre: genre, editorial: "Editorial", year_of_publication: 1947 )
 Product.create( special: true, available: true, cover: 1, status: 5, value: 80000, code: "ISBN", code_type: "12344562323", product_item: book, user: user )
