@@ -6,4 +6,8 @@ class Genre < ApplicationRecord
 	def self.load_genre_by_id( id )
 		self.find_by_id( id )
 	end
+
+	def self.load_genres()
+		self.all
+	end
 end
