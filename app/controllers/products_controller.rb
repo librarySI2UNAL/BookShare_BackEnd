@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
 			return
 		end
 
-		render json: product, root: "data"
+		render json: product, root: "data", include: "**"
 	end
 
 	def create
