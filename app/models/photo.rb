@@ -1,4 +1,5 @@
 class Photo < ApplicationRecord
-	validates :name, presence: true
-	validates :url, presence: true
+
+		attr_accessible :image, :remote_image_url
+		mount_uploader :image, ImageUploader
 end
