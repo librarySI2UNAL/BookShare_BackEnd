@@ -1,11 +1,11 @@
 class PhotosDAO
   def self.create_photo( photo_h )
-		photo = Photo.create(photo_h)    
+		photo = Photo.create(photo_h)
   end
 
-	def self.update_photo( id, user_h )
+	def self.update_photo( photo_params )
 		photo = Photo.load_photo_by_id( id )
-		photo.update( user_h )
+		photo.update(id , user_id)
 		return user
 	end
 

@@ -21,7 +21,8 @@ class Product < ApplicationRecord
 	end
 
 	def self.load_product_by_id( id )
-		self.find_by_id( id )
+		self.includes( :photos, :comments, product_item: [:genre] )
+			.find_by_id( id )
 	end
 
 	def self.load_available_products_by_user_id( page = 1, per_page = 10, user_id )

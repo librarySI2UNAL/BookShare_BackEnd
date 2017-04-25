@@ -1,5 +1,6 @@
 class Photo < ApplicationRecord
-	#:file FotoUploader
+		attr_accessible :image, :remote_image_url
+		mount_uploader :image, ImageUploader
 end
 
 def self.load_photo_by_id( id )

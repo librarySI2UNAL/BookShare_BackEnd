@@ -25,730 +25,254 @@ Genre
 4 - Sci-Fi
 =end
 
-interest = Interest.create(name: 'Arts & Photography')
+#INT 5 
+interest = Interest.create(name: 'Artes y fotografía')
 
-	genre = Genre.create(name: 'Photography')
+	genre = Genre.create(name: 'Fotografía')
 	interest.genres << genre
 
 	genre = Genre.create(name: 'Video')
 	interest.genres << genre
 
-	genre = Genre.create(name: 'Graphic Design')
+	genre = Genre.create(name: 'Diseño gráfico')
 	interest.genres << genre
 
-	genre = Genre.create(name: 'Music')
+	genre = Genre.create(name: 'Música')
 	interest.genres << genre
 
-	genre = Genre.create(name: 'Art History')
+	genre = Genre.create(name: 'Arte e historia')
 	interest.genres << genre
 
-	genre = Genre.create(name: 'Fashion')
+	genre = Genre.create(name: 'Modas')
 	interest.genres  << genre
 
-	genre = Genre.create(name: 'Performing Arts')
+	genre = Genre.create(name: 'Artes escénicas')
 	interest.genres  << genre
 
-	genre = Genre.create(name: 'Decorative Arts')
+	genre = Genre.create(name: 'Artes decorativas')
 	interest.genres  << genre
 
-	genre = Genre.create(name: 'Religious Arts')
+	genre = Genre.create(name: 'Artes religiosas')
 	interest.genres  << genre
 
 
+#INT 6
+interest = Interest.create(name: 'Biografías')
 
-interest = Interest.create(name: 'Biographies')
-
-	genre = Genre.create(name: 'Historical')
+	genre = Genre.create(name: 'Históricos')
 	interest.genres  << genre
 
-	genre = Genre.create(name: 'Leaders and notable people')
+	genre = Genre.create(name: 'Personas importantes')
 	interest.genres  << genre
 
-	genre = Genre.create(name: 'Memoirs')
+	genre = Genre.create(name: 'Memorias')
 	interest.genres  << genre
 
-	genre = Genre.create(name: 'Professionals and academics')
+	genre = Genre.create(name: 'Profesionales y académicas')
 	interest.genres  << genre
 
-	genre = Genre.create(name: 'Sports and outdoors')
+	genre = Genre.create(name: 'Deportes y espacios')
 	interest.genres  << genre
 
-	genre = Genre.create(name: 'Travelers and explorers')
+	genre = Genre.create(name: 'Viajes y exploración')
 	interest.genres  << genre
 
-	genre = Genre.create(name: 'True crime')
+	genre = Genre.create(name: 'Crímenes reales')
 	interest.genres  << genre
 
-	interest = Interest.create(name: 'Childrens Book')
+	interest = Interest.create(name: 'Libros para niños')
 
-			genre = Genre.create(name: 'Baby to 2')
+			genre = Genre.create(name: 'bebes de 2 años')
 			interest.genres << genre
 
-			genre = Genre.create(name: 'Ages 3 to 5')
+			genre = Genre.create(name: 'Edades de 3 a 5 años' )
 			interest.genres << genre
 
-			genre = Genre.create(name: 'Ages 6 to 8')
+			genre = Genre.create(name: 'Edades 6 a 8 años')
 			interest.genres << genre
 
-			genre = Genre.create(name: 'Ages 9 to 12')
+			genre = Genre.create(name: 'Edades 9 a 12 años')
 			interest.genres << genre
 
-			genre = Genre.create(name: 'Award winners')
+			genre = Genre.create(name: 'Libros de mesa')
 			interest.genres << genre
 
-			genre = Genre.create(name: "Children's books to read in lifetime")
-			interest.genres  << genre
+			genre = Genre.create(name: 'Libros por capítulos')
+			interest.genres << genre
 
-			genre = Genre.create(name: 'Education and reference')
-			interest.genres  << genre
+			genre = Genre.create(name: 'Libros para colorear')
+			interest.genres << genre
 
-			genre = Genre.create(name: 'Best Books')
-			interest.genres  << genre
+			genre = Genre.create(name: 'Libros ilustrados')
 
-interest = Interest.create(name: 'History')
+			
+#INT 1 Hystory  
+interest = Interest.create(name: 'Historia')
 
-				genre = Genre.create(name: 'Africa')
+				genre = Genre.create(name: 'África')
 				interest.genres << genre
 
-				genre = Genre.create(name: 'Americas')
+				genre = Genre.create(name: 'Américas')
 				interest.genres << genre
 
-				genre = Genre.create(name: 'Ancient Civilizations')
+				genre = Genre.create(name: 'Civilizaciones antiguas')
 				interest.genres << genre
 
-				genre = Genre.create(name: 'Europe')
+				genre = Genre.create(name: 'Europa')
 				interest.genres << genre
 
-				genre = Genre.create(name: 'Middle East')
+				genre = Genre.create(name: 'Medio Este')
 				interest.genres << genre
 
-				genre = Genre.create(name: 'Military')
+				genre = Genre.create(name: 'Militar')
 				interest.genres  << genre
 
-				genre = Genre.create(name: 'Russia')
+				genre = Genre.create(name: 'Rusia')
 				interest.genres  << genre
+#INT 2 Hystory  
+	interest = Interest.create(name: 'Literatura y ficción')
 
-	interest = Interest.create(name: 'Literature & Fiction')
-
-		genre = Genre.create(name: 'Classics')
+		genre = Genre.create(name: 'Clásicos')
 		interest.genres << genre
 
-		genre = Genre.create(name: 'Contemporary')
+		genre = Genre.create(name: 'Contemporáneo')
 		interest.genres << genre
 
-		genre = Genre.create(name: 'Essays')
+		genre = Genre.create(name: 'Ensayos')
 		interest.genres << genre
 
-		genre = Genre.create(name: 'Genre Fiction')
+		genre = Genre.create(name: 'Ficción')
 		interest.genres << genre
 
-		genre = Genre.create(name: 'Historical Fiction')
+		genre = Genre.create(name: 'Ficción histórica')
 		interest.genres << genre
 
-		genre = Genre.create(name: 'Humor and satire')
+		genre = Genre.create(name: 'Humor y sátira')
 		interest.genres  << genre
 
-		genre = Genre.create(name: 'Literary')
+		genre = Genre.create(name: 'Literario')
 		interest.genres  << genre
+#INT 3 Hystory
+interest = Interest.create(name: 'Ciencia ficción y fantasía')
 
-interest = Interest.create(name: 'Science Fiction and Fantasy')
-
-			genre = Genre.create(name: 'Alternate History')
+			genre = Genre.create(name: 'Historia alternativa')
 			interest.genres << genre
 
-			genre = Genre.create(name: 'Epic')
+			genre = Genre.create(name: 'Épico')
 			interest.genres << genre
 
-			genre = Genre.create(name: 'Historical')
+			genre = Genre.create(name: 'Histórico')
 			interest.genres << genre
 
-			genre = Genre.create(name: 'Military')
+			genre = Genre.create(name: 'Militar')
 			interest.genres << genre
 
-			genre = Genre.create(name: 'Myths and legends')
+			genre = Genre.create(name: 'Mitos y leyendas')
 			interest.genres << genre
 
 			genre = Genre.create(name: 'Paranormal')
 			interest.genres << genre
 
-			genre = Genre.create(name: 'Sword and sorcery')
+			genre = Genre.create(name: 'Espadas y brujería')
 			interest.genres << genre
 
-interest = Interest.create(name: 'Teen and Young Adult Books')
+#INT 4 Hystory
+interest = Interest.create(name: 'Libros de adultos jóvenes y adolecentes')
 
-		genre = Genre.create(name: 'Teen & Young Adult Romance')
+		genre = Genre.create(name: 'Adultos jóvenes y adolecentes - Romance')
 		interest.genres << genre
 
-		genre = Genre.create(name: 'Teen & Young Adult Literature & Fiction')
+		genre = Genre.create(name: 'Adultos jóvenes y adolecentes - Ficción')
 		interest.genres << genre
 
-		genre = Genre.create(name: 'Teen & Young Adult Science Fiction & Fantasy')
+		genre = Genre.create(name: 'Adultos jóvenes y adolecentes - Fantasía')
 		interest.genres << genre
 
-		genre = Genre.create(name: 'Teen & Young Adult Mysteries & Thrillers')
+		genre = Genre.create(name: 'Adultos jóvenes y adolecentes - Misterio y thrillers')
 		interest.genres << genre
 
-		genre = Genre.create(name: 'Teen & Young Adult Personal Health')
+		genre = Genre.create(name: 'Adultos jóvenes y adolecentes - Salud personal')
 		interest.genres << genre
 
-		genre = Genre.create(name: 'Teen & Young Adult Adult Social Issues')
+		genre = Genre.create(name: 'Adultos jóvenes y adolecentes - Problemas sociales')
 		interest.genres << genre
 
-		genre = Genre.create(name: 'Teen & Young Adult Education & Reference')
+		genre = Genre.create(name: 'Adultos jóvenes y adolecentes - Educación')
 		interest.genres << genre
 
-		genre = Genre.create(name: 'Teen & Young Adult Biographies')
+		genre = Genre.create(name: 'Adultos jóvenes y adolecentes - Biografías')
 		interest.genres << genre
 
-		genre = Genre.create(name: 'Teen & Young Adult Religion & Spirituality')
+		genre = Genre.create(name: 'Adultos jóvenes y adolecentes - Religión y espiritualidad')
 		interest.genres << genre
 
 
-interest = Interest.create(name: 'Bussiness & Money')
 
-				genre = Genre.create(name: 'Bussiness Management')
-				interest.genres << genre
+interest = Interest.create(name: 'Cómics y Novelas gráficas')
 
-				genre = Genre.create(name: 'Investing')
-				interest.genres << genre
-
-				genre = Genre.create(name: 'Marketing & Sales')
-				interest.genres << genre
-
-				genre = Genre.create(name: 'Personal Finance')
-				interest.genres << genre
-
-				genre = Genre.create(name: 'Bussiness Culture')
-				interest.genres << genre
-
-				genre = Genre.create(name: 'Accounting')
-				interest.genres << genre
-
-				genre = Genre.create(name: 'Real Estate')
-				interest.genres << genre
-
-				genre = Genre.create(name: 'Biography & History')
-				interest.genres << genre
-
-				genre = Genre.create(name: 'Industries')
-				interest.genres << genre
-
-				genre = Genre.create(name: 'Bussiness Processes')
-				interest.genres << genre
-
-
-interest = Interest.create(name: 'Christian Books & Bibles')
-
-			genre = Genre.create(name: 'Christian Bibles')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Christian Livings')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Bible Covers')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Christian Bible Study')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Christian Romance')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Catholicism')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Children & Teens Christian')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Christian Church & Bible')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Christian Ministry & Church')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Christian Evangelism')
-			interest.genres << genre
-
-interest = Interest.create(name: 'Comics & Graphic Novels')
-
-		genre = Genre.create(name: 'Manga Comics & Graphic Novels')
+		genre = Genre.create(name: 'Manga y novelas gráficas')
 		interest.genres << genre
 
-		genre = Genre.create(name: 'Graphic Novels')
+		genre = Genre.create(name: 'Novelas gráficas')
 		interest.genres << genre
 
-		genre = Genre.create(name: 'Superhero Comics & Graphic Novels')
+		genre = Genre.create(name: 'Superhéroes')
 		interest.genres << genre
 
-		genre = Genre.create(name: 'Comic Books')
+		genre = Genre.create(name: 'Libros')
 		interest.genres << genre
 
-		genre = Genre.create(name: 'Romance Manga')
+		genre = Genre.create(name: 'Romance manga')
 		interest.genres << genre
 
-		genre = Genre.create(name: 'Comic & Graphic Novel')
+		genre = Genre.create(name: 'Novelas gráficas de fantasía')
 		interest.genres << genre
 
-		genre = Genre.create(name: 'Fantasy Graphic Novels')
+#INT 7
+interest = Interest.create(name: 'Libros de cocina, comida y licor')
+
+		genre = Genre.create(name: 'Cocina Asiática')
 		interest.genres << genre
 
-		genre = Genre.create(name: 'Comic Strips')
+		genre = Genre.create(name: 'Bebidas y vino')
 		interest.genres << genre
 
-		genre = Genre.create(name: 'Comic & Grapic Novels')
+		genre = Genre.create(name: 'Horneado')
 		interest.genres << genre
 
-		genre = Genre.create(name: 'How To Create Comics & Manga')
+		genre = Genre.create(name: 'Postres')
 		interest.genres << genre
 
-interest = Interest.create(name: 'Computers & Technology')
-
-			genre = Genre.create(name: 'Computer Programming')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Web Development & Design')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Programming Languages')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Network & Cloud Computing')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Computer Science')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Databases & Big Data')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Computer Hardware & DIY')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Computer Security & Encryption')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Internet & Social Media')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Computer Software')
-			interest.genres << genre
-
-interest = Interest.create(name: 'Cookbooks Food & Wine')
-
-		genre = Genre.create(name: 'Asian cooking')
+		genre = Genre.create(name: 'Cocina italiana')
 		interest.genres << genre
 
-		genre = Genre.create(name: 'Baking')
+		genre = Genre.create(name: 'Dietas')
 		interest.genres << genre
 
-		genre = Genre.create(name: 'Beverages & Wine')
-		interest.genres << genre
 
-		genre = Genre.create(name: 'Baking')
-		interest.genres << genre
+interest = Interest.create(name: 'Misterio, thrillers y suspenso')
 
-		genre = Genre.create(name: '100 Books For Foodies')
-		interest.genres << genre
-
-		genre = Genre.create(name: 'Desserts')
-		interest.genres << genre
-
-		genre = Genre.create(name: 'Italian Cooking')
-		interest.genres << genre
-
-		genre = Genre.create(name: 'Special Diet')
-		interest.genres << genre
-
-interest = Interest.create(name: 'Cookbooks Food & Wine')
-
-			genre = Genre.create(name: 'Crafts & Hobbies')
+			genre = Genre.create(name: 'Acción')
 			interest.genres << genre
 
-			genre = Genre.create(name: 'Home Improvement & Design Books')
+			genre = Genre.create(name: 'Horror')
 			interest.genres << genre
-
-			genre = Genre.create(name: 'Coloring Books for Grown Ups')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Coloring Books for Grown Ups')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Gardering & Landscape Design')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Needlecrafts & Textile Crafts')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Antiques & Collectibles')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Animal & Pet Care')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Sustainable Living')
-			interest.genres << genre
-
-interest = Interest.create(name: 'Education & Teaching')
-
-			genre = Genre.create(name: 'Schools & Teaching')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Test Preparation')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Study Guides & Workbooks')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Higher & Continuing Education')
-			interest.genres << genre
-
-interest = Interest.create(name: 'Engineering & Transportation')
-
-			genre = Genre.create(name: 'Engineering')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Automotive')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Transportation')
-			interest.genres << genre
-
-interest = Interest.create(name: 'Gay & Lesbian')
-
-		genre = Genre.create(name: 'Gay & Lesbian Literature')
-		interest.genres << genre
-
-		genre = Genre.create(name: 'Gay & Lesbian Biographies')
-		interest.genres << genre
-
-		genre = Genre.create(name: 'Gay & Lesbian History')
-		interest.genres << genre
-
-		genre = Genre.create(name: 'Gay & Lesbian Mystery')
-		interest.genres << genre
-
-		genre = Genre.create(name: 'Gay & Lesbian Parenting')
-		interest.genres << genre
-
-		genre = Genre.create(name: 'Gay & Lesbian Travel')
-		interest.genres << genre
-
-interest = Interest.create(name: 'Health, Fitness & Dieting')
-
-			genre = Genre.create(name: 'Diets & weight Loss')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Exercise & Fitness')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Alternative Medicine')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Nutrition')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Psychology & Counseling')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Sexual Health')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Grooming & Style')
-			interest.genres << genre
-
-			genre = Genre.create(name: "Women's Health")
-			interest.genres << genre
-
-			genre = Genre.create(name: "Men's Health")
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Health, Mind & Body Reference')
-			interest.genres << genre
-
-interest = Interest.create(name: 'Humor & Entertainment')
 
 			genre = Genre.create(name: 'Humor')
 			interest.genres << genre
 
-			genre = Genre.create(name: 'Sheet Music & Scores')
+			genre = Genre.create(name: 'Militares')
 			interest.genres << genre
 
-			genre = Genre.create(name: 'Coloring Books For Growing-Ups')
+			genre = Genre.create(name: 'Policías')
 			interest.genres << genre
 
-			genre = Genre.create(name: 'Puzzles & Games')
+			genre = Genre.create(name: 'Investigadores')
 			interest.genres << genre
 
-			genre = Genre.create(name: 'Performing Arts')
+			genre = Genre.create(name: 'Agentes del gobierno')
 			interest.genres << genre
 
-			genre = Genre.create(name: 'Movies')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Trivia & Fun Facts')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Pop Culture')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Television')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Radio')
-			interest.genres << genre
-
-interest = Interest.create(name: 'Law')
-
-			genre = Genre.create(name: 'Criminal Law')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Constitutional Law')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Legal Rules & Procedures')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Lawyer & Judge Biographies')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Legal Education')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Foreign and International Love')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Legal History')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Tax Law')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Media & The Law')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Intelectual Property Law')
-			interest.genres << genre
-
-
-interest = Interest.create(name: 'Medical Books & Textbooks')
-
-			genre = Genre.create(name: 'Medicine')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Nursing')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Medicine')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Pharmacology')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Veterinary Medicine')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Medical Psychology')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Basical Medic Sciences')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Medical Informatics')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'History Of Medicine')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Allied Health Professions')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Medical Administration')
-			interest.genres << genre
-
-interest = Interest.create(name: 'Parenting & Relationships')
-
-			genre = Genre.create(name: 'Marriage')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Parenting')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Pregnancy & Childbirth')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Family Relationship')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Parenting & Families Humor')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Parenting & Family Reference')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Special Needs Parenting')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Family Health')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Family Activity')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Aging Parents')
-			interest.genres << genre
-
-
-
-interest = Interest.create(name: 'Politics & Social Sciences')
-
-			genre = Genre.create(name: 'Politics & Government')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Social Sciences')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Philosophy')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Sociology')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Politics & Government')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Anthropology')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Women Studies')
-			interest.genres << genre
-
-interest = Interest.create(name: 'Reference')
-
-			genre = Genre.create(name: 'Test Preparation')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Atlases & Maps')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'English As A Second Language')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Writing, Research & Publishing')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Job Hunting And Careers')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Survival & Emergency Preparedness')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Enciclopedias & Subject Guides')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Catalogs & Directories')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Genealogy')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Consumer Guides')
-			interest.genres << genre
-
-interest = Interest.create(name: 'Religion & Spirituality')
-
-			genre = Genre.create(name: 'Christian Books & Bibles')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'New Age & Spirituality')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Occult & Paranormal')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Buddhism')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Islam')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Hinduism')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Judaism')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Other Religions, Pratices & sacred Texts')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Religious Arts & Photography')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Religious Literature & Fiction')
-			interest.genres << genre
-
-interest = Interest.create(name: 'Self-Help')
-
-			genre = Genre.create(name: 'Personal Transformation')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Healthy Relationships')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Motivational Self-Help')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Human Sexuality')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Happiness Self-Help')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Communication & Social Skills')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Stress Management Self-Help')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Emotional Self-Help')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Dreams')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Anxieties & Fobias')
-			interest.genres << genre
-
-interest = Interest.create(name: 'Travel')
-
-			genre = Genre.create(name: 'US Travel Guides')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'SouthAmerican Travel Guides')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'European Travel Guides')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Middle East Travel Guides')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'African Travel Guides')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Caribbean Travel Guides')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Travel Pictorial Reference')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Speciality Travel')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Travel  Reference & Tips')
-			interest.genres << genre
-
-			genre = Genre.create(name: 'Mexico Travel Guides')
-			interest.genres << genre
 
 
 genre = Genre.find_by_id( 38 )
@@ -789,3 +313,45 @@ Product.create( special: true, available: true, cover: 1, status: 3, value: 4500
 
 book = Book.create( name: "La Divina Comedia", author: "Dante Alighieri", genre: genre, editorial: "Editorial", year_of_publication: 1845 )
 Product.create( special: true, available: true, cover: 1, status: 3, value: 75000, code: "ISBN", code_type: "12377652323", product_item: book, user: user )
+
+
+book = Book.create( name: "Presupuesto: su control en un proyecto arquitectónico (3a ed.)", author: "González Forero, Hernando
+Ecoe Ediciones ", genre: genre, editorial: "Ecoe Ediciones", year_of_publication: 1845 )
+Product.create( special: true, available: true, cover: 1, status: 3, value: 75000, code: "ISBN", code_type: "12377652323", product_item: book, user: user )
+
+book = Book.create( name: "Literatura inglesa: problemas y técnicas en la traducción e interpretación de sus textos", author: "Sainero Sánchez, Ramón", genre: genre, editorial: "Educación a Distancia", year_of_publication: 1845 )
+Product.create( special: true, available: true, cover: 1, status: 3, value: 75000, code: "ISBN", code_type: "12377652323", product_item: book, user: user )
+
+book = Book.create( name: "Biología celular", author: "Paniagua, Ricardo", genre: genre, editorial: "McGraw-Hill España", year_of_publication: 1845 )
+Product.create( special: true, available: true, cover: 1, status: 3, value: 75000, code: "ISBN", code_type: "12377652323", product_item: book, user: user )
+
+book = Book.create( name: "Gastroenterología", author: "Vargas Domínguez, Armando", genre: genre, editorial: "McGraw-Hill Interamericana", year_of_publication: 1845 )
+Product.create( special: true, available: true, cover: 1, status: 3, value: 75000, code: "ISBN", code_type: "12377652323", product_item: book, user: user )
+
+book = Book.create( name: "Decisiones estratégicas: macroadministración", author: "Mendoza Guerra, José María", genre: genre, editorial: "Ediciones de la U", year_of_publication: 1845 )
+Product.create( special: true, available: true, cover: 1, status: 3, value: 75000, code: "ISBN", code_type: "12377652323", product_item: book, user: user )
+
+
+book = Book.create( name: "Métodos para la resolución de ecuaciones diferenciales ordinarias", author: "Caicedo, Alfredo", genre: genre, editorial: "Editorial", year_of_publication: 1845 )
+Product.create( special: true, available: true, cover: 1, status: 3, value: 75000, code: "ISBN", code_type: "12377652323", product_item: book, user: user )
+
+
+book = Book.create( name: "Comunicación, cultura y sociedad", author: "Pedranti, Gabriela", genre: genre, editorial: "Editorial Maipue", year_of_publication: 1845 )
+Product.create( special: true, available: true, cover: 1, status: 3, value: 75000, code: "ISBN", code_type: "12377652323", product_item: book, user: user )
+
+book = Book.create( name: "Nanotecnología: descubriendo lo invisible", author: "ndrada, Ana María", genre: genre, editorial: "Editorial Maipue", year_of_publication: 1845 )
+Product.create( special: true, available: true, cover: 1, status: 3, value: 75000, code: "ISBN", code_type: "12377652323", product_item: book, user: user )
+
+
+book = Book.create( name: "Memorias de un funcionario", author: "Livingston, Rodolfo", genre: genre, editorial: "Editorial Nobuko", year_of_publication: 1845 )
+Product.create( special: true, available: true, cover: 1, status: 3, value: 75000, code: "ISBN", code_type: "12377652323", product_item: book, user: user )
+
+book = Book.create( name: "Qué hacer cuando la persona a la que queremos ejerce un dominio excesivo sobre nosotros", author: "tenack, Richard J.", genre: genre, editorial: "Editorial Desclée de Brouwer", year_of_publication: 1845 )
+Product.create( special: true, available: true, cover: 1, status: 3, value: 75000, code: "ISBN", code_type: "12377652323", product_item: book, user: user )
+
+book = Book.create( name: "No sólo de pan...", author: "Rincón Bernal Jorge del ", genre: genre, editorial: "Editorial", year_of_publication: 1845 )
+Product.create( special: true, available: true, cover: 1, status: 3, value: 75000, code: "ISBN", code_type: "12377652323", product_item: book, user: user )
+
+book = Book.create(  name: "Principios, fines y derechos fundamentales", author: "Rodríguez, Joaquín Muñiz, Toubes ", genre: genre, editorial: "Dykinson ", year_of_publication: 1845 )
+Product.create( special: true, available: true, cover: 1, status: 3, value: 75000, code: "ISBN", code_type: "12377652323", product_item: book, user: user )
+
