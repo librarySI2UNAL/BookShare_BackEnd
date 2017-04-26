@@ -23,26 +23,24 @@ class PhotosController < ApplicationController
 	end
 
 	def update
-		
-		old = load_photo_by_id(params[:image_id])
-		old.destroy
-		
-		photo = PhotosDAO.create_photo(photo_params)
-		
-		if !photo.valid?
-			message = Message.invalid_request( "id" )
+		if !params.has_key?( :file )
+			message = Message.invalid_request( "file" )
 			render json: { error: message }, status: 400
 			return
 		end
 		
-		if !params.has_key?( :image )
-			message = Message.invalid_request( "image" )
-			render json: { error: message }, status: 400
-			return
+		photo_h = {}
+		photo_h[:image] = params[:file]
+		photo_h[:id] = params[:id].to_i
+		if params.has_key?( :user_id )
+			relation = "User"
+			photo_h[:user_id] = params[:user_id]
+		elsif params.has_key?( :product_id )
+			relation = "Product"
+			photo_h[:product_id] = params[:product_id]
 		end
 
-		user = User.find_by_id(:id)
-		user.photo = photo
+		photo = PhotosDAO.update_photo( photo_h, relation )
 		
 		message = Message.object_updated( "Photo" )
 		response = { message: message }
@@ -51,12 +49,27 @@ class PhotosController < ApplicationController
 	end
 
 	def destroy
-		old = Photo.load_photo_by_id( params[:id].to_i )
-		old.destroy
+		deleted = PhotosDAO.delete_photo( params[:id].to_i )
+		if !deleted
+			message = Message.not_found( "Photo" )
+			render json: { error: message }
+			return
+		end
+
+		message = Message.object_deleted( "Photo" )
+		render json: { message: message }
 	end
 
-=begin	def photo_params
-		params.require( :data ).permit( :id, :user_id, :product_id, :file )
+	def destroy_collection
+		PhotosDAO.delete_photos( photo_params )
+
+		message = Message.object_deleted( "Photos" )
+		render json: { message: message }
 	end
-=end
+
+	private
+
+	def photo_params
+		params.require( :data ).permit( :ids )
+	end
 end
