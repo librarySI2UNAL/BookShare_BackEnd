@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 		post "logout", to: "authentication#destroy"
 		resources :genres, only: [:index]
 		resources :interests, only: [:index]
+		get "users", to: "users#validate_email"
 		resources :users, only: [:show, :create, :update, :destroy] do
 			get "products", to: "products#collection"
 			resources :products, only: [:create, :update, :destroy]
