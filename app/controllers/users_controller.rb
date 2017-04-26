@@ -1,6 +1,17 @@
 class UsersController < ApplicationController
 	#skip_before_action :authorize_request, only: :create
 
+	def validate_email
+		if !params.has_key?( :email )
+			message = Message.invalid_request( "email" )
+			render json: { error: message }, status: 400
+			return
+		end
+		exists = UsersDAO.validate_email( params[:email] )
+
+		render json: { exists: exists }
+	end
+
 	def show
 		if !params.has_key?( :id )
 			message = Message.invalid_request( "id" )
