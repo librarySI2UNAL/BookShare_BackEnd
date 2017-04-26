@@ -89,11 +89,9 @@ ActiveRecord::Schema.define(version: 20170424213721) do
 
   create_table "photos", force: :cascade do |t|
     t.string   "name"
-    t.string   "url"
     t.integer  "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "Image"
     t.string   "image"
     t.index ["product_id"], name: "index_photos_on_product_id", using: :btree
   end
