@@ -58,4 +58,3 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'rack-cors', :require => 'rack/cors'
 
 gem 'carrierwave', '~> 1.0'
-gem "rmagick"

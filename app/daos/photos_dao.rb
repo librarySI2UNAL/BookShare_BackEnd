@@ -1,8 +1,24 @@
 class PhotosDAO
+	def self.create_photo( photo_h, relation )
+		if relation == "User"
+			user_id = photo_h.delete( :user_id )
+		elsif relation == "Product"
+			product_id = photo_h.delete( :product_id )
+		end
+		
+		photo = Photo.create( photo_h )
+		
+		if relation == "User"
+			user = User.load_user_by_id( user_id )
+			user.photo = photo
+			user.save
+		elsif relation == "Product"
+			product = Product.load_product_by_id( product_id )
+			product.photos << photo
+			product.save
+		end
 
-	def self.create_photo( photo_h)
-		 #user_id  = photo_h.delete(:user_id)
-		 Photo.create(photo_h)
+		return photo
 	end
 
 	def self.update_photo(photo_h)
