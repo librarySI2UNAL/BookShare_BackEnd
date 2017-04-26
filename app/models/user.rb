@@ -18,4 +18,8 @@ class User < ApplicationRecord
 	def self.load_user_by_id( id )
 		self.find_by_id( id )
 	end
+
+	def self.exists_user_with_email( email )
+		self.exists?( email: email )
+	end
 end
