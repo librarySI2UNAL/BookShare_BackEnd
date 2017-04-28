@@ -83,15 +83,19 @@ class ProductsController < ApplicationController
 			return
 		end
 		
-		q = params[:q]
-		p_name = Product.load_available_products_by_name(name = q)
-		p_genre = Product.load_product_by_genre(genre = q)
-		p_author = Product.load_product_by_author(author = q)
+		q = params[:q].split(":")
+		
+		case q[0]
+			when 'name'
+				p_name = Product.load_available_products_by_name(1, 10 , q[1])
+			when 'genre'
+				p_author = Product.load_product_by_author(1, 10, q[1])
+			when 'author'
+				p_genre = Product.load_product_by_genre(1, 10, q[1])
+		end	
 		
 		if p_name.any?
-			message = Message.object_updated( "Product" )
-			render p_name, root: "data", include: "**"
-			
+			render json: p_name
 		else
 				if p_author.any?
 					render json: p_author
