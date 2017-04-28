@@ -90,9 +90,7 @@ class ProductsController < ApplicationController
 		
 		if p_name.any?
 			message = Message.object_updated( "Product" )
-			response = { message: message }
-			response[:q] = ActiveModelSerializers::SerializableResource.new( product ).as_json[:q]
-		    render json:  p_name
+			render p_name, root: "data", include: "**"
 			
 		else
 				if p_author.any?
