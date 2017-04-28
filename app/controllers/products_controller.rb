@@ -74,4 +74,42 @@ class ProductsController < ApplicationController
 	def product_params
 		params.require( :data ).permit( :user_id, :id, :special, :available, :description, :cover, :status, :value, :code, :code_type, product_item: [:type, :id, :name, :author, :genre, :editorial, :year_of_publication] )
 	end
+	
+	def q_search
+		
+		if !params.has_key?( :q )
+			message = Message.invalid_request( "q parameter" )
+			render json: { error: message }, status: 400
+			return
+		end
+		
+		q = params[:q]
+		p_name = Product.load_available_products_by_name(name = q)
+		p_genre = Product.load_product_by_genre(genre = q)
+		p_author = Product.load_product_by_author(author = q)
+		
+		if p_name.any?
+			
+			message = Message.object_updated( "Product" )
+			response = { message: message }
+			response[:q] = ActiveModelSerializers::SerializableResource.new( product ).as_json[:q]
+			
+			render json: { p_name }, status 909
+			else
+				if p_author.any?
+					render json: {p_author}
+				else
+					if p_genre.any?
+						render json: {p_genre}
+					end
+				end
+		end
+		
+		
+		
+		
+		
+	end
+	
+	
 end
