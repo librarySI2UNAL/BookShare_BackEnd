@@ -89,19 +89,23 @@ class ProductsController < ApplicationController
 		p_author = Product.load_product_by_author(author = q)
 		
 		if p_name.any?
-			
 			message = Message.object_updated( "Product" )
 			response = { message: message }
 			response[:q] = ActiveModelSerializers::SerializableResource.new( product ).as_json[:q]
+		    render json:  p_name
 			
-			render json: { p_name }, status 909
-			else
+		else
 				if p_author.any?
-					render json: {p_author}
+					render json: p_author
 				else
 					if p_genre.any?
-						render json: {p_genre}
+						render json: p_genre
+					else
+						message = Message.not_found( "Product" )
+						render json: { error: message }, status: 404
+						return
 					end
+					
 				end
 		end
 		
