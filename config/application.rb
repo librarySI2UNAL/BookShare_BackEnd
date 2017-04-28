@@ -11,6 +11,7 @@ require "action_view/railtie"
 require "action_cable/engine"
 # require "sprockets/railtie"
 require "rails/test_unit/railtie"
+require "rack/throttle"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -36,6 +37,8 @@ module BookShareBackend
         resource '*', :headers => :any, :methods => [:get, :post, :put, :patch, :options]
       end
     end
+
+    config.middleware.use Rack::Throttle::Daily,    :max => 1000
 
   end
 end
