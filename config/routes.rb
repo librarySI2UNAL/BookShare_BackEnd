@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 		get "users/search", to: "users#q_search"
 		get "products/search", to: "products#q_search"
 		
-		resources :users, only: [:show, :create, :update, :destroy] do
+		resources :users, only: [:index, :show, :create, :update, :destroy] do
 			get "products", to: "products#collection"
 			resources :products, only: [:create, :update, :destroy]
 			delete "photos", to: "photos#destroy_collection"

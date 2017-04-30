@@ -71,4 +71,11 @@ class Product < ApplicationRecord
 
 		products.paginate( page: page, per_page: per_page )
 	end
+	
+	def self.load_available_products_by_search( page = 1, per_page = 10, query = "" )
+		products = self.all
+		products = products.where(["genre = ?", query]).or(products.where(["name = ?", query])).or(products.where(["author = ?", query]))
+
+		products.paginate( page: page, per_page: per_page )
+	end
 end

@@ -75,6 +75,25 @@ class ProductsController < ApplicationController
 		params.require( :data ).permit( :user_id, :id, :special, :available, :description, :cover, :status, :value, :code, :code_type, product_item: [:type, :id, :name, :author, :genre, :editorial, :year_of_publication] )
 	end
 	
+	def search
+		products = Product.all
+		if params['search']
+			products = Product.load_available_products_by_search( params[:page], params[:per_page], params[:search] )
+		end
+	    if params['sort']
+	      f = params['sort'].split(',').first
+	      field = f[0] == '-' ? f[1..-1] : f
+	      order = f[0] == '-' ? 'DESC' : 'ASC'
+	      if Product.new.has_attribute?(field)
+	        products = products.order("#{field} #{order}")
+	      end
+	    end
+	    if params['select']
+	    	products = products.select(params['select'])
+	    end
+	    render json: products, meta: pagination_meta(products)
+	end
+	
 	def q_search
 		
 		if !params.has_key?( :q )

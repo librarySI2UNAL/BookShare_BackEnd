@@ -67,6 +67,27 @@ class UsersController < ApplicationController
 		message = Message.object_deleted( "User" )
 		render json: { message: message }
 	end
+	
+	def search
+		#Search
+		users = User.all
+		if params['q']
+			users = users.load_available_products_by_search( params[:page], params[:per_page], params[:search] )
+		end
+		if params['sort']
+			f = params['sort'].split(',').first
+			field = f[0] == '-' ? f[1..-1] : f
+			order = f[0] == '-' ? 'DESC' : 'ASC'
+			if User.new.has_attribute?(field)
+				users = users.order("#{field} #{order}")
+			end
+		end
+		if params['select']
+			users = users.select(params['select']) 
+		end
+		render json: users, meta: pagination_meta(users)
+		########
+	end
 
 	private
 
