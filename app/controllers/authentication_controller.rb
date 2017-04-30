@@ -1,5 +1,5 @@
 class AuthenticationController < ApplicationController
-	#skip_before_action :authorize_request, only: :authenticate
+	skip_before_action :authorize_request, only: :authenticate
 
 	def authenticate
 		if !params.has_key?( :email )
@@ -12,9 +12,12 @@ class AuthenticationController < ApplicationController
 			render json: { error: message }, status: 400
 			return
 		end
+		user = User.load_user_by_email( params[:email] )
 
 		auth_token = AuthenticateUser.new( params[:email], params[:password] ).call
 
-		render json: { auth_token: auth_token }
+		response = { token: auth_token }
+		response[:data] = ActiveModelSerializers::SerializableResource.new( user ).as_json[:user]
+		render json: response
 	end
 end

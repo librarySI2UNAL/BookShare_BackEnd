@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	#skip_before_action :authorize_request, only: :create
+	skip_before_action :authorize_request, only: [:create, :validate_email]
 
 	def validate_email
 		if !params.has_key?( :email )
