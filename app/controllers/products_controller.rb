@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+	skip_before_action :authorize_request, only: [:search, :q_search]
+
 	def collection
 		products = Product.load_available_products_by_user_id( params[:page], params[:per_page], params[:user_id].to_i )
 		render json: products, root: "data"
