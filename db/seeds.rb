@@ -62,7 +62,7 @@ interest.save
 
 interest = Interest.create( name: "Biografías" )
 photo = Photo.new
-photo.image = Rails.root.join( "public/images/Gabriel.jpeg" ).open
+photo.image = Rails.root.join( "public/images/Gabriel.jpg" ).open
 photo.save
 interest.photo = photo
 
