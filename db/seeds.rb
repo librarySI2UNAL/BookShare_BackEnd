@@ -25,8 +25,11 @@ Genre
 4 - Sci-Fi
 =end
 
-#INT 5 
-interest = Interest.create(name: 'Artes y fotografía')
+interest = Interest.create( name: "Artes y fotografía" )
+photo = Photo.new
+photo.image = Rails.root.join( "public/images/Pencils.jpg" ).open
+photo.save
+interest.photo = photo
 
 	genre = Genre.create(name: 'Fotografía')
 	interest.genres << genre
@@ -55,9 +58,13 @@ interest = Interest.create(name: 'Artes y fotografía')
 	genre = Genre.create(name: 'Artes religiosas')
 	interest.genres  << genre
 
+interest.save
 
-#INT 6
-interest = Interest.create(name: 'Biografías')
+interest = Interest.create( name: "Biografías" )
+photo = Photo.new
+photo.image = Rails.root.join( "public/images/Gabriel.jpeg" ).open
+photo.save
+interest.photo = photo
 
 	genre = Genre.create(name: 'Históricos')
 	interest.genres  << genre
@@ -80,201 +87,244 @@ interest = Interest.create(name: 'Biografías')
 	genre = Genre.create(name: 'Crímenes reales')
 	interest.genres  << genre
 
-	interest = Interest.create(name: 'Libros para niños')
+interest.save
 
-			genre = Genre.create(name: 'bebes de 2 años')
-			interest.genres << genre
+interest = Interest.create( name: "Libros para niños" )
+photo = Photo.new
+photo.image = Rails.root.join( "public/images/Childrens.jpg" ).open
+photo.save
+interest.photo = photo
 
-			genre = Genre.create(name: 'Edades de 3 a 5 años' )
-			interest.genres << genre
+	genre = Genre.create(name: 'bebes de 2 años')
+	interest.genres << genre
 
-			genre = Genre.create(name: 'Edades 6 a 8 años')
-			interest.genres << genre
+	genre = Genre.create(name: 'Edades de 3 a 5 años' )
+	interest.genres << genre
 
-			genre = Genre.create(name: 'Edades 9 a 12 años')
-			interest.genres << genre
+	genre = Genre.create(name: 'Edades 6 a 8 años')
+	interest.genres << genre
 
-			genre = Genre.create(name: 'Libros de mesa')
-			interest.genres << genre
+	genre = Genre.create(name: 'Edades 9 a 12 años')
+	interest.genres << genre
 
-			genre = Genre.create(name: 'Libros por capítulos')
-			interest.genres << genre
+	genre = Genre.create(name: 'Libros de mesa')
+	interest.genres << genre
 
-			genre = Genre.create(name: 'Libros para colorear')
-			interest.genres << genre
+	genre = Genre.create(name: 'Libros por capítulos')
+	interest.genres << genre
 
-			genre = Genre.create(name: 'Libros ilustrados')
+	genre = Genre.create(name: 'Libros para colorear')
+	interest.genres << genre
 
+	genre = Genre.create(name: 'Libros ilustrados')
+	interest.genres << genre
+
+interest.save
 			
-#INT 1 Hystory  
-interest = Interest.create(name: 'Historia')
+interest = Interest.create( name: "Historia" )
+photo = Photo.new
+photo.image = Rails.root.join( "public/images/History.jpg" ).open
+photo.save
+interest.photo = photo
 
-				genre = Genre.create(name: 'África')
-				interest.genres << genre
+	genre = Genre.create(name: 'África')
+	interest.genres << genre
 
-				genre = Genre.create(name: 'Américas')
-				interest.genres << genre
+	genre = Genre.create(name: 'Américas')
+	interest.genres << genre
 
-				genre = Genre.create(name: 'Civilizaciones antiguas')
-				interest.genres << genre
+	genre = Genre.create(name: 'Civilizaciones antiguas')
+	interest.genres << genre
 
-				genre = Genre.create(name: 'Europa')
-				interest.genres << genre
+	genre = Genre.create(name: 'Europa')
+	interest.genres << genre
 
-				genre = Genre.create(name: 'Medio Este')
-				interest.genres << genre
+	genre = Genre.create(name: 'Medio Este')
+	interest.genres << genre
 
-				genre = Genre.create(name: 'Militar')
-				interest.genres  << genre
+	genre = Genre.create(name: 'Militar')
+	interest.genres  << genre
 
-				genre = Genre.create(name: 'Rusia')
-				interest.genres  << genre
-#INT 2 Hystory  
-	interest = Interest.create(name: 'Literatura y ficción')
+	genre = Genre.create(name: 'Rusia')
+	interest.genres  << genre
 
-		genre = Genre.create(name: 'Clásicos')
-		interest.genres << genre
+interest.save
 
-		genre = Genre.create(name: 'Contemporáneo')
-		interest.genres << genre
+interest = Interest.create( name: "Literatura y ficción" )
+photo = Photo.new
+photo.image = Rails.root.join( "public/images/Literature.jpg" ).open
+photo.save
+interest.photo = photo
 
-		genre = Genre.create(name: 'Ensayos')
-		interest.genres << genre
+	genre = Genre.create(name: 'Clásicos')
+	interest.genres << genre
 
-		genre = Genre.create(name: 'Ficción')
-		interest.genres << genre
+	genre = Genre.create(name: 'Contemporáneo')
+	interest.genres << genre
 
-		genre = Genre.create(name: 'Ficción histórica')
-		interest.genres << genre
+	genre = Genre.create(name: 'Ensayos')
+	interest.genres << genre
 
-		genre = Genre.create(name: 'Humor y sátira')
-		interest.genres  << genre
+	genre = Genre.create(name: 'Ficción')
+	interest.genres << genre
 
-		genre = Genre.create(name: 'Literario')
-		interest.genres  << genre
-#INT 3 Hystory
-interest = Interest.create(name: 'Ciencia ficción y fantasía')
+	genre = Genre.create(name: 'Ficción histórica')
+	interest.genres << genre
 
-			genre = Genre.create(name: 'Historia alternativa')
-			interest.genres << genre
+	genre = Genre.create(name: 'Humor y sátira')
+	interest.genres  << genre
 
-			genre = Genre.create(name: 'Épico')
-			interest.genres << genre
+	genre = Genre.create(name: 'Literario')
+	interest.genres  << genre
 
-			genre = Genre.create(name: 'Histórico')
-			interest.genres << genre
+interest.save
 
-			genre = Genre.create(name: 'Militar')
-			interest.genres << genre
+interest = Interest.create( name: "Ciencia ficción y fantasía" )
+photo = Photo.new
+photo.image = Rails.root.join( "public/images/Science_Fiction.jpg" ).open
+photo.save
+interest.photo = photo
 
-			genre = Genre.create(name: 'Mitos y leyendas')
-			interest.genres << genre
+	genre = Genre.create(name: 'Historia alternativa')
+	interest.genres << genre
 
-			genre = Genre.create(name: 'Paranormal')
-			interest.genres << genre
+	genre = Genre.create(name: 'Épico')
+	interest.genres << genre
 
-			genre = Genre.create(name: 'Espadas y brujería')
-			interest.genres << genre
+	genre = Genre.create(name: 'Histórico')
+	interest.genres << genre
 
-#INT 4 Hystory
-interest = Interest.create(name: 'Libros de adultos jóvenes y adolecentes')
+	genre = Genre.create(name: 'Militar')
+	interest.genres << genre
 
-		genre = Genre.create(name: 'Adultos jóvenes y adolecentes - Romance')
-		interest.genres << genre
+	genre = Genre.create(name: 'Mitos y leyendas')
+	interest.genres << genre
 
-		genre = Genre.create(name: 'Adultos jóvenes y adolecentes - Ficción')
-		interest.genres << genre
+	genre = Genre.create(name: 'Paranormal')
+	interest.genres << genre
 
-		genre = Genre.create(name: 'Adultos jóvenes y adolecentes - Fantasía')
-		interest.genres << genre
+	genre = Genre.create(name: 'Espadas y brujería')
+	interest.genres << genre
 
-		genre = Genre.create(name: 'Adultos jóvenes y adolecentes - Misterio y thrillers')
-		interest.genres << genre
+interest.save
 
-		genre = Genre.create(name: 'Adultos jóvenes y adolecentes - Salud personal')
-		interest.genres << genre
+interest = Interest.create( name: "Libros de adultos jóvenes y adolescentes" )
+photo = Photo.new
+photo.image = Rails.root.join( "public/images/Teenager.jpg" ).open
+photo.save
+interest.photo = photo
 
-		genre = Genre.create(name: 'Adultos jóvenes y adolecentes - Problemas sociales')
-		interest.genres << genre
+	genre = Genre.create(name: 'Adultos jóvenes y adolescentes - Romance')
+	interest.genres << genre
 
-		genre = Genre.create(name: 'Adultos jóvenes y adolecentes - Educación')
-		interest.genres << genre
+	genre = Genre.create(name: 'Adultos jóvenes y adolescentes - Ficción')
+	interest.genres << genre
 
-		genre = Genre.create(name: 'Adultos jóvenes y adolecentes - Biografías')
-		interest.genres << genre
+	genre = Genre.create(name: 'Adultos jóvenes y adolescentes - Fantasía')
+	interest.genres << genre
 
-		genre = Genre.create(name: 'Adultos jóvenes y adolecentes - Religión y espiritualidad')
-		interest.genres << genre
+	genre = Genre.create(name: 'Adultos jóvenes y adolescentes - Misterio y thrillers')
+	interest.genres << genre
 
+	genre = Genre.create(name: 'Adultos jóvenes y adolescentes - Salud personal')
+	interest.genres << genre
 
+	genre = Genre.create(name: 'Adultos jóvenes y adolescentes - Problemas sociales')
+	interest.genres << genre
 
-interest = Interest.create(name: 'Cómics y Novelas gráficas')
+	genre = Genre.create(name: 'Adultos jóvenes y adolescentes - Educación')
+	interest.genres << genre
 
-		genre = Genre.create(name: 'Manga y novelas gráficas')
-		interest.genres << genre
+	genre = Genre.create(name: 'Adultos jóvenes y adolescentes - Biografías')
+	interest.genres << genre
 
-		genre = Genre.create(name: 'Novelas gráficas')
-		interest.genres << genre
+	genre = Genre.create(name: 'Adultos jóvenes y adolescentes - Religión y espiritualidad')
+	interest.genres << genre
 
-		genre = Genre.create(name: 'Superhéroes')
-		interest.genres << genre
+interest.save
 
-		genre = Genre.create(name: 'Libros')
-		interest.genres << genre
+interest = Interest.create( name: "Cómics y novelas gráficas" )
+photo = Photo.new
+photo.image = Rails.root.join( "public/images/Comic.jpg" ).open
+photo.save
+interest.photo = photo
 
-		genre = Genre.create(name: 'Romance manga')
-		interest.genres << genre
+	genre = Genre.create(name: 'Manga y novelas gráficas')
+	interest.genres << genre
 
-		genre = Genre.create(name: 'Novelas gráficas de fantasía')
-		interest.genres << genre
+	genre = Genre.create(name: 'Novelas gráficas')
+	interest.genres << genre
 
-#INT 7
-interest = Interest.create(name: 'Libros de cocina, comida y licor')
+	genre = Genre.create(name: 'Superhéroes')
+	interest.genres << genre
 
-		genre = Genre.create(name: 'Cocina Asiática')
-		interest.genres << genre
+	genre = Genre.create(name: 'Libros')
+	interest.genres << genre
 
-		genre = Genre.create(name: 'Bebidas y vino')
-		interest.genres << genre
+	genre = Genre.create(name: 'Romance manga')
+	interest.genres << genre
 
-		genre = Genre.create(name: 'Horneado')
-		interest.genres << genre
+	genre = Genre.create(name: 'Novelas gráficas de fantasía')
+	interest.genres << genre
 
-		genre = Genre.create(name: 'Postres')
-		interest.genres << genre
+interest.save
 
-		genre = Genre.create(name: 'Cocina italiana')
-		interest.genres << genre
+interest = Interest.create( name: "Libros de cocina, comida y licor" )
+photo = Photo.new
+photo.image = Rails.root.join( "public/images/Wine.jpg" ).open
+photo.save
+interest.photo = photo
 
-		genre = Genre.create(name: 'Dietas')
-		interest.genres << genre
+	genre = Genre.create(name: 'Cocina Asiática')
+	interest.genres << genre
 
+	genre = Genre.create(name: 'Bebidas y vino')
+	interest.genres << genre
 
-interest = Interest.create(name: 'Misterio, thrillers y suspenso')
+	genre = Genre.create(name: 'Horneado')
+	interest.genres << genre
 
-			genre = Genre.create(name: 'Acción')
-			interest.genres << genre
+	genre = Genre.create(name: 'Postres')
+	interest.genres << genre
 
-			genre = Genre.create(name: 'Horror')
-			interest.genres << genre
+	genre = Genre.create(name: 'Cocina italiana')
+	interest.genres << genre
 
-			genre = Genre.create(name: 'Humor')
-			interest.genres << genre
+	genre = Genre.create(name: 'Dietas')
+	interest.genres << genre
 
-			genre = Genre.create(name: 'Militares')
-			interest.genres << genre
+interest.save
 
-			genre = Genre.create(name: 'Policías')
-			interest.genres << genre
+interest = Interest.create( name: "Misterio, thrillers y suspenso" )
+photo = Photo.new
+photo.image = Rails.root.join( "public/images/Thriller.jpg" ).open
+photo.save
+interest.photo = photo
 
-			genre = Genre.create(name: 'Investigadores')
-			interest.genres << genre
+	genre = Genre.create(name: 'Acción')
+	interest.genres << genre
 
-			genre = Genre.create(name: 'Agentes del gobierno')
-			interest.genres << genre
+	genre = Genre.create(name: 'Horror')
+	interest.genres << genre
 
+	genre = Genre.create(name: 'Humor')
+	interest.genres << genre
 
+	genre = Genre.create(name: 'Militares')
+	interest.genres << genre
 
+	genre = Genre.create(name: 'Policías')
+	interest.genres << genre
+
+	genre = Genre.create(name: 'Investigadores')
+	interest.genres << genre
+
+	genre = Genre.create(name: 'Agentes del gobierno')
+	interest.genres << genre
+
+interest.save
+	
+=begin
 genre = Genre.find_by_id( 38 )
 user = User.find_by_id( 1 )
 
@@ -354,4 +404,4 @@ Product.create( special: true, available: true, cover: 1, status: 3, value: 7500
 
 book = Book.create(  name: "Principios, fines y derechos fundamentales", author: "Rodríguez, Joaquín Muñiz, Toubes ", genre: genre, editorial: "Dykinson ", year_of_publication: 1845 )
 Product.create( special: true, available: true, cover: 1, status: 3, value: 75000, code: "ISBN", code_type: "12377652323", product_item: book, user: user )
-
+=end

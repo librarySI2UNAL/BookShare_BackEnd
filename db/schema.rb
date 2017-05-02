@@ -74,8 +74,10 @@ ActiveRecord::Schema.define(version: 20170424213721) do
   create_table "interests", force: :cascade do |t|
     t.string   "name"
     t.string   "icon_name"
+    t.integer  "photo_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["photo_id"], name: "index_interests_on_photo_id", using: :btree
   end
 
   create_table "interests_users", force: :cascade do |t|
@@ -88,7 +90,6 @@ ActiveRecord::Schema.define(version: 20170424213721) do
   end
 
   create_table "photos", force: :cascade do |t|
-    t.string   "name"
     t.integer  "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
