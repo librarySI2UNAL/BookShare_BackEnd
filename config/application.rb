@@ -37,7 +37,7 @@ module BookShareBackend
         resource '*', :headers => :any, :methods => [:get, :post, :put, :patch, :options]
       end
     end
-
+    config.middleware.use Rack::Attack
     config.middleware.use Rack::Throttle::Daily,    :max => 1000
 
   end
