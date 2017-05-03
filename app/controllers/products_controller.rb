@@ -1,3 +1,4 @@
+# encoding: utf-8
 class ProductsController < ApplicationController
 	def collection
 		products = Product.load_available_products_by_user_id( params[:page], params[:per_page], params[:user_id].to_i )
@@ -64,7 +65,6 @@ class ProductsController < ApplicationController
 			render json: { error: message }
 			return
 		end
-
 		message = Message.object_deleted( "Product" )
 		render json: { message: message }
 	end
@@ -74,7 +74,7 @@ class ProductsController < ApplicationController
 	def product_params
 		params.require( :data ).permit( :user_id, :id, :special, :available, :description, :cover, :status, :value, :code, :code_type, product_item: [:type, :id, :name, :author, :genre, :editorial, :year_of_publication] )
 	end
-	
+
 	def search
 		products = Product.all
 		if params['q']
@@ -93,48 +93,58 @@ class ProductsController < ApplicationController
 	    end
 	    render json: products, meta: pagination_meta(products)
 	end
-	
-	def q_search
-		
-		if !params.has_key?( :q )
-			message = Message.invalid_request( "q parameter" )
-			render json: { error: message }, status: 400
-			return
-		end
-		
-		q = params[:q].split(":")
-		
-		case q[0]
-			when 'name'
-				p_name = Product.load_available_products_by_name(1, 10 , q[1])
-			when 'genre'
-				p_author = Product.load_product_by_author(1, 10, q[1])
-			when 'author'
-				p_genre = Product.load_product_by_genre(1, 10, q[1])
-		end	
-		
-		if p_name.any?
-			render json: p_name
-		else
-				if p_author.any?
-					render json: p_author
-				else
-					if p_genre.any?
-						render json: p_genre
-					else
-						message = Message.not_found( "Product" )
-						render json: { error: message }, status: 404
-						return
-					end
-					
-				end
-		end
-		
-		
-		
-		
-		
+
+def q_search
+	if !params.has_key?(:q) || !params.has_key?(:column)
+		message = Message.invalid_request("q parameter or column")
+		render json: {error: message}, status: 400
+		return
 	end
-	
-	
+
+	q = params[:q].split("+")
+	column_name = params[:column]
+	results = []
+
+	case column_name
+	when 'name'
+		q.each do |word|
+			p_name = Product.load_available_products_by_name(1,10,word)
+			if p_name.any? && !results.include?(p_name)
+				results.push(p_name)
+			end
+		end
+
+		render json: results, status: 200
+		return
+
+	when 'genre'
+		q.each do |word|
+			p_genre = Product.load_available_products_by_genre(1, 10, word)
+			if p_genre.any? && !results.includ?(p_genre)
+				results.push(p_genre)
+			end
+		end
+
+		render json: results, status: 200
+		return
+
+		when 'author'
+			q.each do |word|
+				p_author = Product.load_available_products_by_author(1,10,word)
+				if p_author.any? && !results.include?(p_author)
+					results.push(p_author)
+				end
+			end
+
+			render json: results, status: 200
+			return
+
+		else
+			render json: results
+		end
+
+	end
+
+
+
 end

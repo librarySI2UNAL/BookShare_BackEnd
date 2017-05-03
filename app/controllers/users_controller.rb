@@ -67,7 +67,7 @@ class UsersController < ApplicationController
 		message = Message.object_deleted( "User" )
 		render json: { message: message }
 	end
-	
+
 	def search
 		#Search
 		users = User.all
@@ -83,7 +83,7 @@ class UsersController < ApplicationController
 			end
 		end
 		if params['select']
-			users = users.select(params['select']) 
+			users = users.select(params['select'])
 		end
 		render json: users, meta: pagination_meta(users)
 		########
@@ -94,4 +94,5 @@ class UsersController < ApplicationController
 	def user_params
 		params.require( :data ).permit( :name, :last_name, :email, :password, :qualification, :latitude, :longitude, :photo, interests: [] )
 	end
+
 end
