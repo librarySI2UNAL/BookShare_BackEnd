@@ -76,75 +76,76 @@ class ProductsController < ApplicationController
 	end
 
 	def search
+		#Search
 		products = Product.all
 		if params['q']
-			products = Product.load_available_products_by_search( params[:page], params[:per_page], params['q'] )
+			products = products.load_available_products_by_search( params[:page], params[:per_page], params['q'] )
 		end
-	    if params['sort']
-	      f = params['sort'].split(',').first
-	      field = f[0] == '-' ? f[1..-1] : f
-	      order = f[0] == '-' ? 'DESC' : 'ASC'
-	      if Product.new.has_attribute?(field)
-	        products = products.order("#{field} #{order}")
-	      end
-	    end
-	    if params['select']
-	    	products = products.select(params['select'])
-	    end
-	    render json: products, meta: pagination_meta(products)
-	end
-
-def q_search
-	if !params.has_key?(:q) || !params.has_key?(:column)
-		message = Message.invalid_request("q parameter or column")
-		render json: {error: message}, status: 400
-		return
-	end
-
-	q = params[:q].split("+")
-	column_name = params[:column]
-	results = []
-
-	case column_name
-	when 'name'
-		q.each do |word|
-			p_name = Product.load_available_products_by_name(1,10,word)
-			if p_name.any? && !results.include?(p_name)
-				results.push(p_name)
+		if params['sort']
+			f = params['sort'].split(',')
+			query = Array.new
+			f.each do |field|
+				if Product.new.has_attribute?(field)
+					column = f[0] == '-' ? f[1..-1] : f
+					order = f[0] == '-' ? 'DESC' : 'ASC'
+					query.push("#{column} #{order}")
+				end
 			end
+			products = products.order(query.join(","))
 		end
-
-		render json: results, status: 200
-		return
-
-	when 'genre'
-		q.each do |word|
-			p_genre = Product.load_available_products_by_genre(1, 10, word)
-			if p_genre.any? && !results.includ?(p_genre)
-				results.push(p_genre)
+		if params['select']
+			f = params['select'].split(',')
+			query = Array.new
+			f.each do |column|
+				if Product.new.has_attribute?(column)
+					query.push("#{column}")
+				end
 			end
+			products = products.select(query.join(","))
+		end
+		render json: products, meta: pagination_meta(products)
+		########
+	end
+	
+	def q_search
+		if !params.has_key?(:q) || !params.has_key?(:column)
+			message = Message.invalid_request("q parameter or column")
+			render json: {error: message}, status: 400
+			return
 		end
 
-		render json: results, status: 200
-		return
-
-		when 'author'
+		q = params[:q].split("+")
+		column_name = params[:column]
+		results = []
+			
+		if column_name.eql? 'name'
+			q.each do |word|
+				p_name = Product.load_available_products_by_name(1,10,word)
+				if p_name.any? && !results.include?(p_name)
+					results.push(p_name)
+				end
+				render json: results, status: 200
+			end
+		elsif column_name.eql? 'genre'
+			q.each do |word|
+				p_genre = Product.load_available_products_by_genre(1, 10, word)
+				if p_genre.any? && !results.includ?(p_genre)
+					results.push(p_genre)
+				end
+				render json: results, status: 200
+			end
+		elsif column_name.eql? 'author'
 			q.each do |word|
 				p_author = Product.load_available_products_by_author(1,10,word)
 				if p_author.any? && !results.include?(p_author)
 					results.push(p_author)
 				end
+				render json: results, status: 200
 			end
-
-			render json: results, status: 200
-			return
-
 		else
 			render json: results
 		end
 
 	end
-
-
-
+	
 end
