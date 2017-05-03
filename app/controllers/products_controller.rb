@@ -77,8 +77,8 @@ class ProductsController < ApplicationController
 	
 	def search
 		products = Product.all
-		if params['search']
-			products = Product.load_available_products_by_search( params[:page], params[:per_page], params[:search] )
+		if params['q']
+			products = Product.load_available_products_by_search( params[:page], params[:per_page], params['q'] )
 		end
 	    if params['sort']
 	      f = params['sort'].split(',').first

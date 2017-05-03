@@ -72,7 +72,7 @@ class UsersController < ApplicationController
 		#Search
 		users = User.all
 		if params['q']
-			users = users.load_available_products_by_search( params[:page], params[:per_page], params[:search] )
+			users = users.load_available_products_by_search( params[:page], params[:per_page], params['q'] )
 		end
 		if params['sort']
 			f = params['sort'].split(',').first
