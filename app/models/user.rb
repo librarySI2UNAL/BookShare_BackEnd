@@ -22,11 +22,11 @@ class User < ApplicationRecord
 	def self.exists_user_with_email( email )
 		self.exists?( email: email )
 	end
-	
+
 	def self.load_available_exists_user_with_emails_by_search( page = 1, per_page = 10, query = "" )
-		users = self.all
+		
 		users = products.where(["name = ?", query]).or(products.where(["last_name = ?", query])).or(products.where(["email = ?", query]))
 
-		products.paginate( page: page, per_page: per_page )
+		users.paginate( page: page, per_page: per_page )
 	end
 end

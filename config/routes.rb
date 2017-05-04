@@ -5,10 +5,10 @@ Rails.application.routes.draw do
 		resources :genres, only: [:index]
 		resources :interests, only: [:index]
 		get "users/validate", to: "users#validate_email"
-		get "search", to: "users#q_search"
+		get "products/search", to: "products#qsearch"
 
 
-		resources :users, only: [:index, :show, :create, :update, :destroy, :q_search] do
+		resources :users, only: [:index, :show, :create, :update, :destroy] do
 
 			get "products", to: "products#collection"
 			resources :products, only: [:create, :update, :destroy]
@@ -17,9 +17,12 @@ Rails.application.routes.draw do
 
 		end
 
-		resources :products, only: [:index, :show, :q_search] do
+		resources :products, only: [:index, :show] do
+
+
+
 			resources :comments, only: [:create, :update, :destroy, :q_search]
-			get "search", to: "products#q_search"
+
 			delete "photos", to: "photos#destroy_collection"
 			resources :photos, only: [:create, :update, :destroy]
 		end

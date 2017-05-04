@@ -69,14 +69,14 @@ class ProductsController < ApplicationController
 		render json: { message: message }
 	end
 
-	private
+
 
 	def product_params
 		params.require( :data ).permit( :user_id, :id, :special, :available, :description, :cover, :status, :value, :code, :code_type, product_item: [:type, :id, :name, :author, :genre, :editorial, :year_of_publication] )
 	end
 
 	def search
-		products = Product.all
+
 		if params['search']
 			products = Product.load_available_products_by_search( params[:page], params[:per_page], params[:search] )
 		end
@@ -94,7 +94,7 @@ class ProductsController < ApplicationController
 	    render json: products, meta: pagination_meta(products)
 	end
 
-def q_search
+def qsearch
 	if !params.has_key?(:q) || !params.has_key?(:column)
 		message = Message.invalid_request("q parameter or column")
 		render json: {error: message}, status: 400
@@ -102,49 +102,52 @@ def q_search
 	end
 
 	q = params[:q].split("+")
-	column_name = params[:column]
+	column_name = params[:column].split(",")
 	results = []
 
-	case column_name
+column_name.each do |the_col|
+case the_col
 	when 'name'
 		q.each do |word|
 			p_name = Product.load_available_products_by_name(1,10,word)
 			if p_name.any? && !results.include?(p_name)
-				results.push(p_name)
+				render json: p_name
+				#results.push(p_name)
 			end
 		end
-
-		render json: results, status: 200
-		return
 
 	when 'genre'
 		q.each do |word|
 			p_genre = Product.load_available_products_by_genre(1, 10, word)
-			if p_genre.any? && !results.includ?(p_genre)
-				results.push(p_genre)
+			if p_genre.any? && !results.include?(p_genre)
+				render json: p_genre
+			results.push(p_genre)
 			end
 		end
 
-		render json: results, status: 200
-		return
 
 		when 'author'
 			q.each do |word|
 				p_author = Product.load_available_products_by_author(1,10,word)
 				if p_author.any? && !results.include?(p_author)
-					results.push(p_author)
+					render json: p_author
+					#results.push(p_author)
 				end
 			end
 
-			render json: results, status: 200
-			return
+
 
 		else
-			render json: results
+			message = Message.not_found("query")
+			render json: {error: message}, status: 404
+
 		end
+
 
 	end
 
-
+	results.paginate( page: 1, per_page: 10 )
+	#render json: results
+end
 
 end
