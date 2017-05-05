@@ -14,6 +14,8 @@ class UsersDAO
 
 	def self.update_user( id, user_h )
 		user = User.load_user_by_id( id )
+
+		user_h[:interests] = Interest.load_interests_by_ids( user_h[:interests] )
 		user.update( user_h )
 
 		return user
