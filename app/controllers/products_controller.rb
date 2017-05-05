@@ -94,60 +94,61 @@ class ProductsController < ApplicationController
 	    render json: products, meta: pagination_meta(products)
 	end
 
-def qsearch
-	if !params.has_key?(:q) || !params.has_key?(:column)
-		message = Message.invalid_request("q parameter or column")
-		render json: {error: message}, status: 400
-		return
-	end
+	def qsearch
 
-	q = params[:q].split("+")
-	column_name = params[:column].split(",")
-	results = []
-
-column_name.each do |the_col|
-case the_col
-	when 'name'
-		q.each do |word|
-			p_name = Product.load_available_products_by_name(1,10,word)
-			if p_name.any? && !results.include?(p_name)
-				render json: p_name
-				#results.push(p_name)
-			end
+		if !params.has_key?(:q) || !params.has_key?(:column)
+			message = Message.invalid_request("q parameter or column")
+			render json: {error: message}, status: 400
+			return
 		end
 
-	when 'genre'
-		q.each do |word|
-			p_genre = Product.load_available_products_by_genre(1, 10, word)
-			if p_genre.any? && !results.include?(p_genre)
-				render json: p_genre
-			results.push(p_genre)
-			end
-		end
+		q = params[:q].split(/ /)
+		column_name = params[:column].split(/,/)
+		results = []
 
+		
+		column_name.each do |the_col|
+			puts "col = ", the_col
+			case the_col
 
-		when 'author'
-			q.each do |word|
-				p_author = Product.load_available_products_by_author(1,10,word)
-				if p_author.any? && !results.include?(p_author)
-					render json: p_author
-					#results.push(p_author)
+				when 'name'
+					q.each do |word|
+						puts "word = ", word
+						p_name = Product.load_available_products_by_name(1,10,word)
+						if p_name.any? && !results.include?(p_name)
+							results.push(p_name)
+						end
+					end
+
+				when 'genre'
+					q.each do |word|
+						puts "word = ", word
+						p_genre = Product.load_available_products_by_genre(1, 10, word)
+						if p_genre.any? && !results.include?(p_genre)
+						  	results.push(p_genre)
+						end
+					end
+
+				when 'author'
+					q.each do |word|
+						puts "word = ", word
+						p_author = Product.load_available_products_by_author(1,10,word)
+						if p_author.any? && !results.include?(p_author)
+							results.push(p_author)
+						end
+					end
+
+				else
+					message = Message.invalid_request("column")
+					render json: {error: message}, status: 400
 				end
-			end
-
-
-
-		else
-			message = Message.not_found("query")
-			render json: {error: message}, status: 404
 
 		end
 
+		respond_to do |format|
 
-	end
-
-	results.paginate( page: 1, per_page: 10 )
-	#render json: results
+			 format.json { render json: { lol: results }}
+		 end
 end
 
 end

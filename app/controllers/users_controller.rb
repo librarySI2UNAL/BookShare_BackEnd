@@ -72,18 +72,29 @@ class UsersController < ApplicationController
 		#Search
 		users = User.all
 		if params['q']
-			users = users.load_available_products_by_search( params[:page], params[:per_page], params[:search] )
+			users = users.load_available_users_by_search( params[:page], params[:per_page], params['q'] )
 		end
 		if params['sort']
-			f = params['sort'].split(',').first
-			field = f[0] == '-' ? f[1..-1] : f
-			order = f[0] == '-' ? 'DESC' : 'ASC'
-			if User.new.has_attribute?(field)
-				users = users.order("#{field} #{order}")
+			f = params['sort'].split(',')
+			query = Array.new
+			f.each do |field|
+				if User.new.has_attribute?(field)
+					column = f[0] == '-' ? f[1..-1] : f
+					order = f[0] == '-' ? 'DESC' : 'ASC'
+					query.push("#{column} #{order}")
+				end
 			end
+			users = users.order(query.join(","))
 		end
 		if params['select']
-			users = users.select(params['select'])
+			f = params['select'].split(',')
+			query = Array.new
+			f.each do |column|
+				if User.new.has_attribute?(column)
+					query.push("#{column}")
+				end
+			end
+			users = users.select(query.join(","))
 		end
 		render json: users, meta: pagination_meta(users)
 		########
