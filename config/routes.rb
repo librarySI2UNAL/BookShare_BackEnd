@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 		resources :genres, only: [:index]
 		resources :interests, only: [:index]
 		get "users/validate", to: "users#validate_email"
-		get "products/search", to: "products#qsearch"
+		get "users/search", to: "users#search"
+		get "products/search", to: "products#search"
+		get "products/qsearch", to: "products#qsearch"
 
 
 		resources :users, only: [:index, :show, :create, :update, :destroy] do

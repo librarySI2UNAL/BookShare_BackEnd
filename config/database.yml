@@ -1,23 +1,42 @@
+#default: &default
+#  adapter: postgresql
+#  encoding: unicode
+#  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#  username: postgres
+#            #xxlkiclodsocyg
+#  password: 1234
+#            #a8c206d2359b50de7a73e0a5dcd5484217ec42db8b93c24a7cd01e55c80447ee
+#  host:     localhost
+#  #ec2-54-235-153-124.compute-1.amazonaws.com
+#  port: 5432
+#
+#development:
+#  <<: *default
+#  database: Bookshare
+#    #deskpquhflmrs7
+#
+##test:
+##  <<: *default
+##  database: BookShare_test
+#
+#production:
+#  <<: *default
+#  database: BookShare_Backend_production
 default: &default
   adapter: postgresql
-  encoding: unicode
+  encoding: SQL_ASCII
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: postgres
-            #xxlkiclodsocyg
-  password: 1234
-            #a8c206d2359b50de7a73e0a5dcd5484217ec42db8b93c24a7cd01e55c80447ee
-  host:     localhost
-  #ec2-54-235-153-124.compute-1.amazonaws.com
-  port: 5432
+  username: <%= ENV['USERNAME'] %>
+  password: <%= ENV['PASSWORD'] %>
+  host:     <%= ENV['IP'] %>
 
 development:
   <<: *default
-  database: Bookshare
-    #deskpquhflmrs7
+  database: BookShare_development
 
-#test:
-#  <<: *default
-#  database: BookShare_test
+test:
+  <<: *default
+  database: BookShare_test
 
 production:
   <<: *default
