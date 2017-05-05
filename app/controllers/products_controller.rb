@@ -34,11 +34,11 @@ class ProductsController < ApplicationController
 	end
 
 	def create
-		product = ProductsDAO.create_product( product_params )
+		product = ProductsDAO.create_product( params[:user_id].to_i, product_params )
 
 		message = Message.object_created( "Product" )
 		response = { message: message }
-		response[:data] = ActiveModelSerializers::SerializableResource.new( product ).as_json[:product]
+		response[:data] = ActiveModelSerializers::SerializableResource.new( product, include: "**" ).as_json[:product]
 		render json: response
 	end
 
@@ -74,6 +74,6 @@ class ProductsController < ApplicationController
 	private
 
 	def product_params
-		params.require( :data ).permit( :user_id, :id, :special, :available, :description, :cover, :status, :value, :code, :code_type, product_item: [:type, :id, :name, :author, :genre, :editorial, :year_of_publication] )
+		params.require( :data ).permit( :id, :special, :available, :description, :cover, :status, :value, :code, :code_type, product_item: [:type, :id, :name, :author, :genre, :editorial, :year_of_publication] )
 	end
 end
