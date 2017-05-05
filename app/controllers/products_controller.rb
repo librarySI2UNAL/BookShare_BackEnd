@@ -97,6 +97,7 @@ class ProductsController < ApplicationController
 				end
 			end
 			products = products.select(query.join(","))
+
 		end
 		render json: products, meta: pagination_meta(products)
 		message = Message.object_updated( "Product" )
