@@ -107,6 +107,54 @@ class UsersController < ApplicationController
 		########
 	end
 
+	def qsearch
+		if !params.has_key?(:q) || !params.has_key?(:column)
+			message = Message.invalid_request("q parameter or column")
+			render json: {error: message}, status: 400
+			return
+		end
+		q = params[:q].split(/ /)
+		column_name = params[:column].split(/,/)
+		results = []
+		column_name.each do |the_col|
+			puts "col = ", the_col
+			case the_col
+			when 'name'
+					q.each do |word|
+						puts "word = ", word
+						u_name = User.load_users_by_name(1,10,word)
+						if u_name.any? && !results.include?(u_name)
+							results.push(u_name)
+						end
+					end
+				when 'last_name'
+					q.each do |word|
+						puts "word = ", word
+						u_name = User.load_users_by_name(1,10,word)
+						if u_name.any? && !results.include?(u_name)
+							results.push(u_name)
+						end
+					end
+
+				else
+					#message = Message.invalid_request("column")
+					#render json: {error: message}, status: 400
+			end
+		end
+		respond_to do |format|
+			format.json { render json: { users: results }}
+		end
+	end
+
+
+
+
+
+
+
+
+
+
 	private
 
 	def user_params

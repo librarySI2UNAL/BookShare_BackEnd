@@ -107,7 +107,7 @@ class ProductsController < ApplicationController
 		render json: response
 		########
 	end
-	
+
 	def qsearch
 		if !params.has_key?(:q) || !params.has_key?(:column)
 			message = Message.invalid_request("q parameter or column")
@@ -150,10 +150,10 @@ class ProductsController < ApplicationController
 			end
 		end
 		respond_to do |format|
-			format.json { render json: { lol: results }}
+			format.json { render json: { products: results }}
 		end
 	end
-	
+
 	private
 
 	def product_params

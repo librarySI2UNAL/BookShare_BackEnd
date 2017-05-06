@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 		resources :interests, only: [:index]
 		get "users/validate", to: "users#validate_email"
 		get "users/search", to: "users#search"
+		get "users/qsearch", to: "users#qsearch"
 		get "products/search", to: "products#search"
 		get "products/qsearch", to: "products#qsearch"
 
@@ -31,5 +32,3 @@ Rails.application.routes.draw do
 
 	end
 end
-
-#params[:q]
