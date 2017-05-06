@@ -60,13 +60,6 @@ class PhotosController < ApplicationController
 		render json: { message: message }
 	end
 
-	def destroy_collection
-		PhotosDAO.delete_photos( photo_params )
-
-		message = Message.object_deleted( "Photos" )
-		render json: { message: message }
-	end
-
 	private
 
 	def photo_params
