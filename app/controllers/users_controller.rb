@@ -68,9 +68,97 @@ class UsersController < ApplicationController
 		render json: { message: message }
 	end
 
+	def search
+		#Search
+		#TODO: Move queries to model
+		users = User.all
+		if params[:q]
+			users = User.load_available_users_by_search( params[:page], params[:per_page], params[:q] )
+		end
+		if params[:sort]
+			f = params[:sort].split(',')
+			query = Array.new
+			f.each do |field|
+				if User.new.has_attribute?(field)
+					column = f[0] == '-' ? f[1..-1] : f
+					order = f[0] == '-' ? 'DESC' : 'ASC'
+					query.push("#{column} #{order}")
+				end
+			end
+			users = users.order(query.join(","))
+		end
+		if params[:select]
+			f = params[:select].split(',')
+			query = Array.new
+			f.each do |column|
+				if User.new.has_attribute?(column)
+					query.push("#{column}")
+				end
+			end
+			users = users.select(query.join(","))
+		end
+		render json: users, meta: pagination_meta(users)
+		#TODO: Search-Oriented message
+		message = Message.object_updated( "Results" )
+		response = { message: message }
+		#TODO: Serialize results array
+		response[:results] = users.as_json
+		render json: response
+		########
+	end
+
+	def qsearch
+		if !params.has_key?(:q) || !params.has_key?(:column)
+			message = Message.invalid_request("q parameter or column")
+			render json: {error: message}, status: 400
+			return
+		end
+		q = params[:q].split(/ /)
+		column_name = params[:column].split(/,/)
+		results = []
+		column_name.each do |the_col|
+			puts "col = ", the_col
+			case the_col
+			when 'name'
+					q.each do |word|
+						puts "word = ", word
+						u_name = User.load_users_by_name(1,10,word)
+						if u_name.any? && !results.include?(u_name)
+							results.push(u_name)
+						end
+					end
+				when 'last_name'
+					q.each do |word|
+						puts "word = ", word
+						u_name = User.load_users_by_name(1,10,word)
+						if u_name.any? && !results.include?(u_name)
+							results.push(u_name)
+						end
+					end
+
+				else
+					#message = Message.invalid_request("column")
+					#render json: {error: message}, status: 400
+			end
+		end
+		respond_to do |format|
+			format.json { render json: { users: results }}
+		end
+	end
+
+
+
+
+
+
+
+
+
+
 	private
 
 	def user_params
 		params.require( :data ).permit( :name, :last_name, :email, :password, :qualification, :latitude, :longitude, :photo, interests: [] )
 	end
+
 end
