@@ -78,4 +78,26 @@ class Product < ApplicationRecord
 
 		products.paginate( page: page, per_page: per_page )
 	end
+	
+	def self.load_products_near_to_user(user_id, latitude, longitude, distance)
+		products = Product.where.not(user_id: user_id)
+		#products.delete_if {|product| product.calculate_distance(latitude, longitude) > distance}
+		result = []
+		products.each do |product|
+			if product.calculate_distance(latitude, longitude) <= distance
+				result.push(product)
+			end
+		end
+		return result
+	end
+	
+	def calculate_distance(latitude, longitude)
+		latitude1 = self.user.latitude
+		longitude1 = self.user.longitude
+		diffLat = (latitude1-latitude) * Math::PI / 180
+		diffLng = (longitude1-longitude) * Math::PI / 180
+		x = Math.sin(diffLat * 0.5) * Math.sin( diffLat * 0.5) + Math.cos(latitude * Math::PI / 180) * Math.cos(latitude1 * Math::PI / 180) * Math.sin(diffLng * 0.5) * Math.sin(diffLng * 0.5)
+		return 6371 * ( 2 * Math.atan2(Math.sqrt(x), Math.sqrt(1-x)))
+	end
+	
 end

@@ -146,7 +146,7 @@ class UsersController < ApplicationController
 		end
 	end
 	
-	def self.load_near_products_from_user_location
+	def near_products
 		
 		location = []
 		decodedtoken = JsonWebToken.decode( request.headers["Authorization"] )
