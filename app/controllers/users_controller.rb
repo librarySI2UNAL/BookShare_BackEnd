@@ -145,7 +145,33 @@ class UsersController < ApplicationController
 			format.json { render json: { users: results }}
 		end
 	end
-
+	
+	def self.load_near_products_from_user_location
+		
+		location = []
+		decodedtoken = JsonWebToken.decode( request.headers["Authorization"] )
+		tempuser = User.load_user_by_id( decodedtoken[:user_id] ) 
+		
+		userid = tempuser.id
+		latitude = tempuser.latitude
+		longitude = tempuser.longitude
+		
+		location.push(latitude)
+		location.push(longitude)
+		
+		distance = 1
+		if params[:dist]
+			distance = params[:dist]
+		end
+		
+		#render json: location
+		products = Product.load_products_near_to_user(userid, latitude, longitude, distance)
+		message = Message.successfully
+		response = { message: message }
+		response[:data] = ActiveModelSerializers::SerializableResource.new( products ).as_json[:products]
+		render json: response
+	end	
+	
 	private
 
 	def user_params
