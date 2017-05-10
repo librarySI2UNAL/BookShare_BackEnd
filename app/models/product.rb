@@ -84,7 +84,7 @@ class Product < ApplicationRecord
 		#products.delete_if {|product| product.calculate_distance(latitude, longitude) > distance}
 		result = []
 		products.each do |product|
-			if product.calculate_distance(latitude, longitude) <= distance
+			if product.calculate_distance(latitude, longitude) <= distance.to_f
 				result.push(product)
 			end
 		end
