@@ -101,7 +101,7 @@ class ProductsController < ApplicationController
 			products = products.select(query.join(","))
 
 		end
-		render json: products, meta: pagination_meta(products)
+		#render json: products, meta: pagination_meta(products)
 		message = Message.object_updated( "Product" )
 		response = { message: message }
 		#TODO: Serialize results array
