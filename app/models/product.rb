@@ -25,6 +25,11 @@ class Product < ApplicationRecord
 			.find_by_id( id )
 	end
 
+	def self.load_not_available_products_by_user_id( page = 1, per_page = 10, user_id )
+		self.where( available: false, user_id: user_id )
+			.paginate( page: page, per_page: per_page )
+	end
+	
 	def self.load_available_products_by_user_id( page = 1, per_page = 10, user_id )
 		self.where( available: true, user_id: user_id )
 			.paginate( page: page, per_page: per_page )
