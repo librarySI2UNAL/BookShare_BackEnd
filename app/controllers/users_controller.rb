@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 			return
 		end
 
-		render json: user, root: "data"
+		render json: user, root: "data", include: "**"
 	end
 
 	def create
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 
 		message = Message.object_created( "User" )
 		response = { message: message, token: auth_token }
-		response[:data] = ActiveModelSerializers::SerializableResource.new( user ).as_json[:user]
+		response[:data] = ActiveModelSerializers::SerializableResource.new( user, include: "**" ).as_json[:user]
 		render json: response
 	end
 
@@ -52,7 +52,7 @@ class UsersController < ApplicationController
 
 		message = Message.object_updated( "User" )
 		response = { message: message }
-		response[:data] = ActiveModelSerializers::SerializableResource.new( user ).as_json[:user]
+		response[:data] = ActiveModelSerializers::SerializableResource.new( user, include: "**" ).as_json[:user]
 		render json: response
 	end
 
