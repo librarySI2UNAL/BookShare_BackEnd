@@ -166,11 +166,7 @@ class UsersController < ApplicationController
 		end
 		
 		#render json: location
-<<<<<<< HEAD
 		users = User.load_near_users(userid, latitude, longitude, distance)
-=======
-		products = Product.load_products_near_user(userid, latitude, longitude, distance)
->>>>>>> 46e96ee2854a85b1d43a3eccb71f028491f7b7e1
 		message = Message.successfully
 		response = { message: message }
 		response[:data] = ActiveModelSerializers::SerializableResource.new( users ).as_json[:users]
