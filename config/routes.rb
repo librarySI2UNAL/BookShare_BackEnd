@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 		get "users/qsearch", to: "users#qsearch"
 		get "products/search", to: "products#search"
 		get "products/qsearch", to: "products#qsearch"
-		get "users/near", to: "users#near_products"
+		get "users/near", to: "users#near_users"
 
 
 		resources :users, only: [:index, :show, :create, :update, :destroy] do

@@ -324,7 +324,7 @@ interest.photo = photo
 
 interest.save
 	
-=begin
+begin
 genre = Genre.find_by_id( 38 )
 user = User.find_by_id( 1 )
 
@@ -404,4 +404,5 @@ Product.create( special: true, available: true, cover: 1, status: 3, value: 7500
 
 book = Book.create(  name: "Principios, fines y derechos fundamentales", author: "Rodríguez, Joaquín Muñiz, Toubes ", genre: genre, editorial: "Dykinson ", year_of_publication: 1845 )
 Product.create( special: true, available: true, cover: 1, status: 3, value: 75000, code: "ISBN", code_type: "12377652323", product_item: book, user: user )
-=end
+
+end

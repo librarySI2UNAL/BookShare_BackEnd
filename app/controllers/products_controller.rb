@@ -81,13 +81,13 @@ class ProductsController < ApplicationController
 		if params[:sort]
 			f = params[:sort].split(',')
 			query = Array.new
-			f.each do |field|
-				if Product.new.has_attribute?(field)
-					column = f[0] == '-' ? f[1..-1] : f
-					order = f[0] == '-' ? 'DESC' : 'ASC'
-					query.push("#{column} #{order}")
+				f.each do |field|
+					column = field[0] == '-' ? f[1..-1] : f
+					order = field[0] == '-' ? 'DESC' : 'ASC'
+					if Product.new.has_attribute?(column)
+						query.push("#{column} #{order}")
+					end
 				end
-			end
 			products = products.order(query.join(","))
 		end
 		if params[:select]
@@ -105,7 +105,8 @@ class ProductsController < ApplicationController
 		message = Message.object_updated( "Product" )
 		response = { message: message }
 		#TODO: Serialize results array
-		response[:results] = products.as_json
+		#response[:results] = products.as_json
+		response[:results] = ActiveModelSerializers::SerializableResource.new( products ).as_json[:products]
 		render json: response
 		########
 	end
