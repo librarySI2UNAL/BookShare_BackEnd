@@ -8,15 +8,7 @@ class ProductsController < ApplicationController
 	end
 
 	def index
-		if params.has_key?( :genre )
-			products = Product.load_available_products_by_genre( params[:page], params[:per_page], params[:genre].to_i )
-		elsif params.has_key?( :name )
-			products = Product.load_available_products_by_name( params[:page], params[:per_page], params[:name] )
-		elsif params.has_key?( :author )
-			products = Product.load_available_products_by_author( params[:page], params[:per_page], params[:author] )
-		else
-			products = Product.load_available_products( params[:page], params[:per_page] )
-		end
+		products = Product.load_available_products( params[:page], params[:per_page] )
 
 		response = { count: Product.load_total_products() }
 		response[:data] = ActiveModelSerializers::SerializableResource.new( products ).as_json[:products]
