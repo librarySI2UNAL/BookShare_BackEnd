@@ -104,6 +104,16 @@ class ProductsController < ApplicationController
 							end
 						end
 					end
+				when "interest"
+					interest = Interest.load_interest_by_id( query.to_i )
+					interest.genres.each do |genre|
+						products = Product.load_available_products_by_genre( genre )
+						products.each do |product|
+							if !results.include?( product )
+								results.push( product )
+							end
+						end
+					end
 				else
 					message = Message.invalid_request_column( column )
 					render json: { error: message }, status: 400
