@@ -36,7 +36,7 @@ class Product < ApplicationRecord
 			.paginate( page: page, per_page: per_page )
 	end
 
-	def self.load_available_products_by_genre( page = 1, per_page = 10, genre = "" )
+	def self.load_available_products_by_genre( genre = "" )
 		products = []
 		self.includes( :product_item, :photos, :comments )
 			.where( available: true ).each do |product|
@@ -45,10 +45,10 @@ class Product < ApplicationRecord
 				end
 			end
 
-		products.paginate( page: page, per_page: per_page )
+		return products
 	end
 
-	def self.load_available_products_by_name( page = 1, per_page = 10, name = "" )
+	def self.load_available_products_by_name( name = "" )
 		products = []
 		self.includes( :product_item, :photos, :comments )
 			.where( available: true ).each do |product|
@@ -57,10 +57,10 @@ class Product < ApplicationRecord
 				end
 			end
 
-		products.paginate( page: page, per_page: per_page )
+		return products
 	end
 
-	def self.load_available_products_by_author( page = 1, per_page = 10, author = "" )
+	def self.load_available_products_by_author( author = "" )
 		products = []
 		self.includes( :product_item, :photos, :comments )
 			.where( available: true ).each do |product|
@@ -69,13 +69,6 @@ class Product < ApplicationRecord
 				end
 			end
 
-		products.paginate( page: page, per_page: per_page )
-	end
-
-	def self.load_available_products_by_search( page = 1, per_page = 10, query = "" )
-		
-		products = products.where(["genre = ?", query]).or(products.where(["name = ?", query])).or(products.where(["author = ?", query]))
-
-		products.paginate( page: page, per_page: per_page )
+		return products
 	end
 end

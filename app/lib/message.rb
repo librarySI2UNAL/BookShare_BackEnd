@@ -3,6 +3,10 @@ class Message
 		"Bad request. The #{parameter} parameter doesn't exist"
 	end
 
+	def self.invalid_request_column( column = "column", table = "Table" )
+		"Bad request. The #{column} in #{table} doesn't exist"
+	end
+
 	def self.not_found( record = "Record" )
 		"#{record} not found"
 	end

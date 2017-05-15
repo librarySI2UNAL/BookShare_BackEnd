@@ -1,6 +1,6 @@
 # encoding: utf-8
 class ProductsController < ApplicationController
-	skip_before_action :authorize_request, only: [:search, :q_search]
+	skip_before_action :authorize_request, only: [:search]
 
 	def collection
 		products = Product.load_available_products_by_user_id( params[:page], params[:per_page], params[:user_id].to_i )
@@ -64,88 +64,61 @@ class ProductsController < ApplicationController
 	end
 
 	def search
-		#Search
-		#TODO: Move queries to model
-		products = Product.all
-		if params[:q]
-			products = products.load_available_products_by_search( params[:page], params[:per_page], params[:q] )
-		end
-		if params[:sort]
-			f = params[:sort].split(',')
-			query = Array.new
-			f.each do |field|
-				if Product.new.has_attribute?(field)
-					column = f[0] == '-' ? f[1..-1] : f
-					order = f[0] == '-' ? 'DESC' : 'ASC'
-					query.push("#{column} #{order}")
-				end
-			end
-			products = products.order(query.join(","))
-		end
-		if params[:select]
-			f = params[:select].split(',')
-			query = Array.new
-			f.each do |column|
-				if Product.new.has_attribute?(column)
-					query.push("#{column}")
-				end
-			end
-			products = products.select(query.join(","))
-
-		end
-		#render json: products, meta: pagination_meta(products)
-		message = Message.object_updated( "Product" )
-		response = { message: message }
-		#TODO: Serialize results array
-		response[:results] = products.as_json
-		render json: response
-		########
-	end
-
-	def qsearch
-		if !params.has_key?(:q) || !params.has_key?(:column)
-			message = Message.invalid_request("q parameter or column")
-			render json: {error: message}, status: 400
+		if !params.has_key?( :q )
+			message = Message.invalid_request( "q" )
+			render json: { error: message }, status: 400
+			return
+		elsif !params.has_key?( :columns )
+			message = Message.invalid_request( "columns" )
+			render json: { error: message }, status: 400
 			return
 		end
-		q = params[:q].split(/ /)
-		column_name = params[:column].split(/,/)
+		
+		query = params[:q].split( / / )
+		columns = params[:columns].split( /,/ )
 		results = []
-		column_name.each do |the_col|
-			puts "col = ", the_col
-			case the_col
-				when 'name'
-					q.each do |word|
-						puts "word = ", word
-						p_name = Product.load_available_products_by_name(1,10,word)
-						if p_name.any? && !results.include?(p_name)
-							results.push(p_name)
+		columns.each do |column|
+			case column
+				when "name"
+					query.each do |word|
+						products = Product.load_available_products_by_name( word )
+						products.each do |product|
+							if !results.include?( product )
+								results.push( product )
+							end
 						end
 					end
-				when 'genre'
-					q.each do |word|
-						puts "word = ", word
-						p_genre = Product.load_available_products_by_genre(1, 10, word)
-						if p_genre.any? && !results.include?(p_genre)
-							results.push(p_genre)
+				when "genre"
+					query.each do |word|
+						products = Product.load_available_products_by_genre( word )
+						products.each do |product|
+							if !results.include?( product )
+								results.push( product )
+							end
 						end
 					end
-				when 'author'
-					q.each do |word|
-						puts "word = ", word
-						p_author = Product.load_available_products_by_author(1,10,word)
-						if p_author.any? && !results.include?(p_author)
-							results.push(p_author)
+				when "author"
+					query.each do |word|
+						products = Product.load_available_products_by_author( word )
+						products.each do |product|
+							if !results.include?( product )
+								results.push( product )
+							end
 						end
 					end
 				else
-					message = Message.invalid_request("column")
-					render json: {error: message}, status: 400
+					message = Message.invalid_request_column( column )
+					render json: { error: message }, status: 400
+					return
 			end
 		end
-		respond_to do |format|
-			format.json { render json: { products: results }}
-		end
+
+		response = { count: results.count }
+		
+		results = results.paginate( page: params[:page], per_page: params[:per_page] )
+
+		response[:data] = ActiveModelSerializers::SerializableResource.new( results ).as_json[:products]
+		render json: response
 	end
 
 	private
