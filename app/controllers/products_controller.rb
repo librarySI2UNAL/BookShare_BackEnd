@@ -1,7 +1,7 @@
 # encoding: utf-8
 class ProductsController < ApplicationController
 	def collection
-		products = Product.load_available_products_by_user_id( params[:page], params[:per_page], params[:user_id].to_i )
+		products = Product.load_products_by_user_id( params[:user_id].to_i, params[:available] )
 		render json: products, root: "data"
 	end
 
