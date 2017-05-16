@@ -12,10 +12,6 @@ class Product < ApplicationRecord
 	validates :code, presence: true
 	validates :code_type, presence: true
 
-	def self.load_total_products()
-		self.count
-	end
-
 	def self.load_product_by_id_by_user( id, user )
 		self.where( id: id, user: user ).take
 	end
@@ -30,9 +26,9 @@ class Product < ApplicationRecord
 			.where( available: available, user_id: user_id )
 	end
 
-	def self.load_available_products( page = 1, per_page = 10 )
+	def self.load_available_products( user_id, page = 1, per_page = 10 )
 		self.includes( :product_item, :photos, :comments )
-			.where( available: true )
+			.where( available: true ).where.not( user_id: user_id )
 			.paginate( page: page, per_page: per_page )
 	end
 

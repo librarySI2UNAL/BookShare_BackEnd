@@ -6,9 +6,9 @@ class ProductsController < ApplicationController
 	end
 
 	def index
-		products = Product.load_available_products( params[:page], params[:per_page] )
+		products = Product.load_available_products( params[:user_id].to_i, params[:page], params[:per_page] )
 
-		response = { count: Product.load_total_products() }
+		response = { count: products.count }
 		response[:data] = ActiveModelSerializers::SerializableResource.new( products ).as_json[:products]
 		render json: response
 	end
