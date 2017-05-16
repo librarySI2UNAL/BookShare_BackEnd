@@ -25,9 +25,9 @@ class Product < ApplicationRecord
 			.find_by_id( id )
 	end
 
-	def self.load_available_products_by_user_id( page = 1, per_page = 10, user_id )
-		self.where( available: true, user_id: user_id )
-			.paginate( page: page, per_page: per_page )
+	def self.load_products_by_user_id( user_id, available = true )
+		self.includes( :product_item, :photos, :comments )
+			.where( available: available, user_id: user_id )
 	end
 
 	def self.load_available_products( page = 1, per_page = 10 )

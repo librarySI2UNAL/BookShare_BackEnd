@@ -1,7 +1,7 @@
 # encoding: utf-8
 class ProductsController < ApplicationController
 	def collection
-		products = Product.load_available_products_by_user_id( params[:page], params[:per_page], params[:user_id].to_i )
+		products = Product.load_products_by_user_id( params[:user_id].to_i, params[:available] )
 		render json: products, root: "data"
 	end
 
@@ -98,6 +98,16 @@ class ProductsController < ApplicationController
 				when "author"
 					query.each do |word|
 						products = Product.load_available_products_by_author( word )
+						products.each do |product|
+							if !results.include?( product )
+								results.push( product )
+							end
+						end
+					end
+				when "interest"
+					interest = Interest.load_interest_by_id( query.to_i )
+					interest.genres.each do |genre|
+						products = Product.load_available_products_by_genre( genre )
 						products.each do |product|
 							if !results.include?( product )
 								results.push( product )
