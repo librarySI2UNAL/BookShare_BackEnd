@@ -17,6 +17,10 @@ class Product < ApplicationRecord
 			.find_by_id( id )
 	end
 
+	def self.load_product_by_id_by_user( id, user )
+		self.where( id: id, user: user ).take
+	end
+
 	def self.load_products_by_user_id( user_id, available )
 		self.includes( :photos, :comments, :user, product_item: [:genre] )
 			.where( available: available, user_id: user_id )
