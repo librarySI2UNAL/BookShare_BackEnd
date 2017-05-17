@@ -28,6 +28,11 @@ class Product < ApplicationRecord
 			.paginate( page: page, per_page: per_page )
 	end
 
+	def self.load_available_and_special_products()
+		self.includes( :photos, :comments, :user, product_item: [:genre] )
+			.where( available: true, special: true ).limit( 10 )
+	end
+
 	def self.load_available_products_by_genre( user_id, genreId = 1 )
 		products = []
 		self.includes( :photos, :comments, :user, product_item: [:genre] )
