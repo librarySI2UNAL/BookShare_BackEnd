@@ -5,6 +5,11 @@ class ProductsController < ApplicationController
 		render json: products, root: "data"
 	end
 
+	def special_collection
+		products = Product.load_available_and_special_products()
+		render json: products, root: "data"
+	end
+
 	def index
 		products = Product.load_available_products( params[:user_id].to_i, params[:page], params[:per_page] )
 

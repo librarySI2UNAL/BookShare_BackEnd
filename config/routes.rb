@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 		post "login", to: "authentication#authenticate"
 		get "users/validate", to: "users#validate_email"
 		get "products/search", to: "products#search"
+		get "products/specials", to: "products#special_collection"
 
 		resources :genres, only: [:index]
 		resources :interests, only: [:index]
