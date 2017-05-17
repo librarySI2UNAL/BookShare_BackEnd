@@ -68,8 +68,15 @@ class Product < ApplicationRecord
 		return products
 	end
 	
-	def self.filtering(query = "", sorting = "", columns = "", page = 1, per_page = 10)
-		res = self.all
+	def self.filtering(user_id = "", query = "", sorting = "", columns = "", page = 1, per_page = 10)
+		
+		res = nil
+		
+		if user_id.to_s.strip.empty?
+			res = self.all
+		else
+			res = User.get_products_for_user_id(user_id.to_i)
+		end
 		
 		unless query.to_s.strip.empty?
 			res = res.where(["genre = ?", query]).or(products.where(["name = ?", query])).or(products.where(["author = ?", query]))

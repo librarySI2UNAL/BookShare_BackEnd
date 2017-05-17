@@ -9,8 +9,12 @@ class ProductsController < ApplicationController
 		query = ""
 		sort = ""
 		cols = ""
+		user_id = ""
 		page = 1
 		per_page = 10
+		if params[:user_id]
+			user_id = params[:user_id]
+		end
 		if params[:q]
 			query = params[:q]
 		end
@@ -28,7 +32,7 @@ class ProductsController < ApplicationController
 		end
 		
 		
-		products = Product.filtering(query, sort, cols, page, per_page)
+		products = Product.filtering(user_id, query, sort, cols, page, per_page)
 
 		response = { count: products.count }
 		response[:data] = ActiveModelSerializers::SerializableResource.new( products ).as_json[:products]
