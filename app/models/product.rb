@@ -32,11 +32,11 @@ class Product < ApplicationRecord
 			.paginate( page: page, per_page: per_page )
 	end
 
-	def self.load_available_products_by_genre( genre = "" )
+	def self.load_available_products_by_genre( genreId = 1 )
 		products = []
 		self.includes( :product_item, :photos, :comments )
 			.where( available: true ).each do |product|
-				if product.product_item.genre.name.downcase.include?( genre.downcase )
+				if product.product_item.genre.id == genreId
 					products.push( product )
 				end
 			end
