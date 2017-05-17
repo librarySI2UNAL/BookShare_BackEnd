@@ -70,18 +70,23 @@ class ProductsController < ApplicationController
 			message = Message.invalid_request( "columns" )
 			render json: { error: message }, status: 400
 			return
+		elsif !params.has_key?( :user_id )
+			message = Message.invalid_request( "user_id" )
+			render json: { error: message }, status: 400
+			return
 		end
-		
+
 		query = params[:q].split( /,/ )
 		interests = []
 		genres = []
 		words = []
-		columns = params[:columns].split( /,/ )3222000281
+		columns = params[:columns].split( /,/ )
 		i = 0
+		user_id = params[:user_id].to_i
 		if columns.count > 1
 			columns.each do |column|
 				if column == "interest"
-					interests = query[i].split( /\+/ )
+					interests = query[i].split( / / )
 					j = 0
 					interests.each do |interest|
 						interests[j] = interest.to_i
@@ -89,19 +94,20 @@ class ProductsController < ApplicationController
 					end
 					i += 1
 				elsif column == "genre"
-					genres = query[i].split( /\+/ )
+					genres = query[i].split( / / )
 					i += 1
 				else
-					words = query[i].split( /\+/ )
+					words = query[i].split( / / )
 				end
 			end
 		end
+
 		results = []
 		columns.each do |column|
 			case column
 				when "name"
 					words.each do |word|
-						products = Product.load_available_products_by_name( word )
+						products = Product.load_available_products_by_name( user_id, word )
 						products.each do |product|
 							if !results.include?( product )
 								results.push( product )
@@ -110,7 +116,7 @@ class ProductsController < ApplicationController
 					end
 				when "genre"
 					genres.each do |genre|
-						products = Product.load_available_products_by_genre( genre.to_i )
+						products = Product.load_available_products_by_genre( user_id, genre.to_i )
 						products.each do |product|
 							if !results.include?( product )
 								results.push( product )
@@ -119,7 +125,7 @@ class ProductsController < ApplicationController
 					end
 				when "author"
 					words.each do |word|
-						products = Product.load_available_products_by_author( word )
+						products = Product.load_available_products_by_author( user_id, word )
 						products.each do |product|
 							if !results.include?( product )
 								results.push( product )
@@ -128,9 +134,9 @@ class ProductsController < ApplicationController
 					end
 				when "interest"
 					interest_query = Interest.load_interests_by_ids( interests )
-					interest_query do |interest|
+					interest_query.each do |interest|
 						interest.genres.each do |genre|
-							products = Product.load_available_products_by_genre( genre.to_i )
+							products = Product.load_available_products_by_genre( user_id, genre.id )
 							products.each do |product|
 								if !results.include?( product )
 									results.push( product )
@@ -149,7 +155,7 @@ class ProductsController < ApplicationController
 
 		results = results.paginate( page: params[:page], per_page: params[:per_page] )
 
-		response[:data] = ActiveModelSerializers::SerializableResource.new( results ).as_json[:products]
+		response[:data] = results.count > 0 ? ActiveModelSerializers::SerializableResource.new( results ).as_json[:products]: results
 		render json: response
 	end
 

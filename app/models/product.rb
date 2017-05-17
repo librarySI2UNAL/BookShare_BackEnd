@@ -32,10 +32,10 @@ class Product < ApplicationRecord
 			.paginate( page: page, per_page: per_page )
 	end
 
-	def self.load_available_products_by_genre( genreId = 1 )
+	def self.load_available_products_by_genre( user_id, genreId = 1 )
 		products = []
 		self.includes( :product_item, :photos, :comments )
-			.where( available: true ).each do |product|
+			.where( available: true ).where.not( user_id: user_id ).each do |product|
 				if product.product_item.genre.id == genreId
 					products.push( product )
 				end
@@ -44,10 +44,10 @@ class Product < ApplicationRecord
 		return products
 	end
 
-	def self.load_available_products_by_name( name = "" )
+	def self.load_available_products_by_name( user_id, name = "" )
 		products = []
 		self.includes( :product_item, :photos, :comments )
-			.where( available: true ).each do |product|
+			.where( available: true ).where.not( user_id: user_id ).each do |product|
 				if product.product_item.name.downcase.include?( name.downcase )
 					products.push( product )
 				end
@@ -56,10 +56,10 @@ class Product < ApplicationRecord
 		return products
 	end
 
-	def self.load_available_products_by_author( author = "" )
+	def self.load_available_products_by_author( user_id, author = "" )
 		products = []
 		self.includes( :product_item, :photos, :comments )
-			.where( available: true ).each do |product|
+			.where( available: true ).where.not( user_id: user_id ).each do |product|
 				if product.product_item.author.downcase.include?( author.downcase )
 					products.push( product )
 				end
