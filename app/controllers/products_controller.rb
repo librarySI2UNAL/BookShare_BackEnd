@@ -1,38 +1,12 @@
 # encoding: utf-8
 class ProductsController < ApplicationController
 	def collection
-		products = Product.load_products_by_user_id( params[:user_id].to_i, params[:available] )
+		products = Product.load_products_by_user_id( params[:user_id].to_i, params[:available] == "true" )
 		render json: products, root: "data"
 	end
 
 	def index
-		query = ""
-		sort = ""
-		cols = ""
-		user_id = ""
-		page = 1
-		per_page = 10
-		if params[:user_id]
-			user_id = params[:user_id]
-		end
-		if params[:q]
-			query = params[:q]
-		end
-		if params[:sort]
-			sort = params[:sort]
-		end
-		if params[:select]
-			cols = params[:select]
-		end
-		if params[:page]
-			page = params[:page]
-		end
-		if params[:per_page]
-			per_page = params[:per_page]
-		end
-		
-		
-		products = Product.filtering(user_id, query, sort, cols, page, per_page)
+		products = Product.load_available_products( params[:user_id].to_i, params[:page], params[:per_page] )
 
 		response = { count: products.count }
 		response[:data] = ActiveModelSerializers::SerializableResource.new( products ).as_json[:products]

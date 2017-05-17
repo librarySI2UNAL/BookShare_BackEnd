@@ -67,122 +67,21 @@ class UsersController < ApplicationController
 		message = Message.object_deleted( "User" )
 		render json: { message: message }
 	end
-
-	def search
-		#Search
-		#TODO: Move queries to model
-		users = User.all
-		if params[:q]
-			users = User.load_available_users_by_search( params[:page], params[:per_page], params[:q] )
-		end
-		if params[:sort]
-			f = params[:sort].split(',')
-			query = Array.new
-			f.each do |field|
-				column = field[0] == '-' ? f[1..-1] : f
-				order = field[0] == '-' ? 'DESC' : 'ASC'
-				if Product.new.has_attribute?(column)
-					query.push("#{column} #{order}")
-				end
-			end
-			users = users.order(query.join(","))
-		end
-		if params[:select]
-			f = params[:select].split(',')
-			query = Array.new
-			f.each do |column|
-				if User.new.has_attribute?(column)
-					query.push("#{column}")
-				end
-			end
-			users = users.select(query.join(","))
-		end
-		#render json: users, meta: pagination_meta(users)
-		#TODO: Search-Oriented message
-		message = Message.object_updated( "Results" )
-		response = { message: message }
-		#TODO: Serialize results array
-		#response[:results] = users.as_json
-		response[:results] = ActiveModelSerializers::SerializableResource.new( users ).as_json[:users]
-		render json: response
-		########
-	end
-
-	def qsearch
-		if !params.has_key?(:q) || !params.has_key?(:column)
-			message = Message.invalid_request("q parameter or column")
-			render json: {error: message}, status: 400
-			return
-		end
-		q = params[:q].split(/ /)
-		column_name = params[:column].split(/,/)
-		results = []
-		column_name.each do |the_col|
-			puts "col = ", the_col
-			case the_col
-			when 'name'
-					q.each do |word|
-						puts "word = ", word
-						u_name = User.load_users_by_name(1,10,word)
-						if u_name.any? && !results.include?(u_name)
-							results.push(u_name)
-						end
-					end
-				when 'last_name'
-					q.each do |word|
-						puts "word = ", word
-						u_name = User.load_users_by_name(1,10,word)
-						if u_name.any? && !results.include?(u_name)
-							results.push(u_name)
-						end
-					end
-
-				else
-					#message = Message.invalid_request("column")
-					#render json: {error: message}, status: 400
-			end
-		end
-		respond_to do |format|
-			format.json { render json: { users: results }}
-		end
-	end
 	
 	def near_users
-		
-		location = []
-		decodedtoken = JsonWebToken.decode( request.headers["Authorization"] )
-		tempuser = User.load_user_by_id( decodedtoken[:user_id] ) 
-		
-		userid = tempuser.id
-		latitude = tempuser.latitude
-		longitude = tempuser.longitude
-		
-		location.push(latitude)
-		location.push(longitude)
-		
-		distance = 1
-		if params[:dist]
-			distance = params[:dist]
+		if !params.has_key?( :distance )
+			message = Message.invalid_request( "distance" )
+			render json: { error: message }, status: 400
+			return
 		end
+
+		user = User.load_user_by_id( params[:user_id].to_i )
 		
-		#render json: location
-		users = User.load_near_users(userid, latitude, longitude, distance)
-		message = Message.successfully
-		response = { message: message }
-		response[:data] = ActiveModelSerializers::SerializableResource.new( users ).as_json[:users]
-		render json: response
+		users = User.load_near_users( user, params[:distance].to_f )
+
+		render json: users, root: "data"
 	end
-	
-	def userProducts
-		products = User.get_products_for_user_id(params.require(:id).to_i)
-		message = Message.object_updated( "Product" )
-		response = { message: message }
-		#TODO: Serialize results array
-		#response[:results] = products.as_json
-		response[:results] = ActiveModelSerializers::SerializableResource.new( products ).as_json[:products]
-		render json: response
-	end
-	
+
 	private
 
 	def user_params
