@@ -46,4 +46,8 @@ class Message
 	def self.expired_token
 		"Your token has expired"
 	end
+	
+	def self.successfully
+		"Sucessfully processed"	
+	end
 end

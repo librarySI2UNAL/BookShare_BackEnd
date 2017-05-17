@@ -6,7 +6,29 @@ class ProductsController < ApplicationController
 	end
 
 	def index
-		products = Product.load_available_products( params[:user_id].to_i, params[:page], params[:per_page] )
+		query = ""
+		sort = ""
+		cols = ""
+		page = 1
+		per_page = 10
+		if params[:q]
+			query = params[:q]
+		end
+		if params[:sort]
+			sort = params[:sort]
+		end
+		if params[:select]
+			cols = params[:select]
+		end
+		if params[:page]
+			page = params[:page]
+		end
+		if params[:per_page]
+			per_page = params[:per_page]
+		end
+		
+		
+		products = Product.filtering(query, sort, cols, page, per_page)
 
 		response = { count: products.count }
 		response[:data] = ActiveModelSerializers::SerializableResource.new( products ).as_json[:products]

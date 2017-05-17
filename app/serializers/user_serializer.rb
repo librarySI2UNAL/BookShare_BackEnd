@@ -4,4 +4,5 @@ class UserSerializer < ActiveModel::Serializer
 	belongs_to :photo, serializer: PhotoSerializer
 	belongs_to :city, serializer: CitySerializer
 	has_many :interests, serializer: InterestSerializer
+	has_many :product, serializer: ProductSerializer
 end

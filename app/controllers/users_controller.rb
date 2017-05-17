@@ -79,9 +79,9 @@ class UsersController < ApplicationController
 			f = params[:sort].split(',')
 			query = Array.new
 			f.each do |field|
-				if User.new.has_attribute?(field)
-					column = f[0] == '-' ? f[1..-1] : f
-					order = f[0] == '-' ? 'DESC' : 'ASC'
+				column = field[0] == '-' ? f[1..-1] : f
+				order = field[0] == '-' ? 'DESC' : 'ASC'
+				if Product.new.has_attribute?(column)
 					query.push("#{column} #{order}")
 				end
 			end
@@ -97,12 +97,13 @@ class UsersController < ApplicationController
 			end
 			users = users.select(query.join(","))
 		end
-		render json: users, meta: pagination_meta(users)
+		#render json: users, meta: pagination_meta(users)
 		#TODO: Search-Oriented message
 		message = Message.object_updated( "Results" )
 		response = { message: message }
 		#TODO: Serialize results array
-		response[:results] = users.as_json
+		#response[:results] = users.as_json
+		response[:results] = ActiveModelSerializers::SerializableResource.new( users ).as_json[:users]
 		render json: response
 		########
 	end
@@ -145,7 +146,43 @@ class UsersController < ApplicationController
 			format.json { render json: { users: results }}
 		end
 	end
-
+	
+	def near_users
+		
+		location = []
+		decodedtoken = JsonWebToken.decode( request.headers["Authorization"] )
+		tempuser = User.load_user_by_id( decodedtoken[:user_id] ) 
+		
+		userid = tempuser.id
+		latitude = tempuser.latitude
+		longitude = tempuser.longitude
+		
+		location.push(latitude)
+		location.push(longitude)
+		
+		distance = 1
+		if params[:dist]
+			distance = params[:dist]
+		end
+		
+		#render json: location
+		users = User.load_near_users(userid, latitude, longitude, distance)
+		message = Message.successfully
+		response = { message: message }
+		response[:data] = ActiveModelSerializers::SerializableResource.new( users ).as_json[:users]
+		render json: response
+	end
+	
+	def userProducts
+		products = User.get_products_for_user_id(params.require(:id).to_i)
+		message = Message.object_updated( "Product" )
+		response = { message: message }
+		#TODO: Serialize results array
+		#response[:results] = products.as_json
+		response[:results] = ActiveModelSerializers::SerializableResource.new( products ).as_json[:products]
+		render json: response
+	end
+	
 	private
 
 	def user_params
