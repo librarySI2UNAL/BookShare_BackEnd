@@ -12,10 +12,6 @@ class Product < ApplicationRecord
 	validates :code, presence: true
 	validates :code_type, presence: true
 
-	def self.load_total_products()
-		self.count
-	end
-
 	def self.load_product_by_id_by_user( id, user )
 		self.where( id: id, user: user ).take
 	end
@@ -30,17 +26,17 @@ class Product < ApplicationRecord
 			.where( available: available, user_id: user_id )
 	end
 
-	def self.load_available_products( page = 1, per_page = 10 )
+	def self.load_available_products( user_id, page = 1, per_page = 10 )
 		self.includes( :product_item, :photos, :comments )
-			.where( available: true )
+			.where( available: true ).where.not( user_id: user_id )
 			.paginate( page: page, per_page: per_page )
 	end
 
-	def self.load_available_products_by_genre( genre = "" )
+	def self.load_available_products_by_genre( user_id, genreId = 1 )
 		products = []
 		self.includes( :product_item, :photos, :comments )
-			.where( available: true ).each do |product|
-				if product.product_item.genre.name.downcase.include?( genre.downcase )
+			.where( available: true ).where.not( user_id: user_id ).each do |product|
+				if product.product_item.genre.id == genreId
 					products.push( product )
 				end
 			end
@@ -48,10 +44,10 @@ class Product < ApplicationRecord
 		return products
 	end
 
-	def self.load_available_products_by_name( name = "" )
+	def self.load_available_products_by_name( user_id, name = "" )
 		products = []
 		self.includes( :product_item, :photos, :comments )
-			.where( available: true ).each do |product|
+			.where( available: true ).where.not( user_id: user_id ).each do |product|
 				if product.product_item.name.downcase.include?( name.downcase )
 					products.push( product )
 				end
@@ -60,10 +56,10 @@ class Product < ApplicationRecord
 		return products
 	end
 
-	def self.load_available_products_by_author( author = "" )
+	def self.load_available_products_by_author( user_id, author = "" )
 		products = []
 		self.includes( :product_item, :photos, :comments )
-			.where( available: true ).each do |product|
+			.where( available: true ).where.not( user_id: user_id ).each do |product|
 				if product.product_item.author.downcase.include?( author.downcase )
 					products.push( product )
 				end
