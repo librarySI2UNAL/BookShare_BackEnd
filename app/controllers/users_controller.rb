@@ -171,7 +171,17 @@ class UsersController < ApplicationController
 		response = { message: message }
 		response[:data] = ActiveModelSerializers::SerializableResource.new( users ).as_json[:users]
 		render json: response
-	end	
+	end
+	
+	def userProducts
+		products = User.get_products_for_user_id(params.require(:id).to_i)
+		message = Message.object_updated( "Product" )
+		response = { message: message }
+		#TODO: Serialize results array
+		#response[:results] = products.as_json
+		response[:results] = ActiveModelSerializers::SerializableResource.new( products ).as_json[:products]
+		render json: response
+	end
 	
 	private
 

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 		get "users/qsearch", to: "users#qsearch"
 		get "products/search", to: "products#search"
 		get "products/qsearch", to: "products#qsearch"
+		get "users/products", to: "users#userProducts"
 		get "users/near", to: "users#near_users"
 
 

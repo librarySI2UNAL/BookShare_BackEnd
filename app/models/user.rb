@@ -49,7 +49,7 @@ class User < ApplicationRecord
 	def self.load_near_users(user_id, latitude, longitude, distance)
 		#users = User.where.not(id: user_id)
 		#users = User.where.not(id: user_id).joins(:product).where(:product => { :available => 'true' })
-		users = User.joins(:product).where(products: { available: true }).where.not(users: {id: user_id})
+		users = self.joins(:product).where(products: { available: true }).where.not(users: {id: user_id})
 		#users.delete_if {|user| user.calculate_distance(latitude, longitude) > distance}
 		result = []
 		users.each do |user|
@@ -58,6 +58,10 @@ class User < ApplicationRecord
 			end
 		end
 		return result
+	end
+	
+	def self.get_products_for_user_id(user_id)
+		return Product.joins(:user).where(products: { available: true }, users: {id: user_id})
 	end
 	
 	def calculate_distance(latitude, longitude)
