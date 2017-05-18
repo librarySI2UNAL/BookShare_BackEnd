@@ -73,4 +73,8 @@ class Product < ApplicationRecord
 
 		return products
 	end
+	
+	def load_last_products
+		return Product.find(:all, :order => id_desc, :limit => 10)
+	end
 end
