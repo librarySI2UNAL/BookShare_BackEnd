@@ -1,7 +1,5 @@
 # encoding: utf-8
 class ProductsController < ApplicationController
-	skip_before_action :authorize_request, only: [:search]
-
 	def collection
 		products = Product.load_products_by_user_id( params[:user_id].to_i, params[:available] == "true" )
 		render json: products, root: "data"
@@ -90,7 +88,7 @@ class ProductsController < ApplicationController
 		i = 0
 		filter_by_other_fields = false
 		user_id = params[:user_id].to_i
-		if columns.count > 1
+		if columns.count > 0
 			columns.each do |column|
 				if column == "genre"
 					genre_ids = query[i].split( / / ).map( &:to_i )
@@ -147,7 +145,7 @@ class ProductsController < ApplicationController
 
 		results = results.paginate( page: params[:page], per_page: params[:per_page] )
 
-		response[:data] = results.count > 0 ? ActiveModelSerializers::SerializableResource.new( results ).as_json[:products]: results
+		response[:data] = results.count > 0 ? ActiveModelSerializers::SerializableResource.new( results ).as_json[:products]: []
 		render json: response
 	end
 
