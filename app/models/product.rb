@@ -35,7 +35,7 @@ class Product < ApplicationRecord
 
 	def self.load_available_and_special_products()
 		self.includes( :photos, :comments, :user, product_item: [:genre] )
-			.where( available: true, special: true ).limit( 10 )
+			.where( available: true, special: true, :order => id_desc ).limit( 10 )
 	end
 
 	def self.load_available_products_by_genre( user_id, genreId = 1 )
@@ -75,6 +75,6 @@ class Product < ApplicationRecord
 	end
 	
 	def load_last_products
-		return Product.find(:all, :order => id_desc, :limit => 10)
+		
 	end
 end
