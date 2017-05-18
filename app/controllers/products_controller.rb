@@ -1,5 +1,7 @@
 # encoding: utf-8
 class ProductsController < ApplicationController
+	skip_before_action :authorize_request, only: :special_collection
+	
 	def collection
 		products = Product.load_products_by_user_id( params[:user_id].to_i, params[:available] == "true" )
 		render json: products, root: "data"
