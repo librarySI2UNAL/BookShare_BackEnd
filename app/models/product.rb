@@ -74,7 +74,4 @@ class Product < ApplicationRecord
 		return products
 	end
 	
-	def load_last_products
-		
-	end
 end
