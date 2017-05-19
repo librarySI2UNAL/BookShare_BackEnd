@@ -1,10 +1,10 @@
 class CommentsController < ApplicationController
 	def create
-		comment = CommentsDAO.create_comment(comment_params)
+		comment = CommentsDAO.create_comment( params[:product_id].to_i, comment_params )
 
 		if comment == nil
-			message = Message.not_found("User")
-			render json: {error: message}, status: 400
+			message = Message.not_found( "User" )
+			render json: { error: message }, status: 400
 			return
 		end
 
@@ -12,7 +12,6 @@ class CommentsController < ApplicationController
 		response = { message: message}
 		response[:data] = ActiveModelSerializers::SerializableResource.new( comment ).as_json[:comment]
 		render json: response
-
 	end
 
 	def update

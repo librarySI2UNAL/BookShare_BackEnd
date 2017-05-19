@@ -13,7 +13,9 @@ Rails.application.routes.draw do
 			get "products", to: "products#collection"
 			get "near", to: "users#near_users"
 
-			resources :products, only: [:create, :update, :destroy]
+			resources :products, only: [:create, :update, :destroy] do
+				get "validate", to: "products#validate"
+			end
 			resources :photos, only: [:create, :update, :destroy]
 		end
 

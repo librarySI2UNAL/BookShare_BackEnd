@@ -38,4 +38,8 @@ class ProductsDAO
 
 		return true
 	end
+
+	def self.validate( user_id, product_id )
+		Product.exists?( id: product_id, user_id: user_id )
+	end
 end

@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 			render json: { error: message }, status: 400
 			return
 		end
+		
 		exists = UsersDAO.validate_email( params[:email] )
 
 		render json: { exists: exists }
