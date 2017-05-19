@@ -1,12 +1,23 @@
 class CommentsDAO
 
-	def self.create_comment( comment_h )
-		user = User.load_user_by_id(comment_h.delete(:user_id))
+	def self.create_comment( product_id, comment_h )
+		product = Product.load_product_by_id( product_id )
+		if product == nil
+			return nil
+		end
+		
+		user = User.load_user_by_id( comment_h.delete( :user_id ) )
 		if user == nil
 			return nil
 		end
+		
 		comment_h[:user] = user
-		Comment.create( comment_h )
+		
+		comment = Comment.create( comment_h )
+		product.comments << comment
+		product.save
+
+		return comment
 	end
 
 	def self.update_comment( id, comment_h )
