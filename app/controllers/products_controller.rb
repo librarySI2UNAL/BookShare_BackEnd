@@ -10,19 +10,19 @@ class ProductsController < ApplicationController
 	
 	def collection
 		products = Product.load_products_by_user_id( params[:user_id].to_i, params[:available] == "true" )
-		render json: products, root: "data"
+		render json: products, root: "data", include: "**"
 	end
 
 	def special_collection
 		products = Product.load_available_and_special_products()
-		render json: products, root: "data"
+		render json: products, root: "data", include: "**"
 	end
 
 	def index
 		products = Product.load_available_products( params[:user_id].to_i, params[:page], params[:per_page] )
 
 		response = { count: products.count }
-		response[:data] = ActiveModelSerializers::SerializableResource.new( products ).as_json[:products]
+		response[:data] = ActiveModelSerializers::SerializableResource.new( products, include: "**" ).as_json[:products]
 		render json: response
 	end
 
@@ -59,7 +59,7 @@ class ProductsController < ApplicationController
 
 		message = Message.object_updated( "Product" )
 		response = { message: message }
-		response[:data] = ActiveModelSerializers::SerializableResource.new( product ).as_json[:product]
+		response[:data] = ActiveModelSerializers::SerializableResource.new( product, include: "**" ).as_json[:product]
 		render json: response
 	end
 
@@ -153,7 +153,7 @@ class ProductsController < ApplicationController
 
 		results = results.paginate( page: params[:page], per_page: params[:per_page] )
 
-		response[:data] = results.count > 0 ? ActiveModelSerializers::SerializableResource.new( results ).as_json[:products]: []
+		response[:data] = results.count > 0 ? ActiveModelSerializers::SerializableResource.new( results, include: "**" ).as_json[:products]: []
 		render json: response
 	end
 
