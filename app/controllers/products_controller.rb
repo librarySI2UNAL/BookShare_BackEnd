@@ -1,22 +1,28 @@
 # encoding: utf-8
 class ProductsController < ApplicationController
-	skip_before_action :authorize_request, only: :special_collection
+	skip_before_action :authorize_request, only: [:special_collection]
+
+	def validate
+		exists = ProductsDAO.validate( params[:user_id].to_i, params[:product_id].to_i )
+
+		render json: { exists: exists }
+	end
 	
 	def collection
 		products = Product.load_products_by_user_id( params[:user_id].to_i, params[:available] == "true" )
-		render json: products, root: "data"
+		render json: products, root: "data", include: "**"
 	end
 
 	def special_collection
 		products = Product.load_available_and_special_products()
-		render json: products, root: "data"
+		render json: products, root: "data", include: "**"
 	end
 
 	def index
 		products = Product.load_available_products( params[:user_id].to_i, params[:page], params[:per_page] )
 
 		response = { count: products.count }
-		response[:data] = ActiveModelSerializers::SerializableResource.new( products ).as_json[:products]
+		response[:data] = ActiveModelSerializers::SerializableResource.new( products, include: "**" ).as_json[:products]
 		render json: response
 	end
 
@@ -53,7 +59,7 @@ class ProductsController < ApplicationController
 
 		message = Message.object_updated( "Product" )
 		response = { message: message }
-		response[:data] = ActiveModelSerializers::SerializableResource.new( product ).as_json[:product]
+		response[:data] = ActiveModelSerializers::SerializableResource.new( product, include: "**" ).as_json[:product]
 		render json: response
 	end
 
@@ -84,70 +90,55 @@ class ProductsController < ApplicationController
 		end
 
 		query = params[:q].split( /,/ )
-		interests = []
-		genres = []
+		genre_ids = []
 		words = []
 		columns = params[:columns].split( /,/ )
 		i = 0
+		filter_by_other_fields = false
 		user_id = params[:user_id].to_i
-		if columns.count > 1
+		if columns.count > 0
 			columns.each do |column|
-				if column == "interest"
-					interests = query[i].split( / / )
-					j = 0
-					interests.each do |interest|
-						interests[j] = interest.to_i
-						j += 1
-					end
-					i += 1
-				elsif column == "genre"
-					genres = query[i].split( / / )
+				if column == "genre"
+					genre_ids = query[i].split( / / ).map( &:to_i )
 					i += 1
 				else
+					filter_by_other_fields = true
 					words = query[i].split( / / )
 				end
 			end
 		end
 
 		results = []
+		ids = []
 		columns.each do |column|
 			case column
 				when "name"
 					words.each do |word|
-						products = Product.load_available_products_by_name( user_id, word )
+						products = Product.load_available_products_by_name( user_id, word, genre_ids )
 						products.each do |product|
-							if !results.include?( product )
+							if !ids.include?( product.id )
 								results.push( product )
-							end
-						end
-					end
-				when "genre"
-					genres.each do |genre|
-						products = Product.load_available_products_by_genre( user_id, genre.to_i )
-						products.each do |product|
-							if !results.include?( product )
-								results.push( product )
+								ids.push( product.id )
 							end
 						end
 					end
 				when "author"
 					words.each do |word|
-						products = Product.load_available_products_by_author( user_id, word )
+						products = Product.load_available_products_by_author( user_id, word, genre_ids )
 						products.each do |product|
-							if !results.include?( product )
+							if !ids.include?( product.id )
 								results.push( product )
+								ids.push( product.id )
 							end
 						end
 					end
-				when "interest"
-					interest_query = Interest.load_interests_by_ids( interests )
-					interest_query.each do |interest|
-						interest.genres.each do |genre|
-							products = Product.load_available_products_by_genre( user_id, genre.id )
-							products.each do |product|
-								if !results.include?( product )
-									results.push( product )
-								end
+				when "genre"
+					if !filter_by_other_fields
+						products = Product.load_available_products_by_genre_ids( user_id, genre_ids )
+						products.each do |product|
+							if !ids.include?( product.id )
+								results.push( product )
+								ids.push( product.id )
 							end
 						end
 					end
@@ -162,7 +153,7 @@ class ProductsController < ApplicationController
 
 		results = results.paginate( page: params[:page], per_page: params[:per_page] )
 
-		response[:data] = results.count > 0 ? ActiveModelSerializers::SerializableResource.new( results ).as_json[:products]: results
+		response[:data] = results.count > 0 ? ActiveModelSerializers::SerializableResource.new( results, include: "**" ).as_json[:products]: []
 		render json: response
 	end
 

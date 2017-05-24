@@ -27,10 +27,11 @@ class Product < ApplicationRecord
 			.where( available: available, user_id: user_id )
 	end
 
-	def self.load_available_products( user_id, page = 1, per_page = 10 )
-		self.includes( :photos, :comments, :user, product_item: [:genre] )
+	def self.load_available_products( user_id, page = 1, per_page = 10, all = false )
+		products_query = self.includes( :photos, :comments, :user, product_item: [:genre] )
 			.where( available: true ).where.not( user_id: user_id )
-			.paginate( page: page, per_page: per_page )
+			
+		return all ? products_query: products_query.paginate( page: page, per_page: per_page )
 	end
 
 	def self.load_available_and_special_products()
@@ -38,11 +39,12 @@ class Product < ApplicationRecord
 			.where( available: true, special: true ).order('created_at DESC').limit( 10 )
 	end
 
-	def self.load_available_products_by_genre( user_id, genreId = 1 )
+	def self.load_available_products_by_genre_ids( user_id, genre_ids )
 		products = []
+
 		self.includes( :photos, :comments, :user, product_item: [:genre] )
 			.where( available: true ).where.not( user_id: user_id ).each do |product|
-				if product.product_item.genre.id == genreId
+				if genre_ids.include?( product.product_item.genre.id )
 					products.push( product )
 				end
 			end
@@ -50,26 +52,40 @@ class Product < ApplicationRecord
 		return products
 	end
 
-	def self.load_available_products_by_name( user_id, name = "" )
+	def self.load_available_products_by_name( user_id, name = "", genre_ids )
 		products = []
-		self.includes( :photos, :comments, :user, product_item: [:genre] )
-			.where( available: true ).where.not( user_id: user_id ).each do |product|
-				if product.product_item.name.downcase.include?( name.downcase )
-					products.push( product )
-				end
+		products_query = []
+
+		if genre_ids.count > 0
+			products_query = self.load_available_products_by_genre_ids( user_id, genre_ids )
+		else
+			products_query = self.load_available_products( user_id, 1, 10, true )
+		end
+
+		products_query.each do |product|
+			if product.product_item.name.downcase.include?( name.downcase )
+				products.push( product )
 			end
+		end
 
 		return products
 	end
 
-	def self.load_available_products_by_author( user_id, author = "" )
+	def self.load_available_products_by_author( user_id, author = "", genre_ids )
 		products = []
-		self.includes( :photos, :comments, :user, product_item: [:genre] )
-			.where( available: true ).where.not( user_id: user_id ).each do |product|
-				if product.product_item.author.downcase.include?( author.downcase )
-					products.push( product )
-				end
+		products_query = []
+
+		if genre_ids.count > 0
+			products_query = self.load_available_products_by_genre_ids( user_id, genre_ids )
+		else
+			products_query = self.load_available_products( user_id, 1, 10, true )
+		end
+
+		products_query.each do |product|
+			if product.product_item.author.downcase.include?( author.downcase )
+				products.push( product )
 			end
+		end
 
 		return products
 	end

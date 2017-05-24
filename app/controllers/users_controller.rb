@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 			render json: { error: message }, status: 400
 			return
 		end
+		
 		exists = UsersDAO.validate_email( params[:email] )
 
 		render json: { exists: exists }
@@ -85,7 +86,7 @@ class UsersController < ApplicationController
 	private
 
 	def user_params
-		params.require( :data ).permit( :name, :last_name, :email, :password, :qualification, :latitude, :longitude, :photo, interests: [] )
+		params.require( :data ).permit( :name, :last_name, :email, :password, :qualification, :latitude, :longitude, interests: [] )
 	end
 
 end

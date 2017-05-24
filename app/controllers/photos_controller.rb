@@ -1,5 +1,4 @@
 class PhotosController < ApplicationController
-
 	def create
 		if !params.has_key?( :file )
 			message = Message.invalid_request( "file" )
