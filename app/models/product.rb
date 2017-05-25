@@ -36,7 +36,7 @@ class Product < ApplicationRecord
 
 	def self.load_available_and_special_products()
 		self.includes( :photos, :comments, :user, product_item: [:genre] )
-			.where( available: true, special: true ).order( "updated_at DESC" )
+			.where( available: true, special: true ).order( updated_at: :desc )
 			.limit( 10 )
 	end
 
