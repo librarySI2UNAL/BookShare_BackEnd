@@ -50,7 +50,7 @@ class ProductsController < ApplicationController
 		product = ProductsDAO.update_product( params[:user_id].to_i, product_params )
 		if product == nil
 			message = Message.not_found( "Product" )
-			render json: { error: message }
+			render json: { error: message }, status: 404
 			return
 		elsif !product.valid?
 			render json: { error: product.errors.full_messages }
@@ -67,7 +67,7 @@ class ProductsController < ApplicationController
 		deleted = ProductsDAO.delete_product( params[:user_id].to_i, params[:id].to_i )
 		if !deleted
 			message = Message.not_found( "Product" )
-			render json: { error: message }
+			render json: { error: message }, status: 404
 			return
 		end
 		message = Message.object_deleted( "Product" )
