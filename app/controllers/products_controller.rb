@@ -64,7 +64,7 @@ class ProductsController < ApplicationController
 	end
 
 	def destroy
-		deleted = ProductsDAO.delete_product( product_params )
+		deleted = ProductsDAO.delete_product( params[:user_id].to_i, params[:id].to_i )
 		if !deleted
 			message = Message.not_found( "Product" )
 			render json: { error: message }
