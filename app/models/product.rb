@@ -5,7 +5,7 @@ class Product < ApplicationRecord
 	has_many :comments
 
 	validates :special, presence: true
-	validates :available, presence: true
+	#validates :available, presence: true
 	validates :cover, presence: true
 	validates :status, presence: true
 	validates :value, presence: true
