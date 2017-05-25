@@ -47,7 +47,7 @@ class ProductsController < ApplicationController
 	end
 
 	def update
-		product = ProductsDAO.update_product( product_params )
+		product = ProductsDAO.update_product( params[:user_id].to_i, product_params )
 		if product == nil
 			message = Message.not_found( "Product" )
 			render json: { error: message }
