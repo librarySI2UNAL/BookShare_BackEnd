@@ -1,5 +1,5 @@
 class ProductSerializer < ActiveModel::Serializer
-	attributes :id, :special, :available, :cover, :status, :value, :code, :code_type
+	attributes :id, :description, :special, :available, :cover, :status, :value, :code, :code_type
 
 	belongs_to :product_item, polymorphic: true, include: true
 	belongs_to :user, serializer: UserSerializer
