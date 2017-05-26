@@ -64,7 +64,7 @@ class Product < ApplicationRecord
 		end
 
 		products_query.each do |product|
-			if product.product_item.name.downcase.include?( name.downcase )
+			if product.product_item && product.product_item.name.downcase.include?( name.downcase )
 				products.push( product )
 			end
 		end
@@ -83,7 +83,7 @@ class Product < ApplicationRecord
 		end
 
 		products_query.each do |product|
-			if product.product_item.author.downcase.include?( author.downcase )
+			if product.product_item && product.product_item.author.downcase.include?( author.downcase )
 				products.push( product )
 			end
 		end
