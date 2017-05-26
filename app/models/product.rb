@@ -5,7 +5,7 @@ class Product < ApplicationRecord
 	has_many :comments
 
 	validates :special, presence: true
-	validates :available, presence: true
+	#validates :available, presence: true
 	validates :cover, presence: true
 	validates :status, presence: true
 	validates :value, presence: true
@@ -36,7 +36,8 @@ class Product < ApplicationRecord
 
 	def self.load_available_and_special_products()
 		self.includes( :photos, :comments, :user, product_item: [:genre] )
-			.where( available: true, special: true ).limit( 10 )
+			.where( available: true, special: true ).order( updated_at: :desc )
+			.limit( 10 )
 	end
 
 	def self.load_available_products_by_genre_ids( user_id, genre_ids )
@@ -89,4 +90,5 @@ class Product < ApplicationRecord
 
 		return products
 	end
+	
 end
